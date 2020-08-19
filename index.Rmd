@@ -1,0 +1,28 @@
+--- 
+title: "ShinyDataSHIELD User's Guide"
+author: "Escribà Montagut, Xavier; González, Juan R."
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+---
+
+```{r, setup, include=FALSE}
+knitr::opts_chunk$set(eval = FALSE)
+```
+
+# Overview
+
+![](images/ds_logo.png){width=50%}
+
+
+ShinyDataSHIELD is a non-disclosive data analysis toolbox powered by DataSHIELD with the following features:
+
+  + Descriptive statistics: Summary, scatter plots, histograms and heatmaps of table variables.
+  + Statistic models: GLM and GLMer model fittings
+  + Omic analysis: GWAS, LIMMA, ... using different types of resources (VCF files, PLINK, RSE, eSets)
+  
+The features available on ShinyDataSHIELD are powered by different packages of the DataSHIELD project (dsBaseClient and dsOmicsClient), it uses them in a seamless way so the final user of ShinyDataSHIELD can perform all the included studies without writing a single line of code and get all the resulting figures and tables by the click of a button.
+

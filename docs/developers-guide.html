@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5 Developers Guide | dsOmicsShiny User’s Guide</title>
+  <meta name="description" content="5 Developers Guide | dsOmicsShiny User’s Guide" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5 Developers Guide | dsOmicsShiny User’s Guide" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5 Developers Guide | dsOmicsShiny User’s Guide" />
+  
+  
+  
+
+<meta name="author" content="Escribà Montagut, Xavier; González, Juan R." />
+
+
+<meta name="date" content="2020-08-19" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="functionalities.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="" target="blank">dsOmicsShiny User Guide</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Overview</a></li>
+<li class="chapter" data-level="2" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>2</b> Setup</a></li>
+<li class="chapter" data-level="3" data-path="r-packages.html"><a href="r-packages.html"><i class="fa fa-check"></i><b>3</b> R packages</a></li>
+<li class="chapter" data-level="4" data-path="functionalities.html"><a href="functionalities.html"><i class="fa fa-check"></i><b>4</b> Functionalities</a><ul>
+<li class="chapter" data-level="4.1" data-path="functionalities.html"><a href="functionalities.html#data-entry"><i class="fa fa-check"></i><b>4.1</b> Data entry</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="functionalities.html"><a href="functionalities.html#single-resource-table-approach"><i class="fa fa-check"></i><b>4.1.1</b> Single resource / table approach</a></li>
+<li class="chapter" data-level="4.1.2" data-path="functionalities.html"><a href="functionalities.html#multiple-resource-study"><i class="fa fa-check"></i><b>4.1.2</b> Multiple resource study</a></li>
+<li class="chapter" data-level="4.1.3" data-path="functionalities.html"><a href="functionalities.html#pooled-data-approach"><i class="fa fa-check"></i><b>4.1.3</b> Pooled data approach</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="functionalities.html"><a href="functionalities.html#descriptive-statistics"><i class="fa fa-check"></i><b>4.2</b> Descriptive statistics</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="functionalities.html"><a href="functionalities.html#summary"><i class="fa fa-check"></i><b>4.2.1</b> Summary</a></li>
+<li class="chapter" data-level="4.2.2" data-path="functionalities.html"><a href="functionalities.html#scatter-plot"><i class="fa fa-check"></i><b>4.2.2</b> Scatter plot</a></li>
+<li class="chapter" data-level="4.2.3" data-path="functionalities.html"><a href="functionalities.html#histogram"><i class="fa fa-check"></i><b>4.2.3</b> Histogram</a></li>
+<li class="chapter" data-level="4.2.4" data-path="functionalities.html"><a href="functionalities.html#heatmap"><i class="fa fa-check"></i><b>4.2.4</b> Heatmap</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="functionalities.html"><a href="functionalities.html#statistic-models"><i class="fa fa-check"></i><b>4.3</b> Statistic models</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="functionalities.html"><a href="functionalities.html#glm-models"><i class="fa fa-check"></i><b>4.3.1</b> GLM models</a></li>
+<li class="chapter" data-level="4.3.2" data-path="functionalities.html"><a href="functionalities.html#mixed-models"><i class="fa fa-check"></i><b>4.3.2</b> Mixed models</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="functionalities.html"><a href="functionalities.html#genomics"><i class="fa fa-check"></i><b>4.4</b> Genomics</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="functionalities.html"><a href="functionalities.html#analysis-with-bioconductor"><i class="fa fa-check"></i><b>4.4.1</b> Analysis with BioConductor</a></li>
+<li class="chapter" data-level="4.4.2" data-path="functionalities.html"><a href="functionalities.html#analysis-with-plink"><i class="fa fa-check"></i><b>4.4.2</b> Analysis with PLINK</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="functionalities.html"><a href="functionalities.html#omics"><i class="fa fa-check"></i><b>4.5</b> Omics</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="functionalities.html"><a href="functionalities.html#limma"><i class="fa fa-check"></i><b>4.5.1</b> LIMMA</a></li>
+<li class="chapter" data-level="4.5.2" data-path="functionalities.html"><a href="functionalities.html#deseq"><i class="fa fa-check"></i><b>4.5.2</b> DESeq</a></li>
+<li class="chapter" data-level="4.5.3" data-path="functionalities.html"><a href="functionalities.html#edger"><i class="fa fa-check"></i><b>4.5.3</b> edgeR</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="developers-guide.html"><a href="developers-guide.html"><i class="fa fa-check"></i><b>5</b> Developers Guide</a><ul>
+<li class="chapter" data-level="5.1" data-path="developers-guide.html"><a href="developers-guide.html#file-structure-of-dsomicsshiny"><i class="fa fa-check"></i><b>5.1</b> File structure of dsOmicsShiny</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="developers-guide.html"><a href="developers-guide.html#ui.r"><i class="fa fa-check"></i><b>5.1.1</b> <code>ui.R</code></a></li>
+<li class="chapter" data-level="5.1.2" data-path="developers-guide.html"><a href="developers-guide.html#server.r"><i class="fa fa-check"></i><b>5.1.2</b> <code>server.R</code></a></li>
+<li class="chapter" data-level="5.1.3" data-path="developers-guide.html"><a href="developers-guide.html#how-to-add-a-new-block"><i class="fa fa-check"></i><b>5.1.3</b> How to add a new block</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">dsOmicsShiny User’s Guide</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="developers-guide" class="section level1">
+<h1><span class="header-section-number">5</span> Developers Guide</h1>
+<p>Along this section, documentation for future developers and maintainers of dsOmicsShiny is provided. It contains information about how the whole Shiny application is structured, all the different scripts that contains, flowcharts of the different files and information on how to extend the capabilities of dsOmicsShiny to new types of resources as well as new methodologies.</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">❗ Observation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Please read this documentation with the actual source code on the side for easier understanding.</td>
+</tr>
+</tbody>
+</table>
+<div id="file-structure-of-dsomicsshiny" class="section level2">
+<h2><span class="header-section-number">5.1</span> File structure of dsOmicsShiny</h2>
+<p>Typically Shiny applications are contained in a single file or two files, since the typical structure of a Shiny application is to have a <code>server</code> function and a <code>ui</code> function that can be on the same file or split for larger applications. On dsOmicShiny the <code>server</code> function has been split into different scripts where all of them contains the code of a certain block of the application. It has been done this way to not have a really long <code>server</code> file that is difficult to navigate and debug. There is no need to split the <code>ui</code> file into different scripts since it only contains the graphical declarations of the applications and is really easy to update and navigate.</p>
+<p>The different scripts that compose the whole dsOmicsShiny are the following:</p>
+<ul>
+<li><code>ui.R</code></li>
+<li><code>server.R</code>, composed of the folowing scripts:
+<ul>
+<li><code>connection.R</code></li>
+<li><code>descriptive_stats.R</code></li>
+<li><code>download_handlers.R</code></li>
+<li><code>genomics.R</code></li>
+<li><code>omics.R</code></li>
+<li><code>plot_renders.R</code></li>
+<li><code>statistic_models.R</code></li>
+<li><code>table_renders.R</code></li>
+</ul></li>
+</ul>
+<p>The file <code>server.R</code> exists to source the different files and it also includes some small funcionalities.</p>
+<p>Now a file per file explanation will be given with flowcharts (when needed), remarkable bits of code explanations and general remarks. Also, details on how to implement new functionalities will be given when needed.</p>
+<div id="ui.r" class="section level3">
+<h3><span class="header-section-number">5.1.1</span> <code>ui.R</code></h3>
+<p>Inside this file there are all the declarations of how the graphical user interface (GUI) will look like.</p>
+<p>First, it contains a declaration of all the libraries that have to be loaded for the application to run. The libraries are the following: <code>DSI, DSOpal, dsBaseClient, dsOmicsClient, shinydashboard, shiny, shinyalert, DT, data.table, shinyjs, shinyBS, shinycssloaders)</code>.</p>
+<p>The next piece of code found</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">jscode &lt;-<span class="st"> &#39;</span></a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="st">$(document).keyup(function(event) {</span></a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="st">    if ($(&quot;#password&quot;).is(&quot;:focus&quot;) &amp;&amp; (event.keyCode == 13)) {</span></a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="st">        $(&quot;#connect_server&quot;).click();</span></a>
+<a class="sourceLine" id="cb4-5" title="5"><span class="st">    }</span></a>
+<a class="sourceLine" id="cb4-6" title="6"><span class="st">});</span></a>
+<a class="sourceLine" id="cb4-7" title="7"><span class="st">&#39;</span></a></code></pre></div>
+<p>Is a JavaScript declaration that reads as: When the #password item (corresponds to the text input of the password on the data entry tab) is active (the user is writting in it) and the “Intro” key is pressed, trigger the #connect_server item (corresponds to the “Connect” button on the GUI). That provides the user the typical experience of inputting the login credentials and pressing “Intro” to log in.</p>
+<p>It’s important noting that this is only the declaration of a string with the code inside, to actually make use of it, there is the line 58 of this same file that actually implements it.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">tags<span class="op">$</span><span class="kw">head</span>(tags<span class="op">$</span><span class="kw">script</span>(<span class="kw">HTML</span>(jscode)))</a></code></pre></div>
+<p>There are a some functions used in this file that are worth mentioning:</p>
+<ul>
+<li><code>hidden()</code>: From the <code>shinyjs</code> library. The elements wrapped inside of this function will not be rendered by default, they have to be toggled from the server side. Example: A GUI element that needs to be displayed only when a certain condition is met.</li>
+<li><code>withSpinner()</code>: From the <code>shinycssloaders</code> library. The elements wrapped inside of this function will be displayed as a “loading spinner” when they are being processed. This is used to wrap figure displays. Example: A plot that is being rendered, it’s better for the user experience to see a “loading spinner” so that it knows something is being processed rather than just staring at a blank screen waiting for something to happen.</li>
+<li><code>bsModal()</code>: From the <code>shinyBS</code> library. It’s used to prompt pop-ups to the user. Example: By the click of a button you want to render a pop-up to the application with a figure of an histogram of a selected column of a table.</li>
+</ul>
+<p>The rest of this file is your average Shiny functions and declarations, read the official <a href="https://shiny.rstudio.com/reference/shiny/1.4.0/">documentation</a> for any doubts. Please note that dsOmicsShiny uses <code>shinydashboard</code> to improve the looks and user experience, for any doubts regarding that please read it’s <a href="https://rstudio.github.io/shinydashboard/get_started.html">documentation</a>.</p>
+</div>
+<div id="server.r" class="section level3">
+<h3><span class="header-section-number">5.1.2</span> <code>server.R</code></h3>
+<p>The server file is divided into the following blocks.</p>
+<ul>
+<li>Declaration of reactiveValues: As a code practice measure, all the variables that have to be used in different parts of the code (Example: Table that contains the information about the loaded resources, has to be written when loading the data and afterwards to check whether a resource has been loaded or not) are reactive values. The only occassions where there are “regular” variables are inside functions that use variables as placeholders to be used only inside of that function (Example: Storing the results of a middle ground operation to be later used inside the same function to perform the final analysis, whose results will be saved on a reactive value variable). Developers used to lower level languages can see this as <code>public</code> and <code>private</code> variables.</li>
+<li>Sourcing of scripts: Sourcing all the different scripts that actually make up <code>server.R</code>. As said before this is done this way to have a more structured application where each script takes care of a certain block of the application.</li>
+<li>Function declaration: Declaration of a function that given a column of a data table will truncate the decimal places to 4, it’s used when rendering tables to not have tables with 9 decimals that look hideous.</li>
+<li>Functions to manage the “Connected” / “No connection” display. It’s a bunch of logic and CSS to just control a small element of the GUI. Basically if the variable <code>connection$active</code> is <code>TRUE</code> the GUI will show “Connected” next to a green dot with a “Disconnect” button, otherwise it will display “No connection” next to a red dot. When the button “Disconnect” is pressed, the function to log out of the server is triggered and the <code>connection$active</code> variable is set to false.</li>
+</ul>
+<center>
+<img src="images/dev1.PNG" />
+</center>
+<center>
+<img src="images/dev2.PNG" />
+</center>
+<p>The scripts sourced for by the <code>server.R</code> are the following:</p>
+<div id="connection.r" class="section level4">
+<h4><span class="header-section-number">5.1.2.1</span> <code>connection.R</code></h4>
+<p>This is probably the most important script of the whole application, as it’s the one that puts some constraints on the capabilities of the application. It also is responsible for loading the data in a proper way in order to ensure that the application capabilities can be extended in the future painlessly (modular).</p>
+<p>Inside this script there are five different sections that are triggered by different actions:</p>
+<ul>
+<li>Connection to the server to obtain the projects and resources. Triggered by the button with label “connect_server”.</li>
+<li>Get tables / resources from the selected project. Triggered everytime the selector with label “project_selected” is changed.</li>
+<li>Add a study. Triggered by the button with label “add_server”.</li>
+<li>Remove a study. Triggered by the button with label “remove_server”.</li>
+<li>Load the selected studies to the study servers. Triggered by the button with label “connect_selected”.</li>
+</ul>
+<p>Since it’s very important to understand how the code is working in this script, some flowcharts have been created to be read along the code itself and easily understand what’s going on.</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">❗ Observation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Click on the flowcharts to open them on a separate tab in full-resolution.</td>
+</tr>
+</tbody>
+</table>
+<a href="images/dev3.png" target="_blank">
+  <img align="center"  src="images/dev3.png"/>
+</a>
+<a href="images/dev4.png" target="_blank">
+  <img width=450px align="center"  src="images/dev4.png"/>
+</a>
+<a href="images/dev5.png" target="_blank">
+  <img align="center"  src="images/dev5.png"/>
+</a>
+<a href="images/dev6.png" target="_blank">
+  <img align="center"  src="images/dev6.png"/>
+</a>
+<a href="images/dev7.png" target="_blank">
+  <img align="center"  src="images/dev7.png"/>
+</a>
+<p>There are various red boxes stating some assumptions and some red boxes that show how to implement new features. Let’s start by reviewing the assumptions:</p>
+<ul>
+<li>Assumption: Only tables or resources are selected for a study, never both combined</li>
+<li>Assumption: Always only one table per study</li>
+<li>Assumption: Consistency of columns between all the tables of the different studies (pooled data)</li>
+<li>Assumption: A single study can contain multiple resources, multiple studies can only contain one resource per study</li>
+</ul>
+<p>All the assumptions boxes are located on the parts of the flowchart that would have to be modified in order to change them.</p>
+<p>When loading the selected resources or tables into the study servers, the table <code>available_tables</code> is created. The name is a little bit confusing since it actually contains the information about tables and resources, the developer apologizes as this variable was set at the beginning of the development and has not been updated. Nevertheless, it’s an important variable of the application, the structure of this table is the following.</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">❗ Observation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">On the following table there are code examples, it is marked as <code>THIS</code> wherever the column value would be placed.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<colgroup>
+<col width="7%" />
+<col width="92%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Column</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">server</td>
+<td align="left">Contains the names of the study servers.<br><code>connection$builder$append(server = THIS, url = input$url,                                  user = input$user, password = input$password, driver = "OpalDriver")</code></td>
+</tr>
+<tr class="even">
+<td align="left">table</td>
+<td align="left">Name of the table in the Opal server. Structure: <code>project_name.table_name</code></td>
+</tr>
+<tr class="odd">
+<td align="left">table_internal</td>
+<td align="left">Name assigned to the table on the study server. Assigned by:<br><code>datashield.assign.table(THIS, table)</code></td>
+</tr>
+<tr class="even">
+<td align="left">type_resource</td>
+<td align="left">Type of the resource</td>
+</tr>
+<tr class="odd">
+<td align="left">resource</td>
+<td align="left">Name of the resource in the Opal server. Structure: <code>project_name.resource_name</code></td>
+</tr>
+<tr class="even">
+<td align="left">resource_internal</td>
+<td align="left">Name assigned to the resource on the study server. Assigned by:<br><code>datashield.assign.resource(THIS, resource)</code></td>
+</tr>
+</tbody>
+</table>
+<p>The Opal server can host different types of resources, to name a few there are <code>ExpressionSet</code>, <code>RangedSummarizedExperiment</code> and <code>SQLResourceClient</code>. Each type of resource needs a special treatment to be used, for example <code>SQLResourceClient</code> resources are plain tables, so they need to be converted to tables on the study server to use them. Currently the following resource types are supported by dsOmicsShiny.</p>
+<table>
+<colgroup>
+<col width="18%" />
+<col width="61%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Resource type</th>
+<th align="left">Treatment</th>
+<th align="left">Name of the resource type on <code>available_tables</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">TidyFileResourceClient, SQLResourceClient</td>
+<td align="left">- <code>as.resource.data.frame(resource)</code><br>- Change name to <code>table1</code> instead of <code>resource1</code><br>- Get column names (<code>table_columns</code>) and types (<code>table_columns_types</code>) and save them</td>
+<td align="left"><code>table</code></td>
+</tr>
+<tr class="even">
+<td align="left">SshResourceClient</td>
+<td align="left">No treatment</td>
+<td align="left"><code>ssh</code></td>
+</tr>
+<tr class="odd">
+<td align="left">GdsGenotypeReader</td>
+<td align="left">- <code>as.resource.object(resource)</code></td>
+<td align="left"><code>r_obj_vcf</code></td>
+</tr>
+<tr class="even">
+<td align="left">ExpressionSet</td>
+<td align="left">- <code>as.resource.object(resource)</code><br>- Copy as <code>table1</code> to use the descriptive statistics tab with this resource</td>
+<td align="left"><code>r_obj_eset</code></td>
+</tr>
+<tr class="odd">
+<td align="left">RangedSummarizedExperiment</td>
+<td align="left">- <code>as.resource.object(resource)</code><br>- Copy as <code>table1</code> to use the descriptive statistics tab with this resource</td>
+<td align="left"><code>r_obj_rse</code></td>
+</tr>
+<tr class="even">
+<td align="left">Any other resource type</td>
+<td align="left">- <code>as.resource.object(resource)</code></td>
+<td align="left"><code>r_obj</code></td>
+</tr>
+</tbody>
+</table>
+<p>Examples of <code>available_tables</code> depending on the selected resources and study servers.</p>
+<ul>
+<li>A pooled study of three tables, each one on a different study server:</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="left">server</th>
+<th align="left">table</th>
+<th align="left">table_internal</th>
+<th align="left">type_resource</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">server1</td>
+<td align="left">CNSIM.CNSIM1</td>
+<td align="left">table1</td>
+<td align="left">table</td>
+</tr>
+<tr class="even">
+<td align="left">server2</td>
+<td align="left">CNSIM.CNSIM2</td>
+<td align="left">table1</td>
+<td align="left">table</td>
+</tr>
+<tr class="odd">
+<td align="left">server3</td>
+<td align="left">CNSIM.CNSIM3</td>
+<td align="left">table1</td>
+<td align="left">table</td>
+</tr>
+</tbody>
+</table>
+<p>What can be seen from this table is that there are three study servers and each one contains a different table. Since they are located on different servers they have the same internal names.</p>
+<ul>
+<li>A pooled study using resources that contain ExpressionSets</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="left">server</th>
+<th align="left">resource</th>
+<th align="left">resource_internal</th>
+<th align="left">type_resource</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">server1</td>
+<td align="left">RSRC.GSE66351_1</td>
+<td align="left">resource1</td>
+<td align="left">r_obj_eset</td>
+</tr>
+<tr class="even">
+<td align="left">server2</td>
+<td align="left">RSRC.GSE66351_2</td>
+<td align="left">resource1</td>
+<td align="left">r_obj_eset</td>
+</tr>
+</tbody>
+</table>
+<p>We can observe the same things as the previous case but here we have a different <code>type_resource</code></p>
+<ul>
+<li>Single study server with two resources (one of which is actually a table)</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="left">server</th>
+<th align="left">resource</th>
+<th align="left">resource_internal</th>
+<th align="left">type_resource</th>
+<th align="left">table</th>
+<th align="left">table_internal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">server1</td>
+<td align="left">RS.G_covars</td>
+<td align="left">resource1</td>
+<td align="left">table</td>
+<td align="left">RS.G_covars</td>
+<td align="left">table1</td>
+</tr>
+<tr class="even">
+<td align="left">server1</td>
+<td align="left">RS.G_vcf</td>
+<td align="left">resource2</td>
+<td align="left">r_obj_vcf</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+</tbody>
+</table>
+<p>On this case we can see that there are two resources on the same server, and the resource of type table is actually copied into a new variable (internal) with the name <code>table1</code>.</p>
+<p>Now, let’s look at some examples to add new resource types on the <code>connection.R</code> file. There are different cases for the treatment that the new resource requires.</p>
+<ul>
+<li>Resources that contain tables. They have to be treated as so in order to be able to use them on the “Descriprive statistics”, if a new type of resource that contains tables is being implemented, change line 88 <code>if (any(c("TidyFileResourceClient", "SQLResourceClient") %in% resource_type)){</code>, in this line we would add the name of the new resource type that is going to be treated as a table. Example: A new resource called <code>NewTables</code> is being introduced, the line 88 has to be changed to <code>if (any(c("TidyFileResourceClient", "SQLResourceClient", "NewTables") %in% resource_type)){</code>.</li>
+<li>Resources that just need to be loaded with no further action performed to them. Add another <code>else if</code> statement after line 107. Example: New resource called <code>Simple_resource</code></li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="cf">else</span> <span class="cf">if</span> (<span class="st">&quot;Simple_resource&quot;</span> <span class="op">%in%</span><span class="st"> </span>resource_type){</a>
+<a class="sourceLine" id="cb6-2" title="2">            <span class="co"># Update available_tables list with the new resource type name</span></a>
+<a class="sourceLine" id="cb6-3" title="3">            lists<span class="op">$</span>available_tables &lt;-<span class="st"> </span>lists<span class="op">$</span>available_tables[resource_internal <span class="op">==</span><span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;resource&quot;</span>, i), type_resource <span class="op">:</span><span class="er">=</span><span class="st"> &quot;simple_resource&quot;</span>]</a>
+<a class="sourceLine" id="cb6-4" title="4">          }</a></code></pre></div>
+<ul>
+<li>Resources that need to be converted into R objects (<code>datashield.assign.expr(conns, symbol = "methy", expr = quote(as.resource.object(res)))</code>) and nothing else. Will work out of the box (the <code>type_resource</code> column of the <code>lists$available_tables</code> table will read <code>r_obj</code>).</li>
+<li>Resources that need to be converted into R objects (<code>datashield.assign.expr(conns, symbol = "methy", expr = quote(as.resource.object(res)))</code>) and be further processed. Add another <code>else if</code> statement after line 135. Example: A new type of resource called <code>special_resource</code> that contains some variable names that are desired to be saved on a variable to feed a list on the GUI.</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="cf">else</span> <span class="cf">if</span>(<span class="st">&quot;special_resource&quot;</span> <span class="op">%in%</span><span class="st"> </span>resource_type) {</a>
+<a class="sourceLine" id="cb7-2" title="2">              <span class="co"># Update available_tables list with the new resource type name</span></a>
+<a class="sourceLine" id="cb7-3" title="3">              lists<span class="op">$</span>available_tables &lt;-<span class="st"> </span>lists<span class="op">$</span>available_tables[resource_internal <span class="op">==</span><span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;resource&quot;</span>, i), type_resource <span class="op">:</span><span class="er">=</span><span class="st"> &quot;special_resource&quot;</span>]</a>
+<a class="sourceLine" id="cb7-4" title="4">              <span class="co"># Perform the needed actions for this resource, on this example: using the ds.varLabels function</span></a>
+<a class="sourceLine" id="cb7-5" title="5">              <span class="co"># and save the output on a variable</span></a>
+<a class="sourceLine" id="cb7-6" title="6">              lists<span class="op">$</span>table_columns &lt;-<span class="st"> </span><span class="kw">ds.varLabels</span>(<span class="kw">paste0</span>(<span class="st">&quot;resource&quot;</span>, i), <span class="dt">datasources =</span> connection<span class="op">$</span>conns)<span class="op">$</span>server1</a>
+<a class="sourceLine" id="cb7-7" title="7">            }</a></code></pre></div>
+<p>There’s already a variable called <code>table_columns</code> for those types of cases. If the new resource requires novel things just update the variables on the top of the <code>server.R</code> and apply the required methodologies.</p>
+<p>As a summary, <code>connection.R</code> loads the selected tables / resources into the study servers and updates the table <code>available_tables</code> with the information about the loaded resources / tables and their types. The idea is that when X resource is loaded, it’s already processed on the <code>connection.R</code> to be used on a certain block, so all the funcional blocks only contain the code of their core functionality, not code to pre-process the resource before analyzing it.</p>
+</div>
+<div id="descriptive_stats.r" class="section level4">
+<h4><span class="header-section-number">5.1.2.2</span> <code>descriptive_stats.R</code></h4>
+<p>The script contains all the render functions to render the selectors of the block. This has to be done this way since the “Variable” selector for example is fed a list created when inputing the data, so it’s a dynamic value. Putting the render functions on the <code>ui.R</code> will result in the application crashing since the list of variables is non existant at the time of launching the Shiny application.</p>
+<p>Besides that, there’s also an <code>observe</code> function that takes care of warning the user if no connection is active and this tab is selected, as well as warning the user if the resource of the study server is not appropiate for this tab.</p>
+<p>This block basically contains figures and tables, and they are actually created on the <code>table_renders.R</code> and <code>plot_renders.R</code>.</p>
+</div>
+<div id="statistics_models.r" class="section level4">
+<h4><span class="header-section-number">5.1.2.3</span> <code>statistics_models.R</code></h4>
+<p>This script contains the functions to run two tabs, the “Statistic models” and the “Mixed statistic models”. In this tab there are two sets of very similar triggers (<code>observeEvent()</code>):</p>
+<ul>
+<li>A toggle to show and hide the table that displays the variables of the study table and their types. (<code>toggleElement()</code>)</li>
+<li>Perform the model with the inputed data. Encapsulated on a <code>tryCatch</code> so that if there’s an error when calculating the model, there’s a <code>shinyalert()</code> to prompt a popup warning in the GUI.</li>
+<li>Trigger that displays a <code>shinyalert()</code> popup with some help regarding the input of the formula.</li>
+</ul>
+<p>Those tree elements are doubled, one for the GLM model and the other for the GLMerSLMA. Note that for the GLMerSLMA there’s an extra element to select the study to show the results of, since the GLM provides a model for the pooled data and GLMer outputs the coefficients for each of the study servers.</p>
+<p>Besides that, there’s also an <code>observe</code> function that takes care of warning the user if no connection is active and this tab is selected, as well as warning the user if the resource of the study server is not appropiate for this tab.</p>
+</div>
+<div id="genomics.r" class="section level4">
+<h4><span class="header-section-number">5.1.2.4</span> <code>genomics.R</code></h4>
+<p>On this scripts there are all the genomics methodologies implemented into dsOmicsShiny</p>
+<ul>
+<li>PLINK files: The functions corresponding to the PLINK analysis is just a trigger that reads the inputed command and performs the querry and a <code>renderText()</code> function to render the raw text output from the PLINK.</li>
+<li>VCF files: For this resources, there are the following items
+<ul>
+<li>Render functions for the lists of variables.</li>
+<li>Trigger to perform the GWAS, encapsulated on a <code>tryCatch()</code> so that if there’s an error when calculating the GWAS, there’s a <code>shinyalert()</code> to prompt a popup warning in the GUI.</li>
+</ul></li>
+</ul>
+<p>It’s important noting that when using VCF files the user has to load two files into the study, the VCF and a covariates files (table). The <code>connection.R</code> script handles that and loads the VCF as a resource and the covariates as a table, so on the <code>available_tables</code> they have their own different <code>type_resource</code> value. Therefore, this can be done:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">x=lists<span class="op">$</span>available_tables[type_resource <span class="op">==</span><span class="st"> &quot;r_obj_vcf&quot;</span>, resource_internal]</a>
+<a class="sourceLine" id="cb8-2" title="2">covars =<span class="st"> </span>lists<span class="op">$</span>available_tables[type_resource <span class="op">==</span><span class="st"> &quot;table&quot;</span>, resource_internal]</a></code></pre></div>
+<p>This assumes that when the user wants to perform this analysis, there’s only a single study with two resources, one of type <code>table</code> for the covars and one of type <code>r_obj_vcf</code>. It’s important noting (assuming that the part of the <code>connection.R</code> has been understood) that a VCF resource is a type of resource that does not need further treatment than being converted to an R object (<code>datashield.assign.expr(conns, symbol = "methy", expr = quote(as.resource.object(res)))</code>) however it was of interest giving it a different <code>type_resource</code> name than the standard <code>r_obj</code> that is given to this types of resources, so it has it’s own <code>else if</code> statement on the <code>connection.R</code>.</p>
+<p>Besides that, there’s also an <code>observe</code> function that takes care of warning the user if no connection is active and this tab is selected, as well as warning the user if the resource of the study server is not appropiate for either tab (a SSH resource will trigger a warning if the “Analysis with BioConductor” tab is selected).</p>
+</div>
+<div id="omics.r" class="section level4">
+<h4><span class="header-section-number">5.1.2.5</span> <code>omics.R</code></h4>
+<p>This script is virtually the same as the VCF part of the <code>genomics.R</code>, it contains GUI renders, a trigger to perform the analysis itself encapsulated on a <code>tryCatch()</code> and the <code>observe</code> function for good measure. It’s important noting that so far it only has implemented LIMMA, on the future it should include DESeq and edgeR methodologies.</p>
+</div>
+<div id="table_renders.r" class="section level4">
+<h4><span class="header-section-number">5.1.2.6</span> <code>table_renders.R</code></h4>
+<p>This script creates the displays of all the tables of dsOmicsShiny, it uses the <code>DT</code> package to do so. Besides the <code>descriptive_summary</code> table, all the other tables just render results from other functions.</p>
+<p>There are some things to point of this script:</p>
+<ul>
+<li>As can be seen in <code>descriptive_summary</code> table, you can actually perform operations inside of a <code>renderDT</code> function and display the result of them.</li>
+<li>The most used options for the tables aesthetics are the following</li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">options=<span class="kw">list</span>(<span class="dt">columnDefs =</span> <span class="kw">list</span>(<span class="kw">list</span>(<span class="dt">visible=</span><span class="ot">FALSE</span>, <span class="dt">targets=</span><span class="kw">c</span>(<span class="dv">0</span>))),</a>
+<a class="sourceLine" id="cb9-2" title="2">                                          <span class="dt">paging =</span> <span class="ot">FALSE</span>, <span class="dt">searching =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<p>This prevents the <code>rownames</code> column to be displayed (usually it just contains the numeration of rows 1…N, be aware sometimes it’s of interest to see this column) and eliminates the paging and searching functionalities of the table. For small tables it makes sense to not show that but on big tables those options are set to <code>TRUE</code>, as it’s very useful to have a search box on them.</p>
+<ul>
+<li>The tables that display numerical columns (mixed or not with non-numerical columns) are actually passed through the <code>format_num</code> function (defined on <code>server.R</code>) so the displayed table has only four decimals but the actual table (the one that can be saved) has all the decimals. This is done using the following code</li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">as.data.table</span>(<span class="kw">lapply</span>(<span class="kw">as.data.table</span>(vcf_results<span class="op">$</span>result_table_gwas<span class="op">$</span>server1), format_num))</a></code></pre></div>
+<p>This will pass each column to the function and if it’s numerical the decimals will be cut to 4.</p>
+<ul>
+<li>The table output structure of the LIMMA results look different than the others, this is because when performing a LIMMA with pooled resources it returns one table for each study, what is being done is just binding them to display to the user all the obtained results.</li>
+</ul>
+</div>
+<div id="plot_renders.r" class="section level4">
+<h4><span class="header-section-number">5.1.2.7</span> <code>plot_renders.R</code></h4>
+<p>There are two types of plots on dsOmicsShiny, the ones created with the base function <a href="https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/plot">plot</a> and the ones created with the <a href="https://ggplot2.tidyverse.org/">ggplot</a> library. In order to later recover the plots to download them, they actually have a different structure.</p>
+<ul>
+<li>Base plot structure:</li>
+</ul>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">output<span class="op">$</span>random_plot &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({</a>
+<a class="sourceLine" id="cb11-2" title="2">  plots<span class="op">$</span>random_plot &lt;-<span class="st"> </span><span class="cf">function</span>(){</a>
+<a class="sourceLine" id="cb11-3" title="3">    <span class="kw">function_that_generates_the_plot_using_base_package</span>(arguments)</a>
+<a class="sourceLine" id="cb11-4" title="4">  }</a>
+<a class="sourceLine" id="cb11-5" title="5">  plots<span class="op">$</span><span class="kw">random_plot</span>()</a>
+<a class="sourceLine" id="cb11-6" title="6">})</a></code></pre></div>
+<p>For the base plots, a function is declared that returns the plot and is called to generate the plot to the GUI.</p>
+<ul>
+<li>Ggplot structure:</li>
+</ul>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">output<span class="op">$</span>manhattan &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({</a>
+<a class="sourceLine" id="cb12-2" title="2">  plots<span class="op">$</span>ggplot &lt;-<span class="st"> </span><span class="kw">function_that_generates_the_plot_using_ggplot2_package</span>(arguments)</a>
+<a class="sourceLine" id="cb12-3" title="3">  plots<span class="op">$</span>ggplot</a>
+<a class="sourceLine" id="cb12-4" title="4">})</a></code></pre></div>
+<p>In this case the plot is saved, ggplot will generate a plot variable that can be called to render the plot.</p>
+<p>On this script there are two plots that are inside a <code>renderCachedPlot</code> function instead of a <code>renderPlot</code> because they take really long to calculate and it’s better to cache them.</p>
+<p>Inside of the <code>renderPlot</code> function some other code can be put, such as toggles to GUI elements or <code>tryCatch()</code> functions.</p>
+</div>
+<div id="download_handlers.r" class="section level4">
+<h4><span class="header-section-number">5.1.2.8</span> <code>download_handlers.R</code></h4>
+<p>In this script everything related to downloading plots and tables is found. There are basically three types of structures</p>
+<ul>
+<li>Table downloader: To download a <code>*csv</code>. Structure:</li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">output<span class="op">$</span>table_download &lt;-<span class="st"> </span><span class="kw">downloadHandler</span>(</a>
+<a class="sourceLine" id="cb13-2" title="2">  <span class="dt">filename =</span> <span class="st">&quot;table.csv&quot;</span>,</a>
+<a class="sourceLine" id="cb13-3" title="3">  <span class="dt">content =</span> <span class="cf">function</span>(file) {</a>
+<a class="sourceLine" id="cb13-4" title="4">    <span class="kw">write.csv</span>(</a>
+<a class="sourceLine" id="cb13-5" title="5">      variable_that_contains_table</a>
+<a class="sourceLine" id="cb13-6" title="6">      , file, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb13-7" title="7">  }</a>
+<a class="sourceLine" id="cb13-8" title="8">)</a></code></pre></div>
+<p>The <code>row.names = FALSE</code> argument may not be needed in tables where the row names are important.</p>
+<ul>
+<li>Base plot downloader: To download a <code>*.png</code>. Structure:</li>
+</ul>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">output<span class="op">$</span>base_plot_download &lt;-<span class="st"> </span><span class="kw">downloadHandler</span>(</a>
+<a class="sourceLine" id="cb14-2" title="2">  <span class="dt">filename =</span> <span class="st">&quot;base_plot.png&quot;</span>,</a>
+<a class="sourceLine" id="cb14-3" title="3">  <span class="dt">content =</span> <span class="cf">function</span>(file) {</a>
+<a class="sourceLine" id="cb14-4" title="4">    <span class="kw">png</span>(<span class="dt">file =</span> file)</a>
+<a class="sourceLine" id="cb14-5" title="5">    plots<span class="op">$</span><span class="kw">base_plot</span>()</a>
+<a class="sourceLine" id="cb14-6" title="6">    <span class="kw">dev.off</span>()</a>
+<a class="sourceLine" id="cb14-7" title="7">  }</a>
+<a class="sourceLine" id="cb14-8" title="8">)</a></code></pre></div>
+<p>Basically this calls the previously declared function and captures the plot into a <code>*.png</code>.</p>
+<ul>
+<li>GGplot downloader: To download a <code>*.png</code>. Structure:</li>
+</ul>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">output<span class="op">$</span>ggplot_download &lt;-<span class="st"> </span><span class="kw">downloadHandler</span>(</a>
+<a class="sourceLine" id="cb15-2" title="2">  <span class="dt">filename =</span> <span class="st">&quot;ggplot.png&quot;</span>,</a>
+<a class="sourceLine" id="cb15-3" title="3">  <span class="dt">content =</span> <span class="cf">function</span>(file) {</a>
+<a class="sourceLine" id="cb15-4" title="4">    <span class="kw">ggsave</span>(file, <span class="dt">plot =</span> <span class="kw">last_plot</span>())</a>
+<a class="sourceLine" id="cb15-5" title="5">  }</a>
+<a class="sourceLine" id="cb15-6" title="6">)</a></code></pre></div>
+<p>When using ggplot, the function <code>last_plot()</code> renders the last plot rendered by ggplot. This only has one inconvenient, that is when you are downloading a plot that takes a while to render, the application doesn’t show the save window dialog until it has rendered again. This should be addressed in the future as it really halters the user experience.</p>
+</div>
+</div>
+<div id="how-to-add-a-new-block" class="section level3">
+<h3><span class="header-section-number">5.1.3</span> How to add a new block</h3>
+<p>To add a new block to dsOmicsShiny, the developer has to create a new <code>*.R</code> script inside the <code>R</code> folder of the project and give it a descriprive name of the function that it will perform.</p>
+<p>So the Shiny application actually sees it, the <code>server.R</code> needs to be updated after line 17 and source the new file. Example: New block called <code>new_analysis.R</code>, the update to the <code>server.R</code> will be</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw">source</span>(<span class="st">&quot;new_analysis.R&quot;</span>, <span class="dt">local =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p>Afterwards, the <code>ui.R</code> can be updated by defining how the new block will be presented to the user. The <code>sidebarMenu</code> function needs to be updated so that the new tab appears on the sidebar of the application, follow the structure of the other tabs. Afterwards update the <code>dashboardBody</code> function by defining all the different elements of the new tab, follow the structure of the other available tabs to follow the general design lines, all the functions that need to be used here are standard Shiny functions mostly and there’s plenty of documentation and examples available online, when in doubt just try to copy an already implemented structure.</p>
+<p>Now the user can focus on the types of files that will feed this new block, if it’s a table there’s no need to worry, if it’s a resource that is not implemented the <code>connection.R</code> needs to be updated. Read the above documentation for guidance on the changes that need to be done for new resources types.</p>
+<p>Once the GUI is setup and the table / resource that this block will use is setup, the backend for this block can be built on the <code>new_analysis.R</code> file. Include on that file all the required <code>renderUI()</code> functions and steps to process the file and analyze it. Probably a new variable will be required to hold the results, update the <code>server.R</code> header and include a new <code>reactiveValues()</code> declaration for the new block.</p>
+<p>If the new block requires to display tables or figures, update the <code>table_renders.R</code> and <code>plot_renders.R</code> following the given examples on their sections of the documentation. Make sure to include the download buttons for them on the <code>download_handlers.R</code>.</p>
+<p>If there is some part of the code that takes some time to process, there’s the option of wrapping it inside the <code>withProgress()</code> function in order to display a loading annimation to the GUI to alert the user that something is being processed.</p>
+<p>To conclude the new block script, the developer has to make sure to include the <code>observe()</code> function to alert the user if there’s no connection active or if the resources loaded are not the ones that this block requires. The structure for this is the following</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="kw">observe</span>({</a>
+<a class="sourceLine" id="cb17-2" title="2">  <span class="cf">if</span>(input<span class="op">$</span>tabs <span class="op">==</span><span class="st"> &quot;new_block&quot;</span>) {</a>
+<a class="sourceLine" id="cb17-3" title="3">    <span class="cf">if</span> (<span class="op">!</span>connection<span class="op">$</span>active) {<span class="kw">shinyalert</span>(<span class="st">&quot;Oops!&quot;</span>, <span class="st">&quot;Not connected&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;error&quot;</span>)}</a>
+<a class="sourceLine" id="cb17-4" title="4">    <span class="cf">else</span> <span class="cf">if</span> (<span class="op">!</span>(<span class="kw">any</span>(<span class="st">&quot;required_resource_type&quot;</span> <span class="op">%in%</span><span class="st"> </span><span class="kw">unlist</span>(<span class="kw">lapply</span>(<span class="kw">unique</span>(lists<span class="op">$</span>available_tables<span class="op">$</span>resource_internal), <span class="cf">function</span>(x) <span class="kw">ds.class</span>(x, connection<span class="op">$</span>conns)))))){</a>
+<a class="sourceLine" id="cb17-5" title="5">      <span class="kw">shinyalert</span>(<span class="st">&quot;Oops!&quot;</span>, <span class="st">&quot;Selected resource(s) is not the one required by this block.&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;error&quot;</span>)</a>
+<a class="sourceLine" id="cb17-6" title="6">    }</a>
+<a class="sourceLine" id="cb17-7" title="7">    <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb17-8" title="8">      <span class="co"># Whatever needs to be done</span></a>
+<a class="sourceLine" id="cb17-9" title="9">    }</a>
+<a class="sourceLine" id="cb17-10" title="10">  }</a>
+<a class="sourceLine" id="cb17-11" title="11">})</a></code></pre></div>
+<p>Note that the <code>if(input$tabs == "new_block")</code> refers to the tabname assigned on the <code>sidebarMenu()</code> function of the <code>ui.R</code>.</p>
+<p>When developing a new block there will probably be many problems occuring, in order to debug a Shiny application there is the <code>browser()</code> function, if the developer is getting some sort of error at X line of the script, just write <code>browser()</code> on the line avobe of the error, the execution will be stopped at that point and the developer can interact with all the available variables of the environment through the RStudio console, usually running the line that is giving an error on the console will provide enough information to kill the bug. If the line breaking is a function call it is advisable to type the variables that are being passed into the function on the console, that way the developer can see what exactly is being passed and can see that some argument is <code>NULL</code> when it shouldn’t or it’s a character when it should be a number, those are quite common problems.</p>
+<p>When a new block is developed and integrated into dsOmicsShiny, please conclude it by updating this documentation and the user guide with a brief explanation of the new block and some remarks of the most interesting bits of it.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="functionalities.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["dsOmicsShiny-bookdown.pdf", "dsOmicsShiny-bookdown.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
