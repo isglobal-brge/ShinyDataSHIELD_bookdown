@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4 Functionalities | dsOmicsShiny User’s Guide</title>
-  <meta name="description" content="4 Functionalities | dsOmicsShiny User’s Guide" />
+  <title>4 Functionalities | ShinyDataSHIELD User’s Guide</title>
+  <meta name="description" content="4 Functionalities | ShinyDataSHIELD User’s Guide" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4 Functionalities | dsOmicsShiny User’s Guide" />
+  <meta property="og:title" content="4 Functionalities | ShinyDataSHIELD User’s Guide" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4 Functionalities | dsOmicsShiny User’s Guide" />
+  <meta name="twitter:title" content="4 Functionalities | ShinyDataSHIELD User’s Guide" />
   
   
   
@@ -128,7 +128,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="" target="blank">dsOmicsShiny User Guide</a></li>
+<li><a href="" target="blank">ShinyDataSHIELD User Guide</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Overview</a></li>
@@ -161,7 +161,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="developers-guide.html"><a href="developers-guide.html"><i class="fa fa-check"></i><b>5</b> Developers Guide</a><ul>
-<li class="chapter" data-level="5.1" data-path="developers-guide.html"><a href="developers-guide.html#file-structure-of-dsomicsshiny"><i class="fa fa-check"></i><b>5.1</b> File structure of dsOmicsShiny</a><ul>
+<li class="chapter" data-level="5.1" data-path="developers-guide.html"><a href="developers-guide.html#file-structure-of-shinydatashield"><i class="fa fa-check"></i><b>5.1</b> File structure of ShinyDataSHIELD</a><ul>
 <li class="chapter" data-level="5.1.1" data-path="developers-guide.html"><a href="developers-guide.html#ui.r"><i class="fa fa-check"></i><b>5.1.1</b> <code>ui.R</code></a></li>
 <li class="chapter" data-level="5.1.2" data-path="developers-guide.html"><a href="developers-guide.html#server.r"><i class="fa fa-check"></i><b>5.1.2</b> <code>server.R</code></a></li>
 <li class="chapter" data-level="5.1.3" data-path="developers-guide.html"><a href="developers-guide.html#how-to-add-a-new-block"><i class="fa fa-check"></i><b>5.1.3</b> How to add a new block</a></li>
@@ -180,7 +180,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">dsOmicsShiny User’s Guide</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ShinyDataSHIELD User’s Guide</a>
           </h1>
         </div>
 
@@ -190,7 +190,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="functionalities" class="section level1">
 <h1><span class="header-section-number">4</span> Functionalities</h1>
-<p>Along this section, an overview of the functionalities implemented on dsOmicsShiny is given. There’s information about how to use the funcionalities as well as some limitations or constraints to take into account when using dsOmicsShiny.</p>
+<p>Along this section, an overview of the functionalities implemented on ShinyDataSHIELD is given. There’s information about how to use the funcionalities as well as some limitations or constraints to take into account when using ShinyDataSHIELD.</p>
 <div id="data-entry" class="section level2">
 <h2><span class="header-section-number">4.1</span> Data entry</h2>
 <table>
@@ -209,7 +209,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>The first step to any analysis is to load the required tables or resources to the study server(s). To do so, the user has to provide the server URL and the login credentials. This will allow the application to connect to the OPAL server and retrieve all the projects and resources / tables from them. Afterwards, the user can select the desired resources / tables and load them to the study servers.</p>
-<p>There are some limitations to how the data entry is coded in dsOmicsShiny:</p>
+<p>There are some limitations to how the data entry is coded in ShinyDataSHIELD:</p>
 <ul>
 <li>When loading multiple tables / resources on a study server, it is assumed only tables are selected or only resources, not combined.</li>
 <li>When dealing with tables, there can only be one table per study.</li>
@@ -312,7 +312,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Poisson</li>
 <li>Binomial</li>
 </ul>
-<p>There’s some help built into dsOmicsShiny regarding how to write the GLM formula, which is prompted to the user when clicking on the “Formula input help” button. The display of the variables can be toggled on and off for the convenience of use.</p>
+<p>There’s some help built into ShinyDataSHIELD regarding how to write the GLM formula, which is prompted to the user when clicking on the “Formula input help” button. The display of the variables can be toggled on and off for the convenience of use.</p>
 <p>Once the GLM model is fitted a table below the variables display will be rendered with the model results. The download button will prompt a system window to select where to store the shown table, it will save it as a <code>*.csv</code>.</p>
 <p>When using pooled data, the results of the GLM model will be of the combined data.</p>
 <p>(To do: Display more information of why a model fitment fails)</p>
@@ -327,7 +327,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Poisson</li>
 <li>Binomial</li>
 </ul>
-<p>There’s some help built into dsOmicsShiny regarding how to write the GLMer formula, which is prompted to the user when clicking on the “Formula input help” button. The display of the variables can be toggled on and off for the convenience of use.</p>
+<p>There’s some help built into ShinyDataSHIELD regarding how to write the GLMer formula, which is prompted to the user when clicking on the “Formula input help” button. The display of the variables can be toggled on and off for the convenience of use.</p>
 <p>Once the GLMer model is fitted a table below the variables display will be rendered displaying the results. The download button will prompt a system window to select where to store the shown table, it will save them as a <code>*.csv</code>.</p>
 <p>The mixed model results are independent for each study server. There’s a selector to toggle between the results of the different study servers.</p>
 <p>(To do: Display more information of why a model fitment fails)</p>
@@ -427,7 +427,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["dsOmicsShiny-bookdown.pdf", "dsOmicsShiny-bookdown.epub"],
+"download": ["ShinyDataSHIELD_bookdown.pdf", "ShinyDataSHIELD_bookdown.epub"],
 "toc": {
 "collapse": "subsection"
 }

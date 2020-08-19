@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5 Developers Guide | dsOmicsShiny User’s Guide</title>
-  <meta name="description" content="5 Developers Guide | dsOmicsShiny User’s Guide" />
+  <title>5 Developers Guide | ShinyDataSHIELD User’s Guide</title>
+  <meta name="description" content="5 Developers Guide | ShinyDataSHIELD User’s Guide" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5 Developers Guide | dsOmicsShiny User’s Guide" />
+  <meta property="og:title" content="5 Developers Guide | ShinyDataSHIELD User’s Guide" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5 Developers Guide | dsOmicsShiny User’s Guide" />
+  <meta name="twitter:title" content="5 Developers Guide | ShinyDataSHIELD User’s Guide" />
   
   
   
@@ -128,7 +128,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="" target="blank">dsOmicsShiny User Guide</a></li>
+<li><a href="" target="blank">ShinyDataSHIELD User Guide</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Overview</a></li>
@@ -161,7 +161,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="developers-guide.html"><a href="developers-guide.html"><i class="fa fa-check"></i><b>5</b> Developers Guide</a><ul>
-<li class="chapter" data-level="5.1" data-path="developers-guide.html"><a href="developers-guide.html#file-structure-of-dsomicsshiny"><i class="fa fa-check"></i><b>5.1</b> File structure of dsOmicsShiny</a><ul>
+<li class="chapter" data-level="5.1" data-path="developers-guide.html"><a href="developers-guide.html#file-structure-of-shinydatashield"><i class="fa fa-check"></i><b>5.1</b> File structure of ShinyDataSHIELD</a><ul>
 <li class="chapter" data-level="5.1.1" data-path="developers-guide.html"><a href="developers-guide.html#ui.r"><i class="fa fa-check"></i><b>5.1.1</b> <code>ui.R</code></a></li>
 <li class="chapter" data-level="5.1.2" data-path="developers-guide.html"><a href="developers-guide.html#server.r"><i class="fa fa-check"></i><b>5.1.2</b> <code>server.R</code></a></li>
 <li class="chapter" data-level="5.1.3" data-path="developers-guide.html"><a href="developers-guide.html#how-to-add-a-new-block"><i class="fa fa-check"></i><b>5.1.3</b> How to add a new block</a></li>
@@ -180,7 +180,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">dsOmicsShiny User’s Guide</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ShinyDataSHIELD User’s Guide</a>
           </h1>
         </div>
 
@@ -190,7 +190,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="developers-guide" class="section level1">
 <h1><span class="header-section-number">5</span> Developers Guide</h1>
-<p>Along this section, documentation for future developers and maintainers of dsOmicsShiny is provided. It contains information about how the whole Shiny application is structured, all the different scripts that contains, flowcharts of the different files and information on how to extend the capabilities of dsOmicsShiny to new types of resources as well as new methodologies.</p>
+<p>Along this section, documentation for future developers and maintainers of ShinyDataSHIELD is provided. It contains information about how the whole Shiny application is structured, all the different scripts that contains, flowcharts of the different files and information on how to extend the capabilities of ShinyDataSHIELD to new types of resources as well as new methodologies.</p>
 <table>
 <colgroup>
 <col width="100%" />
@@ -206,10 +206,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<div id="file-structure-of-dsomicsshiny" class="section level2">
-<h2><span class="header-section-number">5.1</span> File structure of dsOmicsShiny</h2>
+<div id="file-structure-of-shinydatashield" class="section level2">
+<h2><span class="header-section-number">5.1</span> File structure of ShinyDataSHIELD</h2>
 <p>Typically Shiny applications are contained in a single file or two files, since the typical structure of a Shiny application is to have a <code>server</code> function and a <code>ui</code> function that can be on the same file or split for larger applications. On dsOmicShiny the <code>server</code> function has been split into different scripts where all of them contains the code of a certain block of the application. It has been done this way to not have a really long <code>server</code> file that is difficult to navigate and debug. There is no need to split the <code>ui</code> file into different scripts since it only contains the graphical declarations of the applications and is really easy to update and navigate.</p>
-<p>The different scripts that compose the whole dsOmicsShiny are the following:</p>
+<p>The different scripts that compose the whole ShinyDataSHIELD are the following:</p>
 <ul>
 <li><code>ui.R</code></li>
 <li><code>server.R</code>, composed of the folowing scripts:
@@ -247,7 +247,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>withSpinner()</code>: From the <code>shinycssloaders</code> library. The elements wrapped inside of this function will be displayed as a “loading spinner” when they are being processed. This is used to wrap figure displays. Example: A plot that is being rendered, it’s better for the user experience to see a “loading spinner” so that it knows something is being processed rather than just staring at a blank screen waiting for something to happen.</li>
 <li><code>bsModal()</code>: From the <code>shinyBS</code> library. It’s used to prompt pop-ups to the user. Example: By the click of a button you want to render a pop-up to the application with a figure of an histogram of a selected column of a table.</li>
 </ul>
-<p>The rest of this file is your average Shiny functions and declarations, read the official <a href="https://shiny.rstudio.com/reference/shiny/1.4.0/">documentation</a> for any doubts. Please note that dsOmicsShiny uses <code>shinydashboard</code> to improve the looks and user experience, for any doubts regarding that please read it’s <a href="https://rstudio.github.io/shinydashboard/get_started.html">documentation</a>.</p>
+<p>The rest of this file is your average Shiny functions and declarations, read the official <a href="https://shiny.rstudio.com/reference/shiny/1.4.0/">documentation</a> for any doubts. Please note that ShinyDataSHIELD uses <code>shinydashboard</code> to improve the looks and user experience, for any doubts regarding that please read it’s <a href="https://rstudio.github.io/shinydashboard/get_started.html">documentation</a>.</p>
 </div>
 <div id="server.r" class="section level3">
 <h3><span class="header-section-number">5.1.2</span> <code>server.R</code></h3>
@@ -369,7 +369,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<p>The Opal server can host different types of resources, to name a few there are <code>ExpressionSet</code>, <code>RangedSummarizedExperiment</code> and <code>SQLResourceClient</code>. Each type of resource needs a special treatment to be used, for example <code>SQLResourceClient</code> resources are plain tables, so they need to be converted to tables on the study server to use them. Currently the following resource types are supported by dsOmicsShiny.</p>
+<p>The Opal server can host different types of resources, to name a few there are <code>ExpressionSet</code>, <code>RangedSummarizedExperiment</code> and <code>SQLResourceClient</code>. Each type of resource needs a special treatment to be used, for example <code>SQLResourceClient</code> resources are plain tables, so they need to be converted to tables on the study server to use them. Currently the following resource types are supported by ShinyDataSHIELD.</p>
 <table>
 <colgroup>
 <col width="18%" />
@@ -555,7 +555,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="genomics.r" class="section level4">
 <h4><span class="header-section-number">5.1.2.4</span> <code>genomics.R</code></h4>
-<p>On this scripts there are all the genomics methodologies implemented into dsOmicsShiny</p>
+<p>On this scripts there are all the genomics methodologies implemented into ShinyDataSHIELD</p>
 <ul>
 <li>PLINK files: The functions corresponding to the PLINK analysis is just a trigger that reads the inputed command and performs the querry and a <code>renderText()</code> function to render the raw text output from the PLINK.</li>
 <li>VCF files: For this resources, there are the following items
@@ -576,7 +576,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="table_renders.r" class="section level4">
 <h4><span class="header-section-number">5.1.2.6</span> <code>table_renders.R</code></h4>
-<p>This script creates the displays of all the tables of dsOmicsShiny, it uses the <code>DT</code> package to do so. Besides the <code>descriptive_summary</code> table, all the other tables just render results from other functions.</p>
+<p>This script creates the displays of all the tables of ShinyDataSHIELD, it uses the <code>DT</code> package to do so. Besides the <code>descriptive_summary</code> table, all the other tables just render results from other functions.</p>
 <p>There are some things to point of this script:</p>
 <ul>
 <li>As can be seen in <code>descriptive_summary</code> table, you can actually perform operations inside of a <code>renderDT</code> function and display the result of them.</li>
@@ -596,7 +596,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="plot_renders.r" class="section level4">
 <h4><span class="header-section-number">5.1.2.7</span> <code>plot_renders.R</code></h4>
-<p>There are two types of plots on dsOmicsShiny, the ones created with the base function <a href="https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/plot">plot</a> and the ones created with the <a href="https://ggplot2.tidyverse.org/">ggplot</a> library. In order to later recover the plots to download them, they actually have a different structure.</p>
+<p>There are two types of plots on ShinyDataSHIELD, the ones created with the base function <a href="https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/plot">plot</a> and the ones created with the <a href="https://ggplot2.tidyverse.org/">ggplot</a> library. In order to later recover the plots to download them, they actually have a different structure.</p>
 <ul>
 <li>Base plot structure:</li>
 </ul>
@@ -659,7 +659,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="how-to-add-a-new-block" class="section level3">
 <h3><span class="header-section-number">5.1.3</span> How to add a new block</h3>
-<p>To add a new block to dsOmicsShiny, the developer has to create a new <code>*.R</code> script inside the <code>R</code> folder of the project and give it a descriprive name of the function that it will perform.</p>
+<p>To add a new block to ShinyDataSHIELD, the developer has to create a new <code>*.R</code> script inside the <code>R</code> folder of the project and give it a descriprive name of the function that it will perform.</p>
 <p>So the Shiny application actually sees it, the <code>server.R</code> needs to be updated after line 17 and source the new file. Example: New block called <code>new_analysis.R</code>, the update to the <code>server.R</code> will be</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw">source</span>(<span class="st">&quot;new_analysis.R&quot;</span>, <span class="dt">local =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p>Afterwards, the <code>ui.R</code> can be updated by defining how the new block will be presented to the user. The <code>sidebarMenu</code> function needs to be updated so that the new tab appears on the sidebar of the application, follow the structure of the other tabs. Afterwards update the <code>dashboardBody</code> function by defining all the different elements of the new tab, follow the structure of the other available tabs to follow the general design lines, all the functions that need to be used here are standard Shiny functions mostly and there’s plenty of documentation and examples available online, when in doubt just try to copy an already implemented structure.</p>
@@ -681,7 +681,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb17-11" title="11">})</a></code></pre></div>
 <p>Note that the <code>if(input$tabs == "new_block")</code> refers to the tabname assigned on the <code>sidebarMenu()</code> function of the <code>ui.R</code>.</p>
 <p>When developing a new block there will probably be many problems occuring, in order to debug a Shiny application there is the <code>browser()</code> function, if the developer is getting some sort of error at X line of the script, just write <code>browser()</code> on the line avobe of the error, the execution will be stopped at that point and the developer can interact with all the available variables of the environment through the RStudio console, usually running the line that is giving an error on the console will provide enough information to kill the bug. If the line breaking is a function call it is advisable to type the variables that are being passed into the function on the console, that way the developer can see what exactly is being passed and can see that some argument is <code>NULL</code> when it shouldn’t or it’s a character when it should be a number, those are quite common problems.</p>
-<p>When a new block is developed and integrated into dsOmicsShiny, please conclude it by updating this documentation and the user guide with a brief explanation of the new block and some remarks of the most interesting bits of it.</p>
+<p>When a new block is developed and integrated into ShinyDataSHIELD, please conclude it by updating this documentation and the user guide with a brief explanation of the new block and some remarks of the most interesting bits of it.</p>
 
 </div>
 </div>
@@ -725,7 +725,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["dsOmicsShiny-bookdown.pdf", "dsOmicsShiny-bookdown.epub"],
+"download": ["ShinyDataSHIELD_bookdown.pdf", "ShinyDataSHIELD_bookdown.epub"],
 "toc": {
 "collapse": "subsection"
 }
