@@ -1,42 +1,81 @@
 # Setup
 
-In order to download and setup the environment to launch ShinyDataSHIELD, the latest version of the software has to be downloaded from GitHub. To do so, open a new RStudio session and run the following code on the console.
+In order to use ShinyDataSHIELD, Docker is required. On a Linux / Mac OS X machine it can be installed without any complications as any other application, on Windows systems however it can be a little bit more troubling, there are many online resources to help. Please refer to the following links to help the installation of Docker on a Windows system [1](https://docs.docker.com/docker-for-windows/install-windows-home/),  [2](https://blog.nillsf.com/index.php/2020/02/17/setting-up-wsl2-windows-terminal-and-oh-my-zsh/), [3](https://docs.docker.com/docker-for-windows/wsl/).
 
-```{r setup_chunk_1}
-  # Set working directory
-setwd(dir = "/some/path/")
+To download and launch ShinyDataSHIELD, execute the following command on a bash terminal(make sure Docker is running, if not search for the `Docker Desktop` app and launch it).
 
-  # Download zip
-download.file(url = "https://github.com/isglobal-brge/ShinyDataSHIELD/archive/master.zip", destfile = "master.zip")
-
-  # Unzip the .zip to the working directory
-unzip(zipfile = "master.zip")
-
-  # Set the working directory inside the downloaded folder
-setwd(dir = "/some/path/ShinyDataSHIELD-master")
+```{bash}
+docker run --rm -p 80:80 brgelab/shiny-data-shield
 ```
 
-Now all the source files are downloaded to the location chosen and the working directory moved to the correct folder, to start the project, open the `Rproj` file by clicking it on the Files explorer of RStudio.
-<center>
-![Source files](images/setup1.png)
-</center>
+This command will download the Docker image of ShinyDataSHIELD (be aware it weights ~ 1.5 GB, so if your internet connection is slow it may take a while) and run a container with it. The container will be exposed on the local port 80 and it will render on that port the application itself, so to start using ShinyDataSHIELD open your web browser of choice and go to the site
 
-Once the project is loaded, the file found on the source folder called `installer.R` has to be sourced and run. This will install the newest versions of the packages required by ShinyDataSHIELD on this R session. To do so, run the following code on the RStudio console.
-
-```{r}
-source("installer.R")
+```{bash}
+localhost:80
 ```
 
-This is only needed on the first run, once completed it doesn't need to be done prior to launching the application itself any other time.
+At the beginning it may take some time for the application to render, this is because all the needed R libraries are being loaded, to be sure the container is actually working, take a look at the terminal where you inputed the Docker command, there you will see all the R verbose stating the libraries are being loaded.
 
-Now everything is ready to launch the Shiny application. To do so there a two approaches, one is to open the `ui.R` or the `server.R` files that are inside the `R` folder and press `Run App`.
+Once the user has finished using ShinyDataSHIELD, the container needs to be stopped to avoid wasting CPU resources, to do so, input the following command on a bash terminal (the command needs to be inputed on a new bash window):
 
-<center>
-![Start Shiny application](images/setup2.png)
-</center>
-
-The other option is to input the following command on the RStudio console.
-
-```{r}
-shiny::runApp('R')
+```{bash}
+docker container ls
 ```
+
+This will prompt all the running containers, find the one with the NAMES `brgelab/shiny-data-shield` and copy it's CONTAINER ID, then input the following bash command:
+
+```{bash}
+docker stop xxxxxxxxxxxx
+```
+
+Where xxxxxxxxxxxx is the CONTAINER ID.
+
+To run the application again, just enter the first bash command (`docker run --rm -p 80:80 brgelab/shiny-data-shield`), since it has already been downloaded, the application is cached on the computer and it will launch straight away. If the user wants to remove the Docker image from the computer, input the following bash command:
+
+```{bash}
+docker image rm brgelab/exposome-shiny
+```
+
+If the user wants to download the actual source code of the Shiny, install all the required packages and launch it locally on it's machine, feel free to download it [from Github](https://github.com/isglobal-brge/dsOmicsShiny). There's a script called `installer.R` at the root of the repository with a short installer of all the required packages. Please note that the installer script may fail depending on the R version and others, for that reason is advised to always run the Docker version of ShinyDataSHIELD, as it only requires a single terminal command and will work no matter what.
+
+
+<!-- In order to download and setup the environment to launch ShinyDataSHIELD, the latest version of the software has to be downloaded from GitHub. To do so, open a new RStudio session and run the following code on the console. -->
+
+<!-- ```{r setup_chunk_1} -->
+<!--   # Set working directory -->
+<!-- setwd(dir = "/some/path/") -->
+
+<!--   # Download zip -->
+<!-- download.file(url = "https://github.com/isglobal-brge/ShinyDataSHIELD/archive/master.zip", destfile = "master.zip") -->
+
+<!--   # Unzip the .zip to the working directory -->
+<!-- unzip(zipfile = "master.zip") -->
+
+<!--   # Set the working directory inside the downloaded folder -->
+<!-- setwd(dir = "/some/path/ShinyDataSHIELD-master") -->
+<!-- ``` -->
+
+<!-- Now all the source files are downloaded to the location chosen and the working directory moved to the correct folder, to start the project, open the `Rproj` file by clicking it on the Files explorer of RStudio. -->
+<!-- <center> -->
+<!-- ![Source files](images/setup1.png) -->
+<!-- </center> -->
+
+<!-- Once the project is loaded, the file found on the source folder called `installer.R` has to be sourced and run. This will install the newest versions of the packages required by ShinyDataSHIELD on this R session. To do so, run the following code on the RStudio console. -->
+
+<!-- ```{r} -->
+<!-- source("installer.R") -->
+<!-- ``` -->
+
+<!-- This is only needed on the first run, once completed it doesn't need to be done prior to launching the application itself any other time. -->
+
+<!-- Now everything is ready to launch the Shiny application. To do so there a two approaches, one is to open the `ui.R` or the `server.R` files that are inside the `R` folder and press `Run App`. -->
+
+<!-- <center> -->
+<!-- ![Start Shiny application](images/setup2.png) -->
+<!-- </center> -->
+
+<!-- The other option is to input the following command on the RStudio console. -->
+
+<!-- ```{r} -->
+<!-- shiny::runApp('R') -->
+<!-- ``` -->
