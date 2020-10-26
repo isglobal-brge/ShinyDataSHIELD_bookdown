@@ -1,26 +1,27 @@
-# R packages
+<!-- # R packages -->
 
-The packages that contain the main functionalities of ShinyDataSHIELD are the following.
+<!-- The packages that contain the main functionalities of ShinyDataSHIELD are the following. -->
 
-  + [DSI](https://github.com/datashield/DSI): The DataSHIELD Interface (DSI) handles the connections to the databases.
-  + [DSOpal](https://github.com/datashield/DSOpal): DSOpal is an extension of DSI to connecto to Opal servers.
-  + [dsBaseClient](https://github.com/datashield/dsBaseClient): Implementation of the base package R functions to obtain non-disclosive returns from the Opal servers (Example: Base package function `as.factor` is implemented as `ds.asFactor`).
-  + [dsOmicsClient](https://github.com/isglobal-brge/dsOmicsClient): Functions to perform non-disclosive omic analysis using BioConductor packages on the Opal servers.
-  
-On the following table, all the packages required by ShinyDataSHIELD are shown along the versions used during development.
+<!--   + [DSI](https://github.com/datashield/DSI): The DataSHIELD Interface (DSI) handles the connections to the databases. -->
+<!--   + [DSOpal](https://github.com/datashield/DSOpal): DSOpal is an extension of DSI to connecto to Opal servers. -->
+<!--   + [dsBaseClient](https://github.com/datashield/dsBaseClient): Implementation of the base package R functions to obtain non-disclosive returns from the Opal servers (Example: Base package function `as.factor` is implemented as `ds.asFactor`). -->
+<!--   + [dsOmicsClient](https://github.com/isglobal-brge/dsOmicsClient): Functions to perform non-disclosive omic analysis using BioConductor packages on the Opal servers. -->
 
-| Package         | Version |
-|:----------------|:--------|
-| DSI             | 1.1.0   |
-| DSOpal          | 1.1.0   |
-| dsBaseClient    | 6.0.1   |
-| dsOmicsClient   | 1.0.0   |
-| shinydashboard  | 0.7.1   |
-| shiny           | 1.4.0.2 |
-| shinyalert      | 1.1     |
-| DT              | 0.13    |
-| data.table      | 1.12.8  |
-| shinyjs         | 1.1     |
-| shinyBS         | 0.61    |
-| shinycssloaders | 0.3     |
-| stringr         | 1.4.0   |
+<!-- On the following table, all the packages required by ShinyDataSHIELD are shown along the versions used during development. -->
+
+<!-- | Package         | Version | -->
+<!-- |:----------------|:--------| -->
+<!-- | DSI             | 1.1.0   | -->
+<!-- | DSOpal          | 1.1.0   | -->
+<!-- | dsBaseClient    | 6.0.1   | -->
+<!-- | dsOmicsClient   | 1.0.0   | -->
+<!-- | shinydashboard  | 0.7.1   | -->
+<!-- | shiny           | 1.4.0.2 | -->
+<!-- | shinyalert      | 1.1     | -->
+<!-- | DT              | 0.13    | -->
+<!-- | data.table      | 1.12.8  | -->
+<!-- | shinyjs         | 1.1     | -->
+<!-- | shinyBS         | 0.61    | -->
+<!-- | shinycssloaders | 0.3     | -->
+<!-- | shinyWidgets    | 0.5.4   | -->
+<!-- | stringr         | 1.4.0   | -->

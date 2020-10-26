@@ -24,7 +24,7 @@
 <meta name="author" content="Escribà Montagut, Xavier; González, Juan R." />
 
 
-<meta name="date" content="2020-09-30" />
+<meta name="date" content="2020-10-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="index.html"/>
-<link rel="next" href="r-packages.html"/>
+<link rel="next" href="functionalities.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -135,39 +135,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Overview</a></li>
-<li class="chapter" data-level="2" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>2</b> Setup</a></li>
-<li class="chapter" data-level="3" data-path="r-packages.html"><a href="r-packages.html"><i class="fa fa-check"></i><b>3</b> R packages</a></li>
-<li class="chapter" data-level="4" data-path="functionalities.html"><a href="functionalities.html"><i class="fa fa-check"></i><b>4</b> Functionalities</a><ul>
-<li class="chapter" data-level="4.1" data-path="functionalities.html"><a href="functionalities.html#data-entry"><i class="fa fa-check"></i><b>4.1</b> Data entry</a><ul>
-<li class="chapter" data-level="4.1.1" data-path="functionalities.html"><a href="functionalities.html#single-resource-table-approach"><i class="fa fa-check"></i><b>4.1.1</b> Single resource / table approach</a></li>
-<li class="chapter" data-level="4.1.2" data-path="functionalities.html"><a href="functionalities.html#multiple-resource-study"><i class="fa fa-check"></i><b>4.1.2</b> Multiple resource study</a></li>
-<li class="chapter" data-level="4.1.3" data-path="functionalities.html"><a href="functionalities.html#pooled-data-approach"><i class="fa fa-check"></i><b>4.1.3</b> Pooled data approach</a></li>
-</ul></li>
-<li class="chapter" data-level="4.2" data-path="functionalities.html"><a href="functionalities.html#descriptive-statistics"><i class="fa fa-check"></i><b>4.2</b> Descriptive statistics</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="functionalities.html"><a href="functionalities.html#summary"><i class="fa fa-check"></i><b>4.2.1</b> Summary</a></li>
-<li class="chapter" data-level="4.2.2" data-path="functionalities.html"><a href="functionalities.html#scatter-plot"><i class="fa fa-check"></i><b>4.2.2</b> Scatter plot</a></li>
-<li class="chapter" data-level="4.2.3" data-path="functionalities.html"><a href="functionalities.html#histogram"><i class="fa fa-check"></i><b>4.2.3</b> Histogram</a></li>
-<li class="chapter" data-level="4.2.4" data-path="functionalities.html"><a href="functionalities.html#heatmap"><i class="fa fa-check"></i><b>4.2.4</b> Heatmap</a></li>
-</ul></li>
-<li class="chapter" data-level="4.3" data-path="functionalities.html"><a href="functionalities.html#statistic-models"><i class="fa fa-check"></i><b>4.3</b> Statistic models</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="functionalities.html"><a href="functionalities.html#glm-models"><i class="fa fa-check"></i><b>4.3.1</b> GLM models</a></li>
-<li class="chapter" data-level="4.3.2" data-path="functionalities.html"><a href="functionalities.html#mixed-models"><i class="fa fa-check"></i><b>4.3.2</b> Mixed models</a></li>
-</ul></li>
-<li class="chapter" data-level="4.4" data-path="functionalities.html"><a href="functionalities.html#genomics"><i class="fa fa-check"></i><b>4.4</b> Genomics</a><ul>
-<li class="chapter" data-level="4.4.1" data-path="functionalities.html"><a href="functionalities.html#analysis-with-bioconductor"><i class="fa fa-check"></i><b>4.4.1</b> Analysis with BioConductor</a></li>
-<li class="chapter" data-level="4.4.2" data-path="functionalities.html"><a href="functionalities.html#analysis-with-plink"><i class="fa fa-check"></i><b>4.4.2</b> Analysis with PLINK</a></li>
-</ul></li>
-<li class="chapter" data-level="4.5" data-path="functionalities.html"><a href="functionalities.html#omics"><i class="fa fa-check"></i><b>4.5</b> Omics</a><ul>
-<li class="chapter" data-level="4.5.1" data-path="functionalities.html"><a href="functionalities.html#limma"><i class="fa fa-check"></i><b>4.5.1</b> LIMMA</a></li>
-<li class="chapter" data-level="4.5.2" data-path="functionalities.html"><a href="functionalities.html#deseq"><i class="fa fa-check"></i><b>4.5.2</b> DESeq</a></li>
-<li class="chapter" data-level="4.5.3" data-path="functionalities.html"><a href="functionalities.html#edger"><i class="fa fa-check"></i><b>4.5.3</b> edgeR</a></li>
+<li class="chapter" data-level="2" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>2</b> Setup</a><ul>
+<li class="chapter" data-level="2.1" data-path="setup.html"><a href="setup.html#r-packages"><i class="fa fa-check"></i><b>2.1</b> R packages</a></li>
+<li class="chapter" data-level="2.2" data-path="setup.html"><a href="setup.html#install"><i class="fa fa-check"></i><b>2.2</b> Install</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="setup.html"><a href="setup.html#install-with-rstudio"><i class="fa fa-check"></i><b>2.2.1</b> Install with RStudio</a></li>
+<li class="chapter" data-level="2.2.2" data-path="setup.html"><a href="setup.html#install-with-docker"><i class="fa fa-check"></i><b>2.2.2</b> Install with Docker</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="developers-guide.html"><a href="developers-guide.html"><i class="fa fa-check"></i><b>5</b> Developers Guide</a><ul>
-<li class="chapter" data-level="5.1" data-path="developers-guide.html"><a href="developers-guide.html#file-structure-of-shinydatashield"><i class="fa fa-check"></i><b>5.1</b> File structure of ShinyDataSHIELD</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="developers-guide.html"><a href="developers-guide.html#ui.r"><i class="fa fa-check"></i><b>5.1.1</b> <code>ui.R</code></a></li>
-<li class="chapter" data-level="5.1.2" data-path="developers-guide.html"><a href="developers-guide.html#server.r"><i class="fa fa-check"></i><b>5.1.2</b> <code>server.R</code></a></li>
-<li class="chapter" data-level="5.1.3" data-path="developers-guide.html"><a href="developers-guide.html#how-to-add-a-new-block"><i class="fa fa-check"></i><b>5.1.3</b> How to add a new block</a></li>
+<li class="chapter" data-level="3" data-path="functionalities.html"><a href="functionalities.html"><i class="fa fa-check"></i><b>3</b> Functionalities</a><ul>
+<li class="chapter" data-level="3.1" data-path="functionalities.html"><a href="functionalities.html#data-entry"><i class="fa fa-check"></i><b>3.1</b> Data entry</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="functionalities.html"><a href="functionalities.html#single-resource-table-approach"><i class="fa fa-check"></i><b>3.1.1</b> Single resource / table approach</a></li>
+<li class="chapter" data-level="3.1.2" data-path="functionalities.html"><a href="functionalities.html#multiple-resource-study"><i class="fa fa-check"></i><b>3.1.2</b> Multiple resource study</a></li>
+<li class="chapter" data-level="3.1.3" data-path="functionalities.html"><a href="functionalities.html#pooled-data-approach"><i class="fa fa-check"></i><b>3.1.3</b> Pooled data approach</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="functionalities.html"><a href="functionalities.html#descriptive-statistics"><i class="fa fa-check"></i><b>3.2</b> Descriptive statistics</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="functionalities.html"><a href="functionalities.html#summary"><i class="fa fa-check"></i><b>3.2.1</b> Summary</a></li>
+<li class="chapter" data-level="3.2.2" data-path="functionalities.html"><a href="functionalities.html#scatter-plot"><i class="fa fa-check"></i><b>3.2.2</b> Scatter plot</a></li>
+<li class="chapter" data-level="3.2.3" data-path="functionalities.html"><a href="functionalities.html#histogram"><i class="fa fa-check"></i><b>3.2.3</b> Histogram</a></li>
+<li class="chapter" data-level="3.2.4" data-path="functionalities.html"><a href="functionalities.html#heatmap"><i class="fa fa-check"></i><b>3.2.4</b> Heatmap</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="functionalities.html"><a href="functionalities.html#statistic-models"><i class="fa fa-check"></i><b>3.3</b> Statistic models</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="functionalities.html"><a href="functionalities.html#glm-models"><i class="fa fa-check"></i><b>3.3.1</b> GLM models</a></li>
+<li class="chapter" data-level="3.3.2" data-path="functionalities.html"><a href="functionalities.html#mixed-models"><i class="fa fa-check"></i><b>3.3.2</b> Mixed models</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="functionalities.html"><a href="functionalities.html#genomics"><i class="fa fa-check"></i><b>3.4</b> Genomics</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="functionalities.html"><a href="functionalities.html#analysis-with-bioconductor"><i class="fa fa-check"></i><b>3.4.1</b> Analysis with BioConductor</a></li>
+<li class="chapter" data-level="3.4.2" data-path="functionalities.html"><a href="functionalities.html#analysis-with-plink"><i class="fa fa-check"></i><b>3.4.2</b> Analysis with PLINK</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="functionalities.html"><a href="functionalities.html#omics"><i class="fa fa-check"></i><b>3.5</b> Omics</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="functionalities.html"><a href="functionalities.html#limma"><i class="fa fa-check"></i><b>3.5.1</b> LIMMA</a></li>
+<li class="chapter" data-level="3.5.2" data-path="functionalities.html"><a href="functionalities.html#deseq"><i class="fa fa-check"></i><b>3.5.2</b> DESeq</a></li>
+<li class="chapter" data-level="3.5.3" data-path="functionalities.html"><a href="functionalities.html#edger"><i class="fa fa-check"></i><b>3.5.3</b> edgeR</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="developers-guide.html"><a href="developers-guide.html"><i class="fa fa-check"></i><b>4</b> Developers Guide</a><ul>
+<li class="chapter" data-level="4.1" data-path="developers-guide.html"><a href="developers-guide.html#file-structure-of-shinydatashield"><i class="fa fa-check"></i><b>4.1</b> File structure of ShinyDataSHIELD</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="developers-guide.html"><a href="developers-guide.html#ui.r"><i class="fa fa-check"></i><b>4.1.1</b> <code>ui.R</code></a></li>
+<li class="chapter" data-level="4.1.2" data-path="developers-guide.html"><a href="developers-guide.html#server.r"><i class="fa fa-check"></i><b>4.1.2</b> <code>server.R</code></a></li>
+<li class="chapter" data-level="4.1.3" data-path="developers-guide.html"><a href="developers-guide.html#how-to-add-a-new-block"><i class="fa fa-check"></i><b>4.1.3</b> How to add a new block</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -193,49 +198,159 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="setup" class="section level1">
 <h1><span class="header-section-number">2</span> Setup</h1>
-<p>In order to use ShinyDataSHIELD, Docker is required. On a Linux / Mac OS X machine it can be installed without any complications as any other application, on Windows systems however it can be a little bit more troubling, there are many online resources to help. Please refer to the following links to help the installation of Docker on a Windows system <a href="https://docs.docker.com/docker-for-windows/install-windows-home/">1</a>, <a href="https://blog.nillsf.com/index.php/2020/02/17/setting-up-wsl2-windows-terminal-and-oh-my-zsh/">2</a>, <a href="https://docs.docker.com/docker-for-windows/wsl/">3</a>.</p>
-<p>To download and launch ShinyDataSHIELD, execute the following command on a bash terminal(make sure Docker is running, if not search for the <code>Docker Desktop</code> app and launch it).</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="setup.html#cb1-1"></a><span class="ex">docker</span> run --rm -p 80:80 brgelab/shiny-data-shield</span></code></pre></div>
-<p>This command will download the Docker image of ShinyDataSHIELD (be aware it weights ~ 1.5 GB, so if your internet connection is slow it may take a while) and run a container with it. The container will be exposed on the local port 80 and it will render on that port the application itself, so to start using ShinyDataSHIELD open your web browser of choice and go to the site</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="setup.html#cb2-1"></a><span class="ex">localhost</span>:80</span></code></pre></div>
+<p>In this section, a list of all the R packages required to launch ShinyDataSHIELD is given. Following it, two methodologies to install them is provided. The recommended methodology is to install all the packages using RStudio and launch the Shiny app from there. However, depending on the version of R and other variables that can’t be contemplated on a case to case basis, the user might have problems installing the R packages, if that is the case, an alternative to use ShinyDataSHIELD has been created using Docker.</p>
+<div id="r-packages" class="section level2">
+<h2><span class="header-section-number">2.1</span> R packages</h2>
+<p>The packages that contain the main functionalities of ShinyDataSHIELD are the following.</p>
+<ul>
+<li><a href="https://github.com/datashield/DSI">DSI</a>: The DataSHIELD Interface (DSI) handles the connections to the databases.</li>
+<li><a href="https://github.com/datashield/DSOpal">DSOpal</a>: DSOpal is an extension of DSI to connecto to Opal servers.</li>
+<li><a href="https://github.com/datashield/dsBaseClient">dsBaseClient</a>: Implementation of the base package R functions to obtain non-disclosive returns from the Opal servers (Example: Base package function <code>as.factor</code> is implemented as <code>ds.asFactor</code>).</li>
+<li><a href="https://github.com/isglobal-brge/dsOmicsClient">dsOmicsClient</a>: Functions to perform non-disclosive omic analysis using BioConductor packages on the Opal servers.</li>
+</ul>
+<p>On the following table, all the packages required by ShinyDataSHIELD are shown along the versions used during development.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Package</th>
+<th align="left">Version</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">DSI</td>
+<td align="left">1.1.0</td>
+</tr>
+<tr class="even">
+<td align="left">DSOpal</td>
+<td align="left">1.1.0</td>
+</tr>
+<tr class="odd">
+<td align="left">dsBaseClient</td>
+<td align="left">6.0.1</td>
+</tr>
+<tr class="even">
+<td align="left">dsOmicsClient</td>
+<td align="left">1.0.0</td>
+</tr>
+<tr class="odd">
+<td align="left">shinydashboard</td>
+<td align="left">0.7.1</td>
+</tr>
+<tr class="even">
+<td align="left">shiny</td>
+<td align="left">1.4.0.2</td>
+</tr>
+<tr class="odd">
+<td align="left">shinyalert</td>
+<td align="left">1.1</td>
+</tr>
+<tr class="even">
+<td align="left">DT</td>
+<td align="left">0.13</td>
+</tr>
+<tr class="odd">
+<td align="left">data.table</td>
+<td align="left">1.12.8</td>
+</tr>
+<tr class="even">
+<td align="left">shinyjs</td>
+<td align="left">1.1</td>
+</tr>
+<tr class="odd">
+<td align="left">shinyBS</td>
+<td align="left">0.61</td>
+</tr>
+<tr class="even">
+<td align="left">shinycssloaders</td>
+<td align="left">0.3</td>
+</tr>
+<tr class="odd">
+<td align="left">shinyWidgets</td>
+<td align="left">0.5.4</td>
+</tr>
+<tr class="even">
+<td align="left">stringr</td>
+<td align="left">1.4.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="install" class="section level2">
+<h2><span class="header-section-number">2.2</span> Install</h2>
+<div id="install-with-rstudio" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> Install with RStudio</h3>
+<p>The first step to use ShinyDataSHIELD via RStudio is to install all the required R packages. To do so, run the following lines on the RStudio console.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="setup.html#cb1-1"></a><span class="co"># Install the devtools package</span></span>
+<span id="cb1-2"><a href="setup.html#cb1-2"></a><span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
+<span id="cb1-3"><a href="setup.html#cb1-3"></a><span class="co"># Install the R packages</span></span>
+<span id="cb1-4"><a href="setup.html#cb1-4"></a>devtools<span class="op">::</span><span class="kw">source_url</span>(<span class="st">&quot;https://raw.githubusercontent.com/isglobal-brge/dsOmicsShiny/master/installer.R&quot;</span>)</span></code></pre></div>
+<p>Once all the packages are installed, download and setup the environment to launch ShinyDataSHIELD, the latest version of the software has to be downloaded from GitHub. To do so, open a new RStudio session and run the following code on the console.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="setup.html#cb2-1"></a>  <span class="co"># Set working directory</span></span>
+<span id="cb2-2"><a href="setup.html#cb2-2"></a><span class="kw">setwd</span>(<span class="dt">dir =</span> <span class="st">&quot;/some/path/&quot;</span>)</span>
+<span id="cb2-3"><a href="setup.html#cb2-3"></a></span>
+<span id="cb2-4"><a href="setup.html#cb2-4"></a>  <span class="co"># Download zip</span></span>
+<span id="cb2-5"><a href="setup.html#cb2-5"></a><span class="kw">download.file</span>(<span class="dt">url =</span> <span class="st">&quot;https://github.com/isglobal-brge/ShinyDataSHIELD/archive/master.zip&quot;</span>, <span class="dt">destfile =</span> <span class="st">&quot;master.zip&quot;</span>)</span>
+<span id="cb2-6"><a href="setup.html#cb2-6"></a></span>
+<span id="cb2-7"><a href="setup.html#cb2-7"></a>  <span class="co"># Unzip the .zip to the working directory</span></span>
+<span id="cb2-8"><a href="setup.html#cb2-8"></a><span class="kw">unzip</span>(<span class="dt">zipfile =</span> <span class="st">&quot;master.zip&quot;</span>)</span>
+<span id="cb2-9"><a href="setup.html#cb2-9"></a></span>
+<span id="cb2-10"><a href="setup.html#cb2-10"></a>  <span class="co"># Set the working directory inside the downloaded folder</span></span>
+<span id="cb2-11"><a href="setup.html#cb2-11"></a><span class="kw">setwd</span>(<span class="dt">dir =</span> <span class="st">&quot;/some/path/ShinyDataSHIELD-master&quot;</span>)</span></code></pre></div>
+Now all the source files are downloaded to the location chosen and the working directory moved to the correct folder, to start the project, open the <code>Rproj</code> file by clicking it on the Files explorer of RStudio.
+<center>
+<img src="images/setup1.PNG" title="fig:" alt="Source files" />
+</center>
+<p>Now everything is ready to launch the Shiny application. To do so there a two approaches, one is to open the <code>ui.R</code> or the <code>server.R</code> files that are inside the <code>R</code> folder and press <code>Run App</code>.</p>
+<center>
+<img src="images/setup2.PNG" title="fig:" alt="Start Shiny application" />
+</center>
+<p>The other option is to input the following command on the RStudio console.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="setup.html#cb3-1"></a>shiny<span class="op">::</span><span class="kw">runApp</span>(<span class="st">&#39;R&#39;</span>)</span></code></pre></div>
+</div>
+<div id="install-with-docker" class="section level3">
+<h3><span class="header-section-number">2.2.2</span> Install with Docker</h3>
+<p>Another option to use ShinyDataSHIELD is to install it using Docker. Docker can be installed on a Linux / Mac OS X machine without any complications as any other application, on Windows systems however it can be a little bit more troubling, there are many online resources to help. Please refer to the following links to <a href="https://docs.docker.com/docker-for-windows/install-windows-home/">install Docker on Windows Home</a>, to <a href="https://blog.nillsf.com/index.php/2020/02/17/setting-up-wsl2-windows-terminal-and-oh-my-zsh/">setup the Linux Windows Subsystem and terminal</a> and to <a href="https://docs.docker.com/docker-for-windows/wsl/">execute Docker on Windows</a>.</p>
+<p>Once Docker is up and running, execute the following command on a bash terminal (make sure Docker is running, if not search for the <code>Docker Desktop</code> app and launch it) to download and launch ShinyDataSHIELD. Be aware that the Docker images weights ~ 1.5 GB, so if your internet connection is slow it may take a while.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="setup.html#cb4-1"></a><span class="ex">docker</span> run --rm -p 80:80 brgelab/shiny-data-shield</span></code></pre></div>
+<p>The container will be exposed on the local port 80 and it will render on that port the application itself, so to start using ShinyDataSHIELD open your web browser of choice and go to the site</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="setup.html#cb5-1"></a><span class="ex">localhost</span>:80</span></code></pre></div>
 <p>At the beginning it may take some time for the application to render, this is because all the needed R libraries are being loaded, to be sure the container is actually working, take a look at the terminal where you inputed the Docker command, there you will see all the R verbose stating the libraries are being loaded.</p>
 <p>Once the user has finished using ShinyDataSHIELD, the container needs to be stopped to avoid wasting CPU resources, to do so, input the following command on a bash terminal (the command needs to be inputed on a new bash window):</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="setup.html#cb3-1"></a><span class="ex">docker</span> container ls</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="setup.html#cb6-1"></a><span class="ex">docker</span> container ls</span></code></pre></div>
 <p>This will prompt all the running containers, find the one with the NAMES <code>brgelab/shiny-data-shield</code> and copy it’s CONTAINER ID, then input the following bash command:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="setup.html#cb4-1"></a><span class="ex">docker</span> stop xxxxxxxxxxxx</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="setup.html#cb7-1"></a><span class="ex">docker</span> stop xxxxxxxxxxxx</span></code></pre></div>
 <p>Where xxxxxxxxxxxx is the CONTAINER ID.</p>
 <p>To run the application again, just enter the first bash command (<code>docker run --rm -p 80:80 brgelab/shiny-data-shield</code>), since it has already been downloaded, the application is cached on the computer and it will launch straight away. If the user wants to remove the Docker image from the computer, input the following bash command:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="setup.html#cb5-1"></a><span class="ex">docker</span> image rm brgelab/exposome-shiny</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="setup.html#cb8-1"></a><span class="ex">docker</span> image rm brgelab/exposome-shiny</span></code></pre></div>
 <p>If the user wants to download the actual source code of the Shiny, install all the required packages and launch it locally on it’s machine, feel free to download it <a href="https://github.com/isglobal-brge/dsOmicsShiny">from Github</a>. There’s a script called <code>installer.R</code> at the root of the repository with a short installer of all the required packages. Please note that the installer script may fail depending on the R version and others, for that reason is advised to always run the Docker version of ShinyDataSHIELD, as it only requires a single terminal command and will work no matter what.</p>
-<!-- In order to download and setup the environment to launch ShinyDataSHIELD, the latest version of the software has to be downloaded from GitHub. To do so, open a new RStudio session and run the following code on the console. -->
-<!-- ```{r setup_chunk_1} -->
-<!--   # Set working directory -->
-<!-- setwd(dir = "/some/path/") -->
-<!--   # Download zip -->
-<!-- download.file(url = "https://github.com/isglobal-brge/ShinyDataSHIELD/archive/master.zip", destfile = "master.zip") -->
-<!--   # Unzip the .zip to the working directory -->
-<!-- unzip(zipfile = "master.zip") -->
-<!--   # Set the working directory inside the downloaded folder -->
-<!-- setwd(dir = "/some/path/ShinyDataSHIELD-master") -->
-<!-- ``` -->
-<!-- Now all the source files are downloaded to the location chosen and the working directory moved to the correct folder, to start the project, open the `Rproj` file by clicking it on the Files explorer of RStudio. -->
-<!-- <center> -->
-<!-- ![Source files](images/setup1.png) -->
-<!-- </center> -->
-<!-- Once the project is loaded, the file found on the source folder called `installer.R` has to be sourced and run. This will install the newest versions of the packages required by ShinyDataSHIELD on this R session. To do so, run the following code on the RStudio console. -->
-<!-- ```{r} -->
-<!-- source("installer.R") -->
-<!-- ``` -->
-<!-- This is only needed on the first run, once completed it doesn't need to be done prior to launching the application itself any other time. -->
-<!-- Now everything is ready to launch the Shiny application. To do so there a two approaches, one is to open the `ui.R` or the `server.R` files that are inside the `R` folder and press `Run App`. -->
-<!-- <center> -->
-<!-- ![Start Shiny application](images/setup2.png) -->
-<!-- </center> -->
-<!-- The other option is to input the following command on the RStudio console. -->
-<!-- ```{r} -->
-<!-- shiny::runApp('R') -->
-<!-- ``` -->
 
+<!-- # R packages -->
+<!-- The packages that contain the main functionalities of ShinyDataSHIELD are the following. -->
+<!--   + [DSI](https://github.com/datashield/DSI): The DataSHIELD Interface (DSI) handles the connections to the databases. -->
+<!--   + [DSOpal](https://github.com/datashield/DSOpal): DSOpal is an extension of DSI to connecto to Opal servers. -->
+<!--   + [dsBaseClient](https://github.com/datashield/dsBaseClient): Implementation of the base package R functions to obtain non-disclosive returns from the Opal servers (Example: Base package function `as.factor` is implemented as `ds.asFactor`). -->
+<!--   + [dsOmicsClient](https://github.com/isglobal-brge/dsOmicsClient): Functions to perform non-disclosive omic analysis using BioConductor packages on the Opal servers. -->
+<!-- On the following table, all the packages required by ShinyDataSHIELD are shown along the versions used during development. -->
+<!-- | Package         | Version | -->
+<!-- |:----------------|:--------| -->
+<!-- | DSI             | 1.1.0   | -->
+<!-- | DSOpal          | 1.1.0   | -->
+<!-- | dsBaseClient    | 6.0.1   | -->
+<!-- | dsOmicsClient   | 1.0.0   | -->
+<!-- | shinydashboard  | 0.7.1   | -->
+<!-- | shiny           | 1.4.0.2 | -->
+<!-- | shinyalert      | 1.1     | -->
+<!-- | DT              | 0.13    | -->
+<!-- | data.table      | 1.12.8  | -->
+<!-- | shinyjs         | 1.1     | -->
+<!-- | shinyBS         | 0.61    | -->
+<!-- | shinycssloaders | 0.3     | -->
+<!-- | shinyWidgets    | 0.5.4   | -->
+<!-- | stringr         | 1.4.0   | -->
+
+</div>
+</div>
 </div>
             </section>
 
@@ -243,7 +358,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="r-packages.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="functionalities.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
