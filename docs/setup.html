@@ -138,7 +138,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>2</b> Setup</a><ul>
 <li class="chapter" data-level="2.1" data-path="setup.html"><a href="setup.html#r-packages"><i class="fa fa-check"></i><b>2.1</b> R packages</a></li>
 <li class="chapter" data-level="2.2" data-path="setup.html"><a href="setup.html#install"><i class="fa fa-check"></i><b>2.2</b> Install</a><ul>
-<li class="chapter" data-level="2.2.1" data-path="setup.html"><a href="setup.html#install-with-r"><i class="fa fa-check"></i><b>2.2.1</b> Install with R</a></li>
+<li class="chapter" data-level="2.2.1" data-path="setup.html"><a href="setup.html#install-packages-with-r"><i class="fa fa-check"></i><b>2.2.1</b> Install packages with R</a></li>
 <li class="chapter" data-level="2.2.2" data-path="setup.html"><a href="setup.html#install-with-docker"><i class="fa fa-check"></i><b>2.2.2</b> Install with Docker</a></li>
 </ul></li>
 </ul></li>
@@ -278,8 +278,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="install" class="section level2">
 <h2><span class="header-section-number">2.2</span> Install</h2>
-<div id="install-with-r" class="section level3">
-<h3><span class="header-section-number">2.2.1</span> Install with R</h3>
+<div id="install-packages-with-r" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> Install packages with R</h3>
 <p>In order to install the packages, an R console is needed. The simplest way to get it is to install <a href="https://cloud.r-project.org/">R</a> and <a href="https://rstudio.com/products/rstudio/download/">RStudio</a>, launch RStudio and start typing commands to the R console.</p>
 <div class="figure">
 <img src="images/setup1.PNG" alt="" />
@@ -325,6 +325,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
+<div id="run-the-shiny-app" class="section level4">
+<h4><span class="header-section-number">2.2.1.1</span> Run the Shiny app</h4>
 <p>Once all the packages are installed, ShinyDataSHIELD can be executed inputing the following command on the R console, which will launch the application on a new window.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="setup.html#cb2-1"></a><span class="co"># Run ShinyDataSHIELD</span></span>
 <span id="cb2-2"><a href="setup.html#cb2-2"></a>ShinyDataSHIELD<span class="op">::</span><span class="kw">app</span>()</span></code></pre></div>
@@ -358,6 +360,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- ```{r} -->
 <!-- shiny::runApp('R') -->
 <!-- ``` -->
+</div>
 </div>
 <div id="install-with-docker" class="section level3">
 <h3><span class="header-section-number">2.2.2</span> Install with Docker</h3>

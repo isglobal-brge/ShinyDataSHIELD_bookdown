@@ -33,7 +33,7 @@ On the following table, all the packages required by ShinyDataSHIELD are shown a
 
 ## Install
 
-### Install with R
+### Install packages with R
 
 In order to install the packages, an R console is needed. The simplest way to get it is to install [R](https://cloud.r-project.org/) and [RStudio](https://rstudio.com/products/rstudio/download/), launch RStudio and start typing commands to the R console.
 
@@ -61,6 +61,8 @@ The previous commands will install a library called `devtools` that is needed to
 | `r emo::ji("exclamation")`       Observation 2  |
 |:---------------------------|
 | Please note that if you are using a Linux machine, the library `libxml2` needs to be installed before trying to install the R packages, on a Ubuntu distribution it can be installed with `sudo apt-get install libxml2`, for other distributions please refer to the official documentation of it. |
+
+#### Run the Shiny app
 
 Once all the packages are installed, ShinyDataSHIELD can be executed inputing the following command on the R console, which will launch the application on a new window.
 
