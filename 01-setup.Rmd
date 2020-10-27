@@ -1,6 +1,6 @@
 # Setup
 
-In this section, a list of all the R packages required to launch ShinyDataSHIELD is given. Following it, two methodologies to install them is provided. The recommended methodology is to install all the packages using RStudio and launch the Shiny app from there. However, depending on the version of R and other variables that can't be contemplated on a case to case basis, the user might have problems installing the R packages, if that is the case, an alternative has been created using Docker.
+In this section, a list of all the R packages required to launch ShinyDataSHIELD is given. Following it, two methodologies to install them is provided. The recommended methodology is to install all the packages using R and launch the Shiny app from there. However, depending on the version of R and other variables that can't be contemplated on a case to case basis, the user might have problems installing the R packages, if that is the case, an alternative has been created using Docker.
 
 ## R packages
 
@@ -33,49 +33,85 @@ On the following table, all the packages required by ShinyDataSHIELD are shown a
 
 ## Install
 
-### Install with RStudio
+### Install with R
 
-The first step to use ShinyDataSHIELD via RStudio is to install all the required R packages. To do so, run the following lines on the RStudio console.
+In order to install the packages, an R console is needed. The simplest way to get it is to install [R](https://cloud.r-project.org/) and [RStudio](https://rstudio.com/products/rstudio/download/), launch RStudio and start typing commands to the R console.
+
+![RStudio console](images/setup1.png)
+
+To install the required packages input the following commands to the console:
 
 ```{r}
-# Install the devtools package
+# Install devtools
 install.packages("devtools")
-# Install the R packages
-devtools::source_url("https://raw.githubusercontent.com/isglobal-brge/dsOmicsShiny/master/installer.R")
+
+# Install required packages to run ShinyDataSHIELD
+devtools::source_url("https://raw.githubusercontent.com/isglobal-brge/ShinyDataSHIELD/master/installer.R")
+
+# Install ShinyDataSHIELD
+devtools::install_github("isglobal-brge/ShinyDataSHIELD")
 ```
 
-Once all the packages are installed, download and setup the environment to launch ShinyDataSHIELD, the latest version of the software has to be downloaded from GitHub. To do so, open a new RStudio session and run the following code on the console.
+The previous commands will install a library called `devtools` that is needed to source online scripts and run them. The next line sources a file that installs all the required packages to run ShinyDataSHIELD, finally the package that contains the Shiny application itself is installed.
 
-```{r setup_chunk_1}
-  # Set working directory
-setwd(dir = "/some/path/")
+| `r emo::ji("exclamation")`       Observation 1   |
+|:---------------------------|
+| The previous methodology has been tested on a clean installation of R 4.0.3 and RStudio 1.3, if any errors occur please consider using a clean install or refer to the official R documentation regarding the errors you are getting. |
 
-  # Download zip
-download.file(url = "https://github.com/isglobal-brge/ShinyDataSHIELD/archive/master.zip", destfile = "master.zip")
+| `r emo::ji("exclamation")`       Observation 2  |
+|:---------------------------|
+| Please note that if you are using a Linux machine, the library `libxml2` needs to be installed before trying to install the R packages, on a Ubuntu distribution it can be installed with `sudo apt-get install libxml2`, for other distributions please refer to the official documentation of it. |
 
-  # Unzip the .zip to the working directory
-unzip(zipfile = "master.zip")
-
-  # Set the working directory inside the downloaded folder
-setwd(dir = "/some/path/ShinyDataSHIELD-master")
-```
-
-Now all the source files are downloaded to the location chosen and the working directory moved to the correct folder, to start the project, open the `Rproj` file by clicking it on the Files explorer of RStudio.
-<center>
-![Source files](images/setup1.png)
-</center>
-
-Now everything is ready to launch the Shiny application. To do so there a two approaches, one is to open the `ui.R` or the `server.R` files that are inside the `R` folder and press `Run App`.
-
-<center>
-![Start Shiny application](images/setup2.png)
-</center>
-
-The other option is to input the following command on the RStudio console.
+Once all the packages are installed, ShinyDataSHIELD can be executed inputing the following command on the R console, which will launch the application on a new window.
 
 ```{r}
-shiny::runApp('R')
+# Run ShinyDataSHIELD
+ShinyDataSHIELD::app()
 ```
+
+
+
+<!-- The first step to use ShinyDataSHIELD via RStudio is to install all the required R packages. To do so, run the following lines on the RStudio console. -->
+
+<!-- ```{r} -->
+<!-- # Install the devtools package -->
+<!-- install.packages("devtools") -->
+<!-- # Install the R packages -->
+<!-- devtools::source_url("https://raw.githubusercontent.com/isglobal-brge/dsOmicsShiny/master/installer.R") -->
+<!-- ``` -->
+
+<!-- Once all the packages are installed, download and setup the environment to launch ShinyDataSHIELD, the latest version of the software has to be downloaded from GitHub. To do so, open a new RStudio session and run the following code on the console. -->
+
+<!-- ```{r setup_chunk_1} -->
+<!--   # Set working directory -->
+<!-- setwd(dir = "/some/path/") -->
+
+<!--   # Download zip -->
+<!-- download.file(url = "https://github.com/isglobal-brge/ShinyDataSHIELD/archive/master.zip", destfile = "master.zip") -->
+
+<!--   # Unzip the .zip to the working directory -->
+<!-- unzip(zipfile = "master.zip") -->
+
+<!--   # Set the working directory inside the downloaded folder -->
+<!-- setwd(dir = "/some/path/ShinyDataSHIELD-master") -->
+<!-- ``` -->
+
+<!-- Now all the source files are downloaded to the location chosen and the working directory moved to the correct folder, to start the project, open the `Rproj` file by clicking it on the Files explorer of RStudio. -->
+<!-- <center> -->
+<!-- ![Source files](images/setup1.png) -->
+<!-- </center> -->
+
+<!-- Now everything is ready to launch the Shiny application. To do so there a two approaches, one is to open the `ui.R` or the `server.R` files that are inside the `R` folder and press `Run App`. -->
+
+<!-- <center> -->
+<!-- ![Start Shiny application](images/setup2.png) -->
+<!-- </center> -->
+
+<!-- The other option is to input the following command on the RStudio console. -->
+
+<!-- ```{r} -->
+<!-- shiny::runApp('R') -->
+<!-- ``` -->
 
 ### Install with Docker
 
