@@ -56,7 +56,7 @@ The previous commands will install a library called `devtools` that is needed to
 
 | `r emo::ji("exclamation")`       Observation 1   |
 |:---------------------------|
-| The previous methodology has been tested on a clean installation of R 4.0.3 and RStudio 1.3, if any errors occur please consider using a clean install or refer to the official R documentation regarding the errors you are getting. |
+| The previous methodology has been tested on a clean installation of R 4.0.3 and RStudio 1.3, if any errors occur please consider using a clean install or refer to the official R documentation regarding the errors you are getting. Also, there is a [known bug](https://github.com/RcppCore/Rcpp/issues/1105) when using R 4.0.0 and Shiny, install R 4.0.3 or higher to solve it. |
 
 | `r emo::ji("exclamation")`       Observation 2  |
 |:---------------------------|
