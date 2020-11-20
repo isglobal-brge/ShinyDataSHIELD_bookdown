@@ -33,7 +33,7 @@ On the following table, all the packages required by ShinyDataSHIELD are shown a
 
 ## Install
 
-### Install packages with R
+### Install required packages with R
 
 | `r emo::ji("exclamation")`       Observation 1   |
 |:---------------------------|
