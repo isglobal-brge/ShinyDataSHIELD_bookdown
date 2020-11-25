@@ -8,7 +8,7 @@ Along this section, documentation for future developers and maintainers of Shiny
 
 ## File structure of ShinyDataSHIELD
 
-Typically Shiny applications are contained in a single file or two files, since the typical structure of a Shiny application is to have a `server` function and a `ui` function that can be on the same file or split for larger applications. On dsOmicShiny the `server` function has been split into different scripts where all of them contains the code of a certain block of the application. It has been done this way to not have a really long `server` file that is difficult to navigate and debug. There is no need to split the `ui` file into different scripts since it only contains the graphical declarations of the applications and is really easy to update and navigate.
+Typically Shiny applications are contained in a single file or two files, since the typical structure of a Shiny application is to have a `server` function and a `ui` function that can be on the same file or split for larger applications. On ShinyDataSHIELD the `server` function has been split into different scripts where all of them contains the code of a certain block of the application. It has been done this way to not have a really long `server` file that is difficult to navigate and debug. There is no need to split the `ui` file into different scripts since it only contains the graphical declarations of the applications and is really easy to update and navigate.
 
 The different scripts that compose the whole ShinyDataSHIELD are the following:
 
@@ -22,6 +22,7 @@ The different scripts that compose the whole ShinyDataSHIELD are the following:
     + `plot_renders.R`
     + `statistic_models.R`
     + `table_renders.R`
+    + `table_columns.R`
  
 The file `server.R` exists to source the different files and it also includes some small funcionalities.
 
@@ -31,21 +32,24 @@ Now a file per file explanation will be given with flowcharts (when needed), rem
 
 Inside this file there are all the declarations of how the graphical user interface (GUI) will look like. 
 
-First, it contains a declaration of all the libraries that have to be loaded for the application to run. The libraries are the following: `DSI, DSOpal, dsBaseClient, dsOmicsClient, shinydashboard, shiny, shinyalert, DT, data.table, shinyjs, shinyBS, shinycssloaders)`.
+First, it contains a declaration of all the libraries that have to be loaded for the application to run. The libraries are the following: `DSI, DSOpal, dsBaseClient, dsOmicsClient, shinydashboard, shiny, shinyalert, DT, data.table, shinyjs, shinyBS, shinycssloaders, shinyWidgets, stringr)`.
 
 The next piece of code found 
 
 ```{r}
 jscode <- '
 $(document).keyup(function(event) {
-    if ($("#password").is(":focus") && (event.keyCode == 13)) {
-        $("#connect_server").click();
+    if ($("#password1").is(":focus") && (event.keyCode == 13)) {
+        $("#connect_server1").click();
+    };
+    if ($("#pat1").is(":focus") && (event.keyCode == 13)) {
+        $("#connect_server1").click();
     }
 });
 '
 ```
 
-Is a JavaScript declaration that reads as: When the #password item (corresponds to the text input of the password on the data entry tab) is active (the user is writting in it) and the "Intro" key is pressed, trigger the #connect_server item (corresponds to the "Connect" button on the GUI). That provides the user the typical experience of inputting the login credentials and pressing "Intro" to log in.
+Is a JavaScript declaration that reads as: When the #password1 item (corresponds to the text input of the password on the data entry tab) is active (the user is writting in it) and the "Intro" key is pressed, trigger the #connect_server1 item (corresponds to the "Connect" button on the GUI). That provides the user the typical experience of inputting the login credentials and pressing "Intro" to log in.
 
 It's important noting that this is only the declaration of a string with the code inside, to actually make use of it, there is the line 58 of this same file that actually implements it.
 
@@ -53,12 +57,51 @@ It's important noting that this is only the declaration of a string with the cod
 tags$head(tags$script(HTML(jscode)))
 ```
 
+Two more pieces of JavaScript and CSS are found
+
+```{r}
+jscode_tab <- "
+shinyjs.disableTab = function(name) {
+  var tab = $('.nav li a[data-value=' + name + ']');
+  tab.bind('click.tab', function(e) {
+    e.preventDefault();
+    return false;
+  });
+  tab.addClass('disabled');
+}
+
+shinyjs.enableTab = function(name) {
+  var tab = $('.nav li a[data-value=' + name + ']');
+  tab.unbind('click.tab');
+  tab.removeClass('disabled');
+}
+"
+
+css_tab <- "
+.nav li a.disabled {
+  background-color: #aaa !important;
+  color: #333 !important;
+  cursor: not-allowed !important;
+  border-color: #aaa !important;
+}"
+```
+
+The CSS is just for aesthetics, the JS however is to introduce the funcionality of enabling and disabling panels of the web application, this is used as `js$disableTab()` and `js$enableTab()` along the application. Those two scripts are integrated to the application when building the `dashboardBody` by using this
+
+```{r, eval=FALSE}
+useShinyjs(),
+extendShinyjs(text = jscode_tab, functions = c("enableTab", "disableTab")),
+inlineCSS(css_tab)
+```
 
 There are a some functions used in this file that are worth mentioning:
 
 + `hidden()`: From the `shinyjs` library. The elements wrapped inside of this function will not be rendered by default, they have to be toggled from the server side. Example: A GUI element that needs to be displayed only when a certain condition is met.
 + `withSpinner()`: From the `shinycssloaders` library. The elements wrapped inside of this function will be displayed as a "loading spinner" when they are being processed. This is used to wrap figure displays. Example: A plot that is being rendered, it's better for the user experience to see a "loading spinner" so that it knows something is being processed rather than just staring at a blank screen waiting for something to happen.
 + `bsModal()`: From the `shinyBS` library. It's used to prompt pop-ups to the user. Example: By the click of a button you want to render a pop-up to the application with a figure of an histogram of a selected column of a table.
++ `conditionalPanel()`: From the `shiny` library. It is useful to display certain elements on the GUI regarding a condition is met or not, here is used to display the user / password fields or the personal access token (PAT) fields by checking the state of the selector. Note that the condition has to be written using JavaScript, that's why it looks like `"input.pat_switch1 == true"` rather than the typical R Shiny `input$pat_switch1 == TRUE`.
+
+In order to declare the elements when the user wants to add another server some R tricks are used, they are described and coded on the [`connection.R`](#connection) file.
 
 The rest of this file is your average Shiny functions and declarations, read the official [documentation](https://shiny.rstudio.com/reference/shiny/1.4.0/) for any doubts. Please note that ShinyDataSHIELD uses `shinydashboard` to improve the looks and user experience, for any doubts regarding that please read it's [documentation](https://rstudio.github.io/shinydashboard/get_started.html).
 
@@ -81,7 +124,7 @@ The server file is divided into the following blocks.
 
 The scripts sourced for by the `server.R` are the following:
 
-#### `connection.R`
+#### `connection.R` {#connection}
 
 This is probably the most important script of the whole application, as it's the one that puts some constraints on the capabilities of the application. It also is responsible for loading the data in a proper way in order to ensure that the application capabilities can be extended in the future painlessly (modular). 
 
