@@ -39,3 +39,5 @@ plot_renders.r
 download_handlers.r
 how-to-add-a-new-block
 install-required-packages-with-r
+connection
+structure-of-the-modules
