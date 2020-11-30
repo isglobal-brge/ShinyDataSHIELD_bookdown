@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3 Functionalities | ShinyDataSHIELD User’s Guide</title>
   <meta name="description" content="3 Functionalities | ShinyDataSHIELD User’s Guide" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3 Functionalities | ShinyDataSHIELD User’s Guide" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Escribà Montagut, Xavier; González, Juan R." />
 
 
-<meta name="date" content="2020-10-26" />
+<meta name="date" content="2020-11-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,72 +51,10 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
-<style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -138,7 +76,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>2</b> Setup</a><ul>
 <li class="chapter" data-level="2.1" data-path="setup.html"><a href="setup.html#r-packages"><i class="fa fa-check"></i><b>2.1</b> R packages</a></li>
 <li class="chapter" data-level="2.2" data-path="setup.html"><a href="setup.html#install"><i class="fa fa-check"></i><b>2.2</b> Install</a><ul>
-<li class="chapter" data-level="2.2.1" data-path="setup.html"><a href="setup.html#install-with-rstudio"><i class="fa fa-check"></i><b>2.2.1</b> Install with RStudio</a></li>
+<li class="chapter" data-level="2.2.1" data-path="setup.html"><a href="setup.html#install-required-packages-with-r"><i class="fa fa-check"></i><b>2.2.1</b> Install required packages with R</a></li>
 <li class="chapter" data-level="2.2.2" data-path="setup.html"><a href="setup.html#install-with-docker"><i class="fa fa-check"></i><b>2.2.2</b> Install with Docker</a></li>
 </ul></li>
 </ul></li>
@@ -146,33 +84,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.1" data-path="functionalities.html"><a href="functionalities.html#data-entry"><i class="fa fa-check"></i><b>3.1</b> Data entry</a><ul>
 <li class="chapter" data-level="3.1.1" data-path="functionalities.html"><a href="functionalities.html#single-resource-table-approach"><i class="fa fa-check"></i><b>3.1.1</b> Single resource / table approach</a></li>
 <li class="chapter" data-level="3.1.2" data-path="functionalities.html"><a href="functionalities.html#multiple-resource-study"><i class="fa fa-check"></i><b>3.1.2</b> Multiple resource study</a></li>
-<li class="chapter" data-level="3.1.3" data-path="functionalities.html"><a href="functionalities.html#pooled-data-approach"><i class="fa fa-check"></i><b>3.1.3</b> Pooled data approach</a></li>
+<li class="chapter" data-level="3.1.3" data-path="functionalities.html"><a href="functionalities.html#pooled-data-from-the-same-server"><i class="fa fa-check"></i><b>3.1.3</b> Pooled data from the same server</a></li>
+<li class="chapter" data-level="3.1.4" data-path="functionalities.html"><a href="functionalities.html#pooled-data-from-different-servers"><i class="fa fa-check"></i><b>3.1.4</b> Pooled data from different servers</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="functionalities.html"><a href="functionalities.html#descriptive-statistics"><i class="fa fa-check"></i><b>3.2</b> Descriptive statistics</a><ul>
-<li class="chapter" data-level="3.2.1" data-path="functionalities.html"><a href="functionalities.html#summary"><i class="fa fa-check"></i><b>3.2.1</b> Summary</a></li>
-<li class="chapter" data-level="3.2.2" data-path="functionalities.html"><a href="functionalities.html#scatter-plot"><i class="fa fa-check"></i><b>3.2.2</b> Scatter plot</a></li>
-<li class="chapter" data-level="3.2.3" data-path="functionalities.html"><a href="functionalities.html#histogram"><i class="fa fa-check"></i><b>3.2.3</b> Histogram</a></li>
-<li class="chapter" data-level="3.2.4" data-path="functionalities.html"><a href="functionalities.html#heatmap"><i class="fa fa-check"></i><b>3.2.4</b> Heatmap</a></li>
+<li class="chapter" data-level="3.2" data-path="functionalities.html"><a href="functionalities.html#table-column-types"><i class="fa fa-check"></i><b>3.2</b> Table column types</a></li>
+<li class="chapter" data-level="3.3" data-path="functionalities.html"><a href="functionalities.html#descriptive-statistics"><i class="fa fa-check"></i><b>3.3</b> Descriptive statistics</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="functionalities.html"><a href="functionalities.html#summary"><i class="fa fa-check"></i><b>3.3.1</b> Summary</a></li>
+<li class="chapter" data-level="3.3.2" data-path="functionalities.html"><a href="functionalities.html#scatter-plot"><i class="fa fa-check"></i><b>3.3.2</b> Scatter plot</a></li>
+<li class="chapter" data-level="3.3.3" data-path="functionalities.html"><a href="functionalities.html#histogram"><i class="fa fa-check"></i><b>3.3.3</b> Histogram</a></li>
+<li class="chapter" data-level="3.3.4" data-path="functionalities.html"><a href="functionalities.html#heatmap"><i class="fa fa-check"></i><b>3.3.4</b> Heatmap</a></li>
+<li class="chapter" data-level="3.3.5" data-path="functionalities.html"><a href="functionalities.html#boxplot"><i class="fa fa-check"></i><b>3.3.5</b> Boxplot</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="functionalities.html"><a href="functionalities.html#statistic-models"><i class="fa fa-check"></i><b>3.3</b> Statistic models</a><ul>
-<li class="chapter" data-level="3.3.1" data-path="functionalities.html"><a href="functionalities.html#glm-models"><i class="fa fa-check"></i><b>3.3.1</b> GLM models</a></li>
-<li class="chapter" data-level="3.3.2" data-path="functionalities.html"><a href="functionalities.html#mixed-models"><i class="fa fa-check"></i><b>3.3.2</b> Mixed models</a></li>
+<li class="chapter" data-level="3.4" data-path="functionalities.html"><a href="functionalities.html#statistic-models"><i class="fa fa-check"></i><b>3.4</b> Statistic models</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="functionalities.html"><a href="functionalities.html#glm-models"><i class="fa fa-check"></i><b>3.4.1</b> GLM models</a></li>
+<li class="chapter" data-level="3.4.2" data-path="functionalities.html"><a href="functionalities.html#mixed-models"><i class="fa fa-check"></i><b>3.4.2</b> Mixed models</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="functionalities.html"><a href="functionalities.html#genomics"><i class="fa fa-check"></i><b>3.4</b> Genomics</a><ul>
-<li class="chapter" data-level="3.4.1" data-path="functionalities.html"><a href="functionalities.html#analysis-with-bioconductor"><i class="fa fa-check"></i><b>3.4.1</b> Analysis with BioConductor</a></li>
-<li class="chapter" data-level="3.4.2" data-path="functionalities.html"><a href="functionalities.html#analysis-with-plink"><i class="fa fa-check"></i><b>3.4.2</b> Analysis with PLINK</a></li>
+<li class="chapter" data-level="3.5" data-path="functionalities.html"><a href="functionalities.html#genomics"><i class="fa fa-check"></i><b>3.5</b> Genomics</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="functionalities.html"><a href="functionalities.html#analysis-with-bioconductor"><i class="fa fa-check"></i><b>3.5.1</b> Analysis with BioConductor</a></li>
+<li class="chapter" data-level="3.5.2" data-path="functionalities.html"><a href="functionalities.html#analysis-with-plink"><i class="fa fa-check"></i><b>3.5.2</b> Analysis with PLINK</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="functionalities.html"><a href="functionalities.html#omics"><i class="fa fa-check"></i><b>3.5</b> Omics</a><ul>
-<li class="chapter" data-level="3.5.1" data-path="functionalities.html"><a href="functionalities.html#limma"><i class="fa fa-check"></i><b>3.5.1</b> LIMMA</a></li>
-<li class="chapter" data-level="3.5.2" data-path="functionalities.html"><a href="functionalities.html#deseq"><i class="fa fa-check"></i><b>3.5.2</b> DESeq</a></li>
-<li class="chapter" data-level="3.5.3" data-path="functionalities.html"><a href="functionalities.html#edger"><i class="fa fa-check"></i><b>3.5.3</b> edgeR</a></li>
+<li class="chapter" data-level="3.6" data-path="functionalities.html"><a href="functionalities.html#omics"><i class="fa fa-check"></i><b>3.6</b> Omics</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="functionalities.html"><a href="functionalities.html#limma"><i class="fa fa-check"></i><b>3.6.1</b> LIMMA</a></li>
+<li class="chapter" data-level="3.6.2" data-path="functionalities.html"><a href="functionalities.html#deseq"><i class="fa fa-check"></i><b>3.6.2</b> DESeq</a></li>
+<li class="chapter" data-level="3.6.3" data-path="functionalities.html"><a href="functionalities.html#edger"><i class="fa fa-check"></i><b>3.6.3</b> edgeR</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="developers-guide.html"><a href="developers-guide.html"><i class="fa fa-check"></i><b>4</b> Developers Guide</a><ul>
 <li class="chapter" data-level="4.1" data-path="developers-guide.html"><a href="developers-guide.html#file-structure-of-shinydatashield"><i class="fa fa-check"></i><b>4.1</b> File structure of ShinyDataSHIELD</a><ul>
 <li class="chapter" data-level="4.1.1" data-path="developers-guide.html"><a href="developers-guide.html#ui.r"><i class="fa fa-check"></i><b>4.1.1</b> <code>ui.R</code></a></li>
 <li class="chapter" data-level="4.1.2" data-path="developers-guide.html"><a href="developers-guide.html#server.r"><i class="fa fa-check"></i><b>4.1.2</b> <code>server.R</code></a></li>
-<li class="chapter" data-level="4.1.3" data-path="developers-guide.html"><a href="developers-guide.html#how-to-add-a-new-block"><i class="fa fa-check"></i><b>4.1.3</b> How to add a new block</a></li>
+<li class="chapter" data-level="4.1.3" data-path="developers-guide.html"><a href="developers-guide.html#structure-of-the-modules"><i class="fa fa-check"></i><b>4.1.3</b> Structure of the modules</a></li>
+<li class="chapter" data-level="4.1.4" data-path="developers-guide.html"><a href="developers-guide.html#how-to-add-a-new-block"><i class="fa fa-check"></i><b>4.1.4</b> How to add a new block</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -217,103 +159,180 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>The first step to any analysis is to load the required tables or resources to the study server(s). To do so, the user has to provide the server URL and the login credentials. This will allow the application to connect to the OPAL server and retrieve all the projects and resources / tables from them. Afterwards, the user can select the desired resources / tables and load them to the study servers.</p>
-<p>There are some limitations to how the data entry is coded in ShinyDataSHIELD:</p>
-<ul>
-<li>When loading multiple tables / resources on a study server, it is assumed only tables are selected or only resources, not combined.</li>
-<li>When dealing with tables, there can only be one table per study.</li>
-<li>A pooled study can only contain one table (or resource) per study server.</li>
-<li>When performing a pooled study, consistency among the tables is assumed, meaning all tables share the same columns.</li>
-<li>When loading multiple resources per study server, only one study is allowed.</li>
-</ul>
-<p>The limitations can be overcome by changing the part of the code in charge of the data entry. Look at the developers guide flowcharts to get some references on which parts of the code could be altered to change the current limitations.</p>
-<p>When loged into the Opal server, the interface shows two selectors, one is a dropdown with all the projects found on the server, the other is a dropdown (with multiple selection) with the resources / tables inside the selected project. The user has to select the project and resource(s) / table(s) that wants to load on a study server and press the “Add study” button.</p>
-<p>Below the two selectors a table will be shown, on this table each line corresponds to a study server. If the user made a mistake when adding a study server, the rows on this table can be selected, and by pressing the “Remove selected study” button, the selected study servers will be removed.</p>
-<p>When the desired study serveres are selected, press the “Connect” button to connect to them.</p>
-<p>Following the limitations explained before, there are three different use cases.</p>
+<p>It is very important to understand the difference between a server (OPAL server) and a study server (R instances running inside an OPAL server), a study server can be visualized as an R session that has some tables and resources loaded. For that reason we can have multiple study servers on a single OPAL server, which is indeed needed when performing pooled studies.</p>
+<p>To properly explain how to load the desired study servers for multiple types of analysis, let’s do a guided tour of the interface.</p>
+<div class="figure" style="text-align: center"><span id="fig:dataentry1"></span>
+<img src="images/data_entry1.png" alt="Connect to server, initial state"  />
+<p class="caption">
+Figure 3.1: Connect to server, initial state
+</p>
+</div>
+<p>On Figure <a href="functionalities.html#fig:dataentry1">3.1</a> the initial state of the <em>Connect to server</em> tab is shown, here we can see some credentials are already inputted, which correspond to a demo server. There is the option of performing a login to the server via traditional user/pass or using personal access token [PAT].</p>
+<div class="figure" style="text-align: center"><span id="fig:dataentry2"></span>
+<img src="images/data_entry2.png" alt="Connect to server, selecting tables and resources"  />
+<p class="caption">
+Figure 3.2: Connect to server, selecting tables and resources
+</p>
+</div>
+<p>Once connected to the server, the interface is actualized showing the available projects that contain tables inside. To show the projects that contain resources, just click on the <em>Table</em> toggle. An example is illustrated on Figure <a href="functionalities.html#fig:dataentry2">3.2</a>.</p>
+<p>If we want to get further information from a table(s) or resource(s), select them and click on the <em>Further information of selection</em>, this will open the OPAL UI on a browser and will display the associated page for the selected items. If more than one item is selected, a page for each one will be opened. An example of this functionality is shown on the Figure <a href="functionalities.html#fig:dataentry3">3.3</a> where a table was selected to retrieve further information.</p>
+<div class="figure" style="text-align: center"><span id="fig:dataentry3"></span>
+<img src="images/data_entry3.png" alt="OPAL UI with information from a table"  />
+<p class="caption">
+Figure 3.3: OPAL UI with information from a table
+</p>
+</div>
+<p>Knowing which items are of our interest, we can add them to be loaded on the study servers, to do that select the items and click <em>Add selected item(s)</em>. A new table will appear underneath showing everything selected, illustrated on Figure <a href="functionalities.html#fig:dataentry4">3.4</a>. On this table all the elements from all the servers will be added to have the general picture of what will be available on the study servers.</p>
+<div class="figure" style="text-align: center"><span id="fig:dataentry4"></span>
+<img src="images/data_entry4.png" alt="Connect to server, selected items"  />
+<p class="caption">
+Figure 3.4: Connect to server, selected items
+</p>
+</div>
+<p>Reached this point, let’s see different use cases and how we have to configure the application for them.</p>
 <div id="single-resource-table-approach" class="section level3">
 <h3><span class="header-section-number">3.1.1</span> Single resource / table approach</h3>
-<p>To perform analysis on data that is contained on a single resource / table of the server, the user has to select it from the dropdown inputs, add it to the study and connect to it.</p>
-<center>
-<img src="images/data_entry1.png" />
-</center>
+<p>Not much to say about this, just select it and click the <em>Connect</em> button.</p>
+<div class="figure" style="text-align: center"><span id="fig:dataentry5"></span>
+<img src="images/data_entry5.png" alt="Connect to server. Single resource / table approach"  />
+<p class="caption">
+Figure 3.5: Connect to server. Single resource / table approach
+</p>
+</div>
 </div>
 <div id="multiple-resource-study" class="section level3">
 <h3><span class="header-section-number">3.1.2</span> Multiple resource study</h3>
-<p>Some studies require to put more than one resource on a study server, this is the case for example of using VCF files to perform a GWAS; they require two resources, the VCF resource and the covariates resource (which is a resource that holds a plain table). For this use case, the user has to select the multiple resources from the dropdown inputs, add them to a single study and connect to it.</p>
-<center>
-<img src="images/data_entry2.png" />
-</center>
+<p>Some studies require to put more than one resource on a single study server, this is the case of using VCF files to perform a GWAS; they require two resources, the VCF resource and the covariates resource (which is a resource that holds a plain table). For this use case, the user has to select the multiple resources from the dropdown inputs, add them to a single study and connect to it. Two important things must be said for this use case, 1) By default the tables/resources from one server are added to the same study server; 2) to have tables/resources on the same study server, they have to be from the same server, this translates to: we can’t put a table from server X and a resource from server Y on the same study server.</p>
+<div class="figure" style="text-align: center"><span id="fig:dataentry6"></span>
+<img src="images/data_entry6.png" alt="Connect to server. Single resource / table approach"  />
+<p class="caption">
+Figure 3.6: Connect to server. Single resource / table approach
+</p>
 </div>
-<div id="pooled-data-approach" class="section level3">
-<h3><span class="header-section-number">3.1.3</span> Pooled data approach</h3>
-<p>Some studies have the data distributed across multiple tables or resources that need to be pooled to perform a study. To load this kind of studies, the user has to select each different table / resource, add it to a study separately and connect to it.</p>
-<center>
-<img src="images/data_entry3.png" />
-</center>
 </div>
+<div id="pooled-data-from-the-same-server" class="section level3">
+<h3><span class="header-section-number">3.1.3</span> Pooled data from the same server</h3>
+<p>It is not uncommon that the same OPAL server has multiple tables that we wish to analyze using a pooled approach. To perform this kind of analysis we have to select all the tables (they have to consistent column-wise to be pooled). The important thing to take into account is that the tables need to be on different study servers in order to be analyzed using a pooled approach, in order to achieve that the user has to double click on the cells in order to edit them (Figure <a href="functionalities.html#fig:dataentry7">3.7</a>). There are a couple of rules regarding the naming of the study servers, 1) User inputted names can’t be of the format <code>StudyX</code> (where X is a number), and 2) Similarly to what has been stated before, items from different servers can’t be on the same study server.</p>
+<div class="figure" style="text-align: center"><span id="fig:dataentry7"></span>
+<img src="images/data_entry7.png" alt="Connect to server. Study server edit"  />
+<p class="caption">
+Figure 3.7: Connect to server. Study server edit
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:dataentry8"></span>
+<img src="images/data_entry8.png" alt="Connect to server. Pooled data from the same server approach"  />
+<p class="caption">
+Figure 3.8: Connect to server. Pooled data from the same server approach
+</p>
+</div>
+</div>
+<div id="pooled-data-from-different-servers" class="section level3">
+<h3><span class="header-section-number">3.1.4</span> Pooled data from different servers</h3>
+<p>When pooling data from different servers, we have to separately login to all of them. On the upper part of the interface there is a <em>+</em> symbol used to add a new server (Figure <a href="functionalities.html#fig:dataentry9">3.9</a>), when clicking the <em>-</em> symbol the last server added will be removed from the interface. The procedure is exactly the same as what we’ve already seen, the only difference is that on the table of selected items, we will now see items from different servers (Figure <a href="functionalities.html#fig:dataentry10">3.10</a>). Since by default items from different servers are added to different study servers, there is no need to manually configure that.</p>
+<div class="figure" style="text-align: center"><span id="fig:dataentry9"></span>
+<img src="images/data_entry9.png" alt="Connect to server. New server"  />
+<p class="caption">
+Figure 3.9: Connect to server. New server
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:dataentry10"></span>
+<img src="images/data_entry10.png" alt="Connect to server. Pooled data from different servers approach"  />
+<p class="caption">
+Figure 3.10: Connect to server. Pooled data from different servers approach
+</p>
+</div>
+</div>
+</div>
+<div id="table-column-types" class="section level2">
+<h2><span class="header-section-number">3.2</span> Table column types</h2>
+<p>The table column types functionality is available for tables as well as the following resource types:</p>
+<ul>
+<li>SQL tables</li>
+<li>Tidy data files (tables): <code>*.csv</code>, <code>*.tsv</code>, etc</li>
+</ul>
+<p>All of the above options will be shown on the table that shows the available tables to use on this module. As stated on the use cases, to perform a pooled analysis the tables have to be on different study servers. Column integrity is checked before allowing the user the access to the other tabs.</p>
+<p>The function of this module is to get information about the class of each column of a table. Aside from that, there’s the option of changing the class of a column. This transformation is done using the proper DataSHIELD functions that perform disclosive checks before allowing the transformation. This is specially important for transformation from numeric to factor for example.</p>
+<p>The allowed classes to perform transformations are:</p>
+<ul>
+<li>Character</li>
+<li>Numeric</li>
+<li>Factor</li>
+</ul>
+<p>Integer could be added if it was of interest. Please <a href="https://github.com/isglobal-brge/ShinyDataSHIELD/issues">file an issue on GitHub</a> if that is the case.</p>
 </div>
 <div id="descriptive-statistics" class="section level2">
-<h2><span class="header-section-number">3.2</span> Descriptive statistics</h2>
+<h2><span class="header-section-number">3.3</span> Descriptive statistics</h2>
 <p>The descriptive statistics functionality is available for tables as well as the following resource types:</p>
 <ul>
 <li>SQL tables</li>
 <li>Tidy data files (tables): <code>*.csv</code>, <code>*.tsv</code>, etc</li>
-<li>ExpressionSets</li>
-<li>RangedSummarizedExperiments</li>
 </ul>
+<p>All of the above options will be shown on the table that shows the available tables to use on this module. As stated on the use cases, to perform a pooled analysis the tables have to be on different study servers. Column integrity is checked before allowing the user the access to the other tabs.</p>
 <p>When using pooled data the descriptive statistics is by default of the pooled data, however, the graphical visualizations included on descriptive statistics provide the option of showing separated plots for the different studies.</p>
-<p>The download button will prompt a system window to select where to store the shown table, it will save it as a <code>*.csv</code>.</p>
 <div id="summary" class="section level3">
-<h3><span class="header-section-number">3.2.1</span> Summary</h3>
-<p>The summary provides non-disclosive insights on the different variables of the loaded data. This functionality is only available for factors and numeric variables, otherwise no table will be rendered. When the desired summary is disclosive no table will be shown (as the function call returns an Error stating that the the return is disclosive).</p>
-<p>When the selected variable is a factor, the output shown is a count of all the different factors.</p>
-<center>
-<img src="images/descriptive_stats2.png" />
-</center>
-<p>When the selected variable is numerical, the output shown is a quantiles and mean table.</p>
+<h3><span class="header-section-number">3.3.1</span> Summary</h3>
+<p>The summary provides non-disclosive insights on the different variables of the loaded data. This functionality is only available for factors and numeric variables, only variables that meet this criteria will be on the selector. When the desired summary is disclosive no table will be shown (as the function call returns an Error stating that the the return is disclosive).</p>
+<p>When the selected variable is a factor, the output shown is a count of all the different factors. It can be visualized with the pooled data or divided by study servers.</p>
 <center>
 <img src="images/descriptive_stats1.png" />
 </center>
+<center>
+<img src="images/descriptive_stats1_2.png" />
+</center>
+<p>When the selected variable is numerical, the output shown is a quantiles and mean table. It can be visualized with the pooled data or divided by study servers.</p>
+<center>
+<img src="images/descriptive_stats2.png" />
+</center>
+<center>
+<img src="images/descriptive_stats2_2.png" />
+</center>
 </div>
 <div id="scatter-plot" class="section level3">
-<h3><span class="header-section-number">3.2.2</span> Scatter plot</h3>
-<p>Create a non-disclosive scatter plot by selecting two numerical variables (one for each axis). There’s the option of obtaining a pooled data plot or a different plot for each study server. The selected variables have to be numerical, otherwise the plot is not displayed and a warning message appears.</p>
-<p>The dowload plot button saves the shown figure as a <code>*.png</code>.</p>
+<h3><span class="header-section-number">3.3.2</span> Scatter plot</h3>
+<p>Create a non-disclosive scatter plot by selecting two numerical variables (one for each axis). This type of plot can only be generated using numerical variables, for that reason variables that do not meet this criteria are not shown on the selector. It can be visualized with the pooled data or divided by study servers.</p>
 <center>
 <img src="images/descriptive_stats3.png" />
 </center>
+<center>
+<img src="images/descriptive_stats3_2.png" />
+</center>
 </div>
 <div id="histogram" class="section level3">
-<h3><span class="header-section-number">3.2.3</span> Histogram</h3>
-<p>Create a non-disclosive histogram of a selected variable. There’s the option of obtaining a pooled data plot or a different plot for each study server. The selected variable has to be numerical, otherwise the plot is not displayed and a warning message appears.</p>
-<p>The dowload plot button saves the shown figure as a <code>*.png</code>.</p>
+<h3><span class="header-section-number">3.3.3</span> Histogram</h3>
+<p>Create a non-disclosive histogram of a selected variable. This type of plot can only be generated using numerical variables, for that reason variables that do not meet this criteria are not shown on the selector. It can be visualized with the pooled data or divided by study servers.</p>
 <center>
 <img src="images/descriptive_stats4.png" />
 </center>
+<center>
+<img src="images/descriptive_stats4_2.png" />
+</center>
 </div>
 <div id="heatmap" class="section level3">
-<h3><span class="header-section-number">3.2.4</span> Heatmap</h3>
-<p>Create a non-disclosive heatmap plot by selecting two numerical variables (one for each axis). There’s the option of obtaining a pooled data plot or a different plot for each study server. The selected variables have to be numerial, otherwise the plot is not displayed and a warning message appears.</p>
-<p>The dowload plot button saves the shown figure as a <code>*.png</code>.</p>
+<h3><span class="header-section-number">3.3.4</span> Heatmap</h3>
+<p>Create a non-disclosive heatmap plot by selecting two numerical variables (one for each axis). This type of plot can only be generated using numerical variables, for that reason variables that do not meet this criteria are not shown on the selector. It can be visualized with the pooled data or divided by study servers.</p>
 <center>
 <img src="images/descriptive_stats5.png" />
 </center>
+<center>
+<img src="images/descriptive_stats5_2.png" />
+</center>
+</div>
+<div id="boxplot" class="section level3">
+<h3><span class="header-section-number">3.3.5</span> Boxplot</h3>
+<p>v6.1 of DataSHIELD added Box Plots, they will be available on a newer release of ShinyDataSHIELD.</p>
 </div>
 </div>
 <div id="statistic-models" class="section level2">
-<h2><span class="header-section-number">3.3</span> Statistic models</h2>
+<h2><span class="header-section-number">3.4</span> Statistic models</h2>
 <p>Statistic models are available for tables as well as the following resource types:</p>
 <ul>
 <li>SQL tables</li>
-<li>Tidy data files (tables): <code>*.csv</code>, <code>*.tsv</code>, etc
-<!--   + ExpressionSets -->
-<!--   + RangegSummarizedExperiments --></li>
+<li>Tidy data files (tables): <code>*.csv</code>, <code>*.tsv</code>, etc</li>
 </ul>
 <!-- This corresponds to the same options as the descriptive statistics, so as a rule of thumb if you can perform descriptive statistics on it you can also fit statistic models. -->
-<!-- When using pooled data, the models will be fitted to the pooled data, there's no option implemented to fit a model for each study. -->
 <p>There are two different statisticals models available to fit, GLM models (Statistics models tab) and GLMer models (Mixed statistical models tab).</p>
 <div id="glm-models" class="section level3">
-<h3><span class="header-section-number">3.3.1</span> GLM models</h3>
+<h3><span class="header-section-number">3.4.1</span> GLM models</h3>
 <p>The tab to fit a non-disclosive generalized linear models (GLM) contains a box to manually input the formula, a selector for the output family and a table displaying the variables of the data and the type of each variable. The possible output families are:</p>
 <ul>
 <li>Gaussian</li>
@@ -329,7 +348,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </center>
 </div>
 <div id="mixed-models" class="section level3">
-<h3><span class="header-section-number">3.3.2</span> Mixed models</h3>
+<h3><span class="header-section-number">3.4.2</span> Mixed models</h3>
 <p>The tab to fit non-disclosive generalized mixed effects models (GLMer) contains a box to manually input the formula, a selector for the output family and a table displaying the variables of the data and the type of each variable. The possible output families are:</p>
 <ul>
 <li>Poisson</li>
@@ -345,10 +364,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div id="genomics" class="section level2">
-<h2><span class="header-section-number">3.4</span> Genomics</h2>
+<h2><span class="header-section-number">3.5</span> Genomics</h2>
 <p>Inside the genomics tab of dsOmicshiny there are two subtabs, one to perform analysis using BioConductor methods and another to perform analysis using PLINK methods.</p>
 <div id="analysis-with-bioconductor" class="section level3">
-<h3><span class="header-section-number">3.4.1</span> Analysis with BioConductor</h3>
+<h3><span class="header-section-number">3.5.1</span> Analysis with BioConductor</h3>
 <p>To perform non-disclosive genomic analysis using BioConductor methodologies, the user has to input a VCF resource with a covariates resource (table) on the same study.</p>
 <p>When performing this kind of analysis, as explained on the Data Entry section, only one study server can be used.</p>
 <p>The Analysis with BioConductor has two sub-tabs, the first one corresponds to the GWAS, and as the name implies is used to perform a GWAS (Genome wide association study) non-disclosive analysis on the loaded data. There is a selector for the condition and the covariates to adjusted for. The fitted model is: snp ~ condition + covar1 + … + covarN. The results of the model appear on a table below the selectors. The download button will prompt a system window to select where to store the shown table, it will save it as a <code>*.csv</code>. The second subtab is to display a Manhattan plot of the GWAS results. The dowload plot button saves the shown figure as a <code>*.png</code>.</p>
@@ -360,7 +379,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </center>
 </div>
 <div id="analysis-with-plink" class="section level3">
-<h3><span class="header-section-number">3.4.2</span> Analysis with PLINK</h3>
+<h3><span class="header-section-number">3.5.2</span> Analysis with PLINK</h3>
 <p>To perform non-disclosive analysis using <a href="http://zzz.bwh.harvard.edu/plink/index.shtml">PLINK</a> commands, the user has to load a SSH resource. The tab contains a field to input the PLINK command and a brief memo stating that when inputing the PLINK command to run there is no need of inputting it as <code>plink ...</code> as would be done on a terminal interface, the user has to input just the <code>...</code>; also, there is no need to put <code>–out</code> to indicate the output file.</p>
 <p>Once the command is run, a table with the results is displayed under the command input, the download button will prompt a system window to select where to store the shown table, it will save them as a <code>*.csv</code>. A button to display the raw terminal output appears to display the user on a popup the plain text.</p>
 <center>
@@ -376,10 +395,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div id="omics" class="section level2">
-<h2><span class="header-section-number">3.5</span> Omics</h2>
+<h2><span class="header-section-number">3.6</span> Omics</h2>
 <p>On the Omics tab there are three different subtabs for different methodologies to perform non-disclosive analysis: limma, DESeq and edgeR. The resources that can be used are ExpressionSets and RangegSummarizedExperiments. If the resources are pooled the user has to input each one in a different study on the data entry.</p>
 <div id="limma" class="section level3">
-<h3><span class="header-section-number">3.5.1</span> LIMMA</h3>
+<h3><span class="header-section-number">3.6.1</span> LIMMA</h3>
 <p>The limma non-disclosive analysis tab contains two selectors to select the condition and covariables of the analysis (resulting formula is: feature ~ condition + covar1 + … + covarN), there’s also a selector to input the annotations columns desired on the output of the analysis. Finally, there’s a selector to indicate the type of data that is being studied, whether is microarray or RNAseq. There’s a selector to choose to do a surrogate variable analysis.</p>
 <p>Once the analysis is performed a table with the results is displayed below the parameter selectors. The download button will prompt a system window to select where to store the shown table, it will save them as a <code>*.csv</code>.</p>
 <p>If the analysis is being performed usging a pooled dataset, the shown table corresponds to all the pooled data.</p>
@@ -388,10 +407,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </center>
 </div>
 <div id="deseq" class="section level3">
-<h3><span class="header-section-number">3.5.2</span> DESeq</h3>
+<h3><span class="header-section-number">3.6.2</span> DESeq</h3>
+<p>To be implemented.</p>
 </div>
 <div id="edger" class="section level3">
-<h3><span class="header-section-number">3.5.3</span> edgeR</h3>
+<h3><span class="header-section-number">3.6.3</span> edgeR</h3>
+<p>To be implemented.</p>
 
 </div>
 </div>

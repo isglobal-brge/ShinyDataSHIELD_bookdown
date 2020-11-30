@@ -41,3 +41,17 @@ how-to-add-a-new-block
 install-required-packages-with-r
 connection
 structure-of-the-modules
+pooled-data-from-the-same-server
+pooled-data-from-different-servers
+fig:dataentry1
+fig:dataentry2
+fig:dataentry3
+fig:dataentry4
+fig:dataentry5
+fig:dataentry6
+fig:dataentry7
+fig:dataentry8
+fig:dataentry9
+fig:dataentry10
+table-column-types
+boxplot

@@ -8,50 +8,96 @@ Along this section, an overview of the functionalities implemented on ShinyDataS
 |:---------------------------|
 | Along this section the terms **table** and **resource** are widely used, it is important noting that when the autor talks about a table, it refers to what is shown as a table on the Opal server. A resource that holds a table is called (and treated) as a resource.      |
 
-The first step to any analysis is to load the required tables or resources to the study server(s). To do so, the user has to provide the server URL and the login credentials. This will allow the application to connect to the OPAL server and retrieve all the projects and resources / tables from them. Afterwards, the user can select the desired resources / tables and load them to the study servers.
+The first step to any analysis is to load the required tables or resources to the study server(s). To do so, the user has to provide the server URL and the login credentials. This will allow the application to connect to the OPAL server and retrieve all the projects and resources / tables from them. Afterwards, the user can select the desired resources / tables and load them to the study servers. 
 
-There are some limitations to how the data entry is coded in ShinyDataSHIELD:
+It is very important to understand the difference between a server (OPAL server) and a study server (R instances running inside an OPAL server), a study server can be visualized as an R session that has some tables and resources loaded. For that reason we can have multiple study servers on a single OPAL server, which is indeed needed when performing pooled studies. 
 
- + When loading multiple tables / resources on a study server, it is assumed only tables are selected or only resources, not combined.
- + When dealing with tables, there can only be one table per study.
- + A pooled study can only contain one table (or resource) per study server.
- + When performing a pooled study, consistency among the tables is assumed, meaning all tables share the same columns.
- + When loading multiple resources per study server, only one study is allowed.
- 
-The limitations can be overcome by changing the part of the code in charge of the data entry. Look at the developers guide flowcharts to get some references on which parts of the code could be altered to change the current limitations.
+To properly explain how to load the desired study servers for multiple types of analysis, let's do a guided tour of the interface. 
 
-When loged into the Opal server, the interface shows two selectors, one is a dropdown with all the projects found on the server, the other is a dropdown (with multiple selection) with the resources / tables inside the selected project. The user has to select the project and resource(s) / table(s) that wants to load on a study server and press the "Add study" button.
+```{r dataentry1, echo=FALSE, fig.cap="Connect to server, initial state", fig.align='center'}
+knitr::include_graphics("images/data_entry1.png")
+```
 
-Below the two selectors a table will be shown, on this table each line corresponds to a study server. If the user made a mistake when adding a study server, the rows on this table can be selected, and by pressing the "Remove selected study" button, the selected study servers will be removed.
+On Figure \@ref(fig:dataentry1) the initial state of the *Connect to server* tab is shown, here we can see some credentials are already inputted, which correspond to a demo server. There is the option of performing a login to the server via traditional user/pass or using personal access token [PAT].
 
-When the desired study serveres are selected, press the "Connect" button to connect to them.
+```{r dataentry2, echo=FALSE, fig.cap="Connect to server, selecting tables and resources", fig.align='center'}
+knitr::include_graphics("images/data_entry2.png")
+```
 
-Following the limitations explained before, there are three different use cases.
+Once connected to the server, the interface is actualized showing the available projects that contain tables inside. To show the projects that contain resources, just click on the *Table* toggle. An example is illustrated on Figure \@ref(fig:dataentry2).
+
+If we want to get further information from a table(s) or resource(s), select them and click on the *Further information of selection*, this will open the OPAL UI on a browser and will display the associated page for the selected items. If more than one item is selected, a page for each one will be opened. An example of this functionality is shown on the Figure \@ref(fig:dataentry3) where a table was selected to retrieve further information. 
+
+```{r dataentry3, echo=FALSE, fig.cap="OPAL UI with information from a table", fig.align='center'}
+knitr::include_graphics("images/data_entry3.png")
+```
+
+Knowing which items are of our interest, we can add them to be loaded on the study servers, to do that select the items and click *Add selected item(s)*. A new table will appear underneath showing everything selected, illustrated on Figure \@ref(fig:dataentry4). On this table all the elements from all the servers will be added to have the general picture of what will be available on the study servers. 
+
+```{r dataentry4, echo=FALSE, fig.cap="Connect to server, selected items", fig.align='center'}
+knitr::include_graphics("images/data_entry4.png")
+```
+
+Reached this point, let's see different use cases and how we have to configure the application for them.
 
 ### Single resource / table approach
 
-To perform analysis on data that is contained on a single resource / table of the server, the user has to select it from the dropdown inputs, add it to the study and connect to it.
+Not much to say about this, just select it and click the *Connect* button.
 
-<center>
-![](images/data_entry1.png)
-</center>
+```{r dataentry5, echo=FALSE, fig.cap="Connect to server. Single resource / table approach", fig.align='center'}
+knitr::include_graphics("images/data_entry5.png")
+```
 
 ### Multiple resource study
 
-Some studies require to put more than one resource on a study server, this is the case for example of using VCF files to perform a GWAS; they require two resources, the VCF resource and the covariates resource (which is a resource that holds a plain table). For this use case, the user has to select the multiple resources from the dropdown inputs, add them to a single study and connect to it.
+Some studies require to put more than one resource on a single study server, this is the case of using VCF files to perform a GWAS; they require two resources, the VCF resource and the covariates resource (which is a resource that holds a plain table). For this use case, the user has to select the multiple resources from the dropdown inputs, add them to a single study and connect to it. Two important things must be said for this use case, 1) By default the tables/resources from one server are added to the same study server; 2) to have tables/resources on the same study server, they have to be from the same server, this translates to: we can't put a table from server X and a resource from server Y on the same study server.
 
-<center>
-![](images/data_entry2.png)
-</center>
+```{r dataentry6, echo=FALSE, fig.cap="Connect to server. Single resource / table approach", fig.align='center'}
+knitr::include_graphics("images/data_entry6.png")
+```
 
-### Pooled data approach
+### Pooled data from the same server
 
-Some studies have the data distributed across multiple tables or resources that need to be pooled to perform a study. To load this kind of studies, the user has to select each different table / resource, add it to a study separately and connect to it.
+It is not uncommon that the same OPAL server has multiple tables that we wish to analyze using a pooled approach. To perform this kind of analysis we have to select all the tables (they have to consistent column-wise to be pooled). The important thing to take into account is that the tables need to be on different study servers in order to be analyzed using a pooled approach, in order to achieve that the user has to double click on the cells in order to edit them (Figure \@ref(fig:dataentry7)). There are a couple of rules regarding the naming of the study servers, 1) User inputted names can't be of the format `StudyX` (where X is a number), and 2) Similarly to what has been stated before, items from different servers can't be on the same study server.
 
-<center>
-![](images/data_entry3.png)
-</center>
+```{r dataentry7, echo=FALSE, fig.cap="Connect to server. Study server edit", fig.align='center'}
+knitr::include_graphics("images/data_entry7.png")
+```
 
+```{r dataentry8, echo=FALSE, fig.cap="Connect to server. Pooled data from the same server approach", fig.align='center'}
+knitr::include_graphics("images/data_entry8.png")
+```
+
+### Pooled data from different servers
+
+When pooling data from different servers, we have to separately login to all of them. On the upper part of the interface there is a *+* symbol used to add a new server (Figure \@ref(fig:dataentry9)), when clicking the *-* symbol the last server added will be removed from the interface. The procedure is exactly the same as what we've already seen, the only difference is that on the table of selected items, we will now see items from different servers (Figure \@ref(fig:dataentry10)). Since by default items from different servers are added to different study servers, there is no need to manually configure that.
+
+```{r dataentry9, echo=FALSE, fig.cap="Connect to server. New server", fig.align='center'}
+knitr::include_graphics("images/data_entry9.png")
+```
+
+```{r dataentry10, echo=FALSE, fig.cap="Connect to server. Pooled data from different servers approach", fig.align='center'}
+knitr::include_graphics("images/data_entry10.png")
+```
+
+## Table column types
+
+The table column types functionality is available for tables as well as the following resource types:
+
+  + SQL tables
+  + Tidy data files (tables): `*.csv`, `*.tsv`, etc
+  
+All of the above options will be shown on the table that shows the available tables to use on this module. As stated on the use cases, to perform a pooled analysis the tables have to be on different study servers. Column integrity is checked before allowing the user the access to the other tabs.
+
+The function of this module is to get information about the class of each column of a table. Aside from that, there's the option of changing the class of a column. This transformation is done using the proper DataSHIELD functions that perform disclosive checks before allowing the transformation. This is specially important for transformation from numeric to factor for example.
+
+The allowed classes to perform transformations are:
+
++ Character
++ Numeric
++ Factor
+
+Integer could be added if it was of interest. Please [file an issue on GitHub](https://github.com/isglobal-brge/ShinyDataSHIELD/issues) if that is the case.
 
 ## Descriptive statistics
 
@@ -59,58 +105,68 @@ The descriptive statistics functionality is available for tables as well as the 
 
   + SQL tables
   + Tidy data files (tables): `*.csv`, `*.tsv`, etc
-  + ExpressionSets
-  + RangedSummarizedExperiments
   
-When using pooled data the descriptive statistics is by default of the pooled data, however, the graphical visualizations included on descriptive statistics provide the option of showing separated plots for the different studies.
+All of the above options will be shown on the table that shows the available tables to use on this module. As stated on the use cases, to perform a pooled analysis the tables have to be on different study servers. Column integrity is checked before allowing the user the access to the other tabs.
 
-The download button will prompt a system window to select where to store the shown table, it will save it as a `*.csv`.
+When using pooled data the descriptive statistics is by default of the pooled data, however, the graphical visualizations included on descriptive statistics provide the option of showing separated plots for the different studies.
   
 ### Summary
 
-The summary provides non-disclosive insights on the different variables of the loaded data. This functionality is only available for factors and numeric variables, otherwise no table will be rendered. When the desired summary is disclosive no table will be shown (as the function call returns an Error stating that the the return is disclosive).
+The summary provides non-disclosive insights on the different variables of the loaded data. This functionality is only available for factors and numeric variables, only variables that meet this criteria will be on the selector. When the desired summary is disclosive no table will be shown (as the function call returns an Error stating that the the return is disclosive).
 
-When the selected variable is a factor, the output shown is a count of all the different factors.
-
-<center>
-![](images/descriptive_stats2.png)
-</center>
-
-When the selected variable is numerical, the output shown is a quantiles and mean table.
+When the selected variable is a factor, the output shown is a count of all the different factors. It can be visualized with the pooled data or divided by study servers.
 
 <center>
 ![](images/descriptive_stats1.png)
 </center>
+<center>
+![](images/descriptive_stats1_2.png)
+</center>
+When the selected variable is numerical, the output shown is a quantiles and mean table. It can be visualized with the pooled data or divided by study servers.
+
+<center>
+![](images/descriptive_stats2.png)
+</center>
+<center>
+![](images/descriptive_stats2_2.png)
+</center>
 
 ### Scatter plot
 
-Create a non-disclosive scatter plot by selecting two numerical variables (one for each axis). There's the option of obtaining a pooled data plot or a different plot for each study server. The selected variables have to be numerical, otherwise the plot is not displayed and a warning message appears.
-
-The dowload plot button saves the shown figure as a `*.png`.
+Create a non-disclosive scatter plot by selecting two numerical variables (one for each axis). This type of plot can only be generated using numerical variables, for that reason variables that do not meet this criteria are not shown on the selector. It can be visualized with the pooled data or divided by study servers.
 
 <center>
 ![](images/descriptive_stats3.png)
 </center>
+<center>
+![](images/descriptive_stats3_2.png)
+</center>
 
 ### Histogram
 
-Create a non-disclosive histogram of a selected variable. There's the option of obtaining a pooled data plot or a different plot for each study server. The selected variable has to be numerical, otherwise the plot is not displayed and a warning message appears.
-
-The dowload plot button saves the shown figure as a `*.png`.
+Create a non-disclosive histogram of a selected variable. This type of plot can only be generated using numerical variables, for that reason variables that do not meet this criteria are not shown on the selector. It can be visualized with the pooled data or divided by study servers.
 
 <center>
 ![](images/descriptive_stats4.png)
 </center>
+<center>
+![](images/descriptive_stats4_2.png)
+</center>
 
 ### Heatmap
 
-Create a non-disclosive heatmap plot by selecting two numerical variables (one for each axis). There's the option of obtaining a pooled data plot or a different plot for each study server. The selected variables have to be numerial, otherwise the plot is not displayed and a warning message appears.
-
-The dowload plot button saves the shown figure as a `*.png`.
+Create a non-disclosive heatmap plot by selecting two numerical variables (one for each axis). This type of plot can only be generated using numerical variables, for that reason variables that do not meet this criteria are not shown on the selector. It can be visualized with the pooled data or divided by study servers.
 
 <center>
 ![](images/descriptive_stats5.png)
 </center>
+<center>
+![](images/descriptive_stats5_2.png)
+</center>
+
+### Boxplot
+
+v6.1 of DataSHIELD added Box Plots, they will be available on a newer release of ShinyDataSHIELD.
 
 ## Statistic models
 
@@ -118,12 +174,8 @@ Statistic models are available for tables as well as the following resource type
 
   + SQL tables
   + Tidy data files (tables): `*.csv`, `*.tsv`, etc
-<!--   + ExpressionSets -->
-<!--   + RangegSummarizedExperiments -->
 
 <!-- This corresponds to the same options as the descriptive statistics, so as a rule of thumb if you can perform descriptive statistics on it you can also fit statistic models. -->
-
-<!-- When using pooled data, the models will be fitted to the pooled data, there's no option implemented to fit a model for each study. -->
 
 There are two different statisticals models available to fit, GLM models (Statistics models tab) and GLMer models (Mixed statistical models tab).
 
@@ -224,4 +276,8 @@ If the analysis is being performed usging a pooled dataset, the shown table corr
   
 ### DESeq
 
+To be implemented.
+
 ### edgeR
+
+To be implemented.

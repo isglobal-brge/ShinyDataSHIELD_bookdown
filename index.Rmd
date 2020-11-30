@@ -2,6 +2,7 @@
 title: "ShinyDataSHIELD User's Guide"
 author: "Escribà Montagut, Xavier; González, Juan R."
 date: "`r Sys.Date()`"
+output: bookdown::html_document2
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]
@@ -10,7 +11,7 @@ link-citations: yes
 ---
 
 ```{r, setup, include=FALSE}
-knitr::opts_chunk$set(eval = FALSE)
+# knitr::opts_chunk$set(eval = FALSE)
 ```
 
 # Overview
