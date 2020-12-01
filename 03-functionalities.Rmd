@@ -166,7 +166,14 @@ Create a non-disclosive heatmap plot by selecting two numerical variables (one f
 
 ### Boxplot
 
-v6.1 of DataSHIELD added Box Plots, they will be available on a newer release of ShinyDataSHIELD.
+Create a non-disclosive Boxplot by selecting as many numerical variables as desired. This plot has the option of performing groupings using one or two factor variables from the same table. It can be visualized with the pooled data or divided by study servers.
+
+<!-- <center> -->
+<!-- ![](images/descriptive_stats5.png) -->
+<!-- </center> -->
+<!-- <center> -->
+<!-- ![](images/descriptive_stats5_2.png) -->
+<!-- </center> -->
 
 ## Statistic models
 
