@@ -55,3 +55,6 @@ fig:dataentry9
 fig:dataentry10
 table-column-types
 boxplot
+fig:tableclass1
+fig:tableclass2
+survival-analysis
