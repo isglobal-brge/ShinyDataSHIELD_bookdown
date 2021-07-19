@@ -36,7 +36,7 @@ First, it contains a declaration of all the libraries that have to be loaded for
 
 The next piece of code found 
 
-```{r}
+```{r eval=F}
 jscode <- '
 $(document).keyup(function(event) {
     if ($("#password1").is(":focus") && (event.keyCode == 13)) {
@@ -53,13 +53,13 @@ Is a JavaScript declaration that reads as: When the #password1 item (corresponds
 
 It's important noting that this is only the declaration of a string with the code inside, to actually make use of it, there is the line 58 of this same file that actually implements it.
 
-```{r}
+```{r eval=F}
 tags$head(tags$script(HTML(jscode)))
 ```
 
 Two more pieces of JavaScript and CSS are found
 
-```{r}
+```{r eval=F}
 jscode_tab <- "
 shinyjs.disableTab = function(name) {
   var tab = $('.nav li a[data-value=' + name + ']');
@@ -88,7 +88,7 @@ css_tab <- "
 
 The CSS is just for aesthetics, the JS however is to introduce the funcionality of enabling and disabling panels of the web application, this is used as `js$disableTab()` and `js$enableTab()` along the application. Those two scripts are integrated to the application when building the `dashboardBody` by using this
 
-```{r, eval=FALSE}
+```{r eval=FALSE}
 useShinyjs(),
 extendShinyjs(text = jscode_tab, functions = c("enableTab", "disableTab")),
 inlineCSS(css_tab)
@@ -194,7 +194,7 @@ else if("special_resource" %in% resource_type) {
 
 Finally, once all the connections have been successful, and all the selected tables and resources are loaded, the tabs that make use of the loaded objects are enabled by using (table examples)
 
-```{r}
+```{r eval=F}
 if(any(unique(lists$available_tables$type_resource) %in% c("table"))) {
         show(selector = "ul li:eq(2)")
       }
@@ -204,7 +204,7 @@ There are many `if` that checks for type of resources and enables tabs if presen
 
 If a new type of resource is implemented, add after line 353 (tab 10 is just as example)
 
-```{r}
+```{r eval=F}
 if(any(unique(lists$available_tables$type_resource) %in% c("new_resource"))) {
         show(selector = "ul li:eq(10)")
       }
@@ -221,7 +221,7 @@ Before describing the internal structure of the modules, let's briefly describe 
 
 At the beginning of all the modules there is an `observeEvent` that is triggered when the user selects an item from the table. The structure of this is the following
 
-```{r}
+```{r eval=F}
 observeEvent(input$table, {
   if(length(input$table_rows_selected) > 0){ # Check if the user has selected any row
     different_study_server <- TRUE # On this example we are checking that everything selected is on different study servers
@@ -270,7 +270,7 @@ The body of the modules correspond to whatever is needed on that module, let tha
 
 The bottom of the modules is also shared, they contain an `observe` clause that is triggered when the tab is selected, it has the following structure
 
-```{r}
+```{r eval=F}
 observe({
   if(input$tabs == "id") { # The ID here corresponds to the tabname declare on the ui.R ; tabItem(tabName = "ID", ....... 
     tables_available <- lists$available_tables[type_resource %in% c("table")] # Input here the type_resource that this module uses, so only those are displayed
@@ -292,7 +292,7 @@ observe({
 
 Example of the code for the table_render.R regarding the selection table
 
-```{r}
+```{r eval=F}
 output$available_tables <- renderDT(
   lists$available_tables[type_resource == "table"], options=list(columnDefs = list(list(visible=FALSE, targets=c(0,2,4))),
                                                                  paging = FALSE, searching = FALSE)
@@ -309,14 +309,14 @@ There are some things to point of this script:
 
   + As can be seen in `descriptive_summary` table, you can actually perform operations inside of a `renderDT` function and display the result of them.
   + The most used options for the tables aesthetics are the following
-```{r}
+```{r eval=F}
 options=list(columnDefs = list(list(visible=FALSE, targets=c(0))),
                                           paging = FALSE, searching = FALSE)
 ```
 This prevents the `rownames` column to be displayed (usually it just contains the numeration of rows 1...N, be aware sometimes it's of interest to see this column) and eliminates the paging and searching functionalities of the table. For small tables it makes sense to not show that but on big tables those options are set to `TRUE`, as it's very useful to have a search box on them.
 
   + The tables that display numerical columns (mixed or not with non-numerical columns) are actually passed through the `format_num` function (defined on `server.R`) so the displayed table has only four decimals but the actual table (the one that can be saved) has all the decimals. This is done using the following code
-```{r}
+```{r eval=F}
 as.data.table(lapply(as.data.table(vcf_results$result_table_gwas$server1), format_num))
 ```
 This will pass each column to the function and if it's numerical the decimals will be cut to 4.
@@ -325,7 +325,7 @@ This will pass each column to the function and if it's numerical the decimals wi
   
 There is a concrete render that needs a special mention on this documentation, that is the `column_types_table`, which uses the CellEdit JavaScript plugin to enable drop down menus when editing a table. Let's see what is being done
 
-```{r}
+```{r eval=F}
 tab <- datatable(
       table_to_be_modified, editable = "cell", callback =  # The callback needs to be updated to include the JS custom code
         JS(
@@ -382,7 +382,7 @@ observeEvent(input$jsValue, { # As stated above, the trigger is actually the val
 There are two types of plots on ShinyDataSHIELD, the ones created with the base function [plot](https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/plot) and the ones created with the [ggplot](https://ggplot2.tidyverse.org/) library. In order to later recover the plots to download them, they actually have a different structure.
 
   + Base plot structure: 
-```{r}
+```{r eval=F}
 output$random_plot <- renderPlot({
   plots$random_plot <- function(){
     function_that_generates_the_plot_using_base_package(arguments)
@@ -393,7 +393,7 @@ output$random_plot <- renderPlot({
 For the base plots, a function is declared that returns the plot and is called to generate the plot to the GUI.
 
   + Ggplot structure:
-```{r}
+```{r eval=F}
 output$manhattan <- renderPlot({
   plots$ggplot <- function_that_generates_the_plot_using_ggplot2_package(arguments)
   plots$ggplot
@@ -410,7 +410,7 @@ Inside of the `renderPlot` function some other code can be put, such as toggles 
 In this script everything related to downloading plots and tables is found. There are basically three types of structures
 
   + Table downloader: To download a `*csv`. Structure:
-```{r}
+```{r eval=F}
 output$table_download <- downloadHandler(
   filename = "table.csv",
   content = function(file) {
@@ -423,7 +423,7 @@ output$table_download <- downloadHandler(
 The `row.names = FALSE` argument may not be needed in tables where the row names are important.
   
   + Base plot downloader: To download a `*.png`. Structure:
-```{r}
+```{r eval=F}
 output$base_plot_download <- downloadHandler(
   filename = "base_plot.png",
   content = function(file) {
@@ -436,7 +436,7 @@ output$base_plot_download <- downloadHandler(
 Basically this calls the previously declared function and captures the plot into a `*.png`.
   
   + GGplot downloader: To download a `*.png`. Structure:
-```{r}
+```{r eval=F}
 output$ggplot_download <- downloadHandler(
   filename = "ggplot.png",
   content = function(file) {
@@ -452,7 +452,7 @@ To add a new block to ShinyDataSHIELD, the developer has to create a new `*.R` s
 
 So the Shiny application actually sees it, the `server.R` needs to be updated and source the new file. Example: New block called `new_analysis.R`, the update to the `server.R` will be
 
-```{r}
+```{r eval=F}
 source("new_analysis.R", local = TRUE)
 ```
 

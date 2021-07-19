@@ -14,6 +14,8 @@ It is very important to understand the difference between a server (OPAL server)
 
 To properly explain how to load the desired study servers for multiple types of analysis, let's do a guided tour of the interface.
 
+Since Opal 4.2 there is a new concept introduced called `profiles` which correspond to different R servers ([rockr](https://rockdoc.obiba.org/en/latest/)). The user can choose which profile to use for each study server (more info [here](#profiles)).
+
 ```{r dataentry1, echo=FALSE, fig.cap="Connect to server, initial state", fig.align='center'}
 knitr::include_graphics("images/data_entry1.png")
 ```
@@ -80,9 +82,31 @@ knitr::include_graphics("images/data_entry9.png")
 knitr::include_graphics("images/data_entry10.png")
 ```
 
+### Study server profiles {#profiles}
+
+Extracted from the [official documentation](https://opaldoc.obiba.org/en/latest/admin/rserver.html): "A DataSHIELD profile is a R server profile combined with a DataSHIELD configuration (allowed functions, options and permissions). DataSHIELD users can then decide in which environment their analysis are to be performed, for a better reproducible science.". On the opal-demo site, there is a different array of profiles, illustrated on the Figure \@ref(fig:opal-profiles).
+
+```{r opal-profiles, echo=FALSE, fig.cap="Opal demo profiles. Extracted from https://opaldoc.obiba.org/", fig.align='center'}
+knitr::include_graphics("images/opal-datashield-profiles.png")
+```
+
+In ShinyDataSHIELD, there is the option of assigning the required profile to each study server, there is only one requirement to be taken into account: A study server can only have one distinct profile. So the configuration table of Figure \@ref(fig:opal-profiles1) is valid, and the configuration table of Figure \@ref(fig:opal-profiles2) will yield a connection error (Figure \@ref(fig:opal-profiles3)).
+
+```{r opal-profiles1, echo=FALSE, fig.cap="Correct profiles configuration", fig.align='center'}
+knitr::include_graphics("images/opal-datashield-profiles1.png")
+```
+
+```{r opal-profiles2, echo=FALSE, fig.cap="Incorrect profiles configuration", fig.align='center'}
+knitr::include_graphics("images/opal-datashield-profiles2.png")
+```
+
+```{r opal-profiles3, echo=FALSE, fig.cap="Incorrect profiles configuration error message", fig.align='center'}
+knitr::include_graphics("images/opal-datashield-profiles3.png")
+```
+
 ## Table column types
 
-<table><colgroup><col style="width: 100%" /></colgroup><thead><tr class="header"><th style="text-align: left;"><p>`r emo::ji("warning")` TABLES USED TO DEMO THIS SECTION</p></th></tr></thead><tbody><tr class="odd"><td style="text-align: left;"><p>From <a href="https://opal-demo.obiba.org/">https://opal-demo.obiba.org/</a> :</p></td></tr><tr class="even"><td style="text-align: left;"><table><thead><tr class="header"><th><p>STUDY</p></th><th><p>TABLE</p></th></tr></thead><tbody><tr class="odd"><td><p>Study1a</p></td><td><p>CNSIM.CNSIM1</p></td></tr><tr class="even"><td><p>Study1b</p></td><td><p>CNSIM.CNSIM2</p></td></tr><tr class="odd"><td><p>Study1c</p></td><td><p>CNSIM.CNSIM3</p></td></tr></tbody></table></td></tr></tbody></table>
+<table><colgroup><col style="width: 100%" /></colgroup><thead><tr class="header"><th style="text-align: left;"><p>`r emo::ji("warning")` TABLES USED TO DEMO THIS SECTION</p></th></tr></thead><tbody><tr class="odd"><td style="text-align: left;"><p>From <a href="https://opal-demo.obiba.org/">https://opal-demo.obiba.org/</a> :</p></td></tr><tr class="even"><td style="text-align: left;"><table><thead><tr class="header"><th><p>STUDY</p></th><th><p>TABLE</p></th><th><p>PROFILE</p></th></tr></thead><tbody><tr class="odd"><td><p>Study1a</p></td><td><p>CNSIM.CNSIM1</p></td><td><p>default</p></td></tr><tr class="even"><td><p>Study1b</p></td><td><p>CNSIM.CNSIM2</p></td><td><p>default</p></td></tr><tr class="odd"><td><p>Study1c</p></td><td><p>CNSIM.CNSIM3</p></td><td><p>default</p></td></tr></tbody></table></td></tr></tbody></table>
 
 The table column types functionality is available for tables as well as the following resource types:
 
@@ -115,7 +139,7 @@ Integer could be added if it was of interest. Please [file an issue on GitHub](h
 
 ## Descriptive statistics
 
-<table><colgroup><col style="width: 100%" /></colgroup><thead><tr class="header"><th style="text-align: left;"><p>`r emo::ji("warning")` TABLES USED TO DEMO THIS SECTION</p></th></tr></thead><tbody><tr class="odd"><td style="text-align: left;"><p>From <a href="https://opal-demo.obiba.org/">https://opal-demo.obiba.org/</a> :</p></td></tr><tr class="even"><td style="text-align: left;"><table><thead><tr class="header"><th><p>STUDY</p></th><th><p>TABLE</p></th></tr></thead><tbody><tr class="odd"><td><p>Study1a</p></td><td><p>CNSIM.CNSIM1</p></td></tr><tr class="even"><td><p>Study1b</p></td><td><p>CNSIM.CNSIM2</p></td></tr><tr class="odd"><td><p>Study1c</p></td><td><p>CNSIM.CNSIM3</p></td></tr></tbody></table></td></tr></tbody></table>
+<table><colgroup><col style="width: 100%" /></colgroup><thead><tr class="header"><th style="text-align: left;"><p>`r emo::ji("warning")` TABLES USED TO DEMO THIS SECTION</p></th></tr></thead><tbody><tr class="odd"><td style="text-align: left;"><p>From <a href="https://opal-demo.obiba.org/">https://opal-demo.obiba.org/</a> :</p></td></tr><tr class="even"><td style="text-align: left;"><table><thead><tr class="header"><th><p>STUDY</p></th><th><p>TABLE</p></th><th><p>PROFILE</p></th></tr></thead><tbody><tr class="odd"><td><p>Study1a</p></td><td><p>CNSIM.CNSIM1</p></td><td><p>default</p></td></tr><tr class="even"><td><p>Study1b</p></td><td><p>CNSIM.CNSIM2</p></td><td><p>default</p></td></tr><tr class="odd"><td><p>Study1c</p></td><td><p>CNSIM.CNSIM3</p></td><td><p>default</p></td></tr></tbody></table></td></tr></tbody></table>
 
 The descriptive statistics functionality is available for tables as well as the following resource types:
 
@@ -244,7 +268,7 @@ The Boxplot functionality uses `ggplot2`; a novel in-app editor named `ggEditLit
 
 ## Statistic models
 
-<table><colgroup><col style="width: 100%" /></colgroup><thead><tr class="header"><th style="text-align: left;"><p>`r emo::ji("warning")` TABLES USED TO DEMO THIS SECTION</p></th></tr></thead><tbody><tr class="odd"><td style="text-align: left;"><p>From <a href="https://opal-demo.obiba.org/">https://opal-demo.obiba.org/</a> :</p></td></tr><tr class="even"><td style="text-align: left;"><p>GLM and mixed models</p><table><thead><tr class="header"><th><p>STUDY</p></th><th><p>TABLE</p></th></tr></thead><tbody><tr class="odd"><td><p>Study1a</p></td><td><p>CNSIM.CNSIM1</p></td></tr><tr class="even"><td><p>Study1b</p></td><td><p>CNSIM.CNSIM2</p></td></tr><tr class="odd"><td><p>Study1c</p></td><td><p>CNSIM.CNSIM3</p></td></tr></tbody></table></td></tr><tr class="odd"><td style="text-align: left;"><p>Survival analysis</p><table><thead><tr class="header"><th><p>STUDY</p></th><th><p>TABLE</p></th></tr></thead><tbody><tr class="odd"><td><p>Study1a</p></td><td><p>SURVIVAL.EXPAND_WITH_MISSING1</p></td></tr><tr class="even"><td><p>Study1b</p></td><td><p>SURVIVAL.EXPAND_WITH_MISSING2</p></td></tr><tr class="odd"><td><p>Study1c</p></td><td><p>SURVIVAL.EXPAND_WITH_MISSING3</p></td></tr></tbody></table></td></tr></tbody></table>
+<table><colgroup><col style="width: 100%" /></colgroup><thead><tr class="header"><th style="text-align: left;"><p>`r emo::ji("warning")` TABLES USED TO DEMO THIS SECTION</p></th></tr></thead><tbody><tr class="odd"><td style="text-align: left;"><p>From <a href="https://opal-demo.obiba.org/">https://opal-demo.obiba.org/</a> :</p></td></tr><tr class="even"><td style="text-align: left;"><p>GLM and mixed models</p><table><thead><tr class="header"><th><p>STUDY</p></th><th><p>TABLE</p></th><th><p>PROFILE</p></th></tr></thead><tbody><tr class="odd"><td><p>Study1a</p></td><td><p>CNSIM.CNSIM1</p></td><td><p>default</p></td></tr><tr class="even"><td><p>Study1b</p></td><td><p>CNSIM.CNSIM2</p></td><td><p>default</p></td></tr><tr class="odd"><td><p>Study1c</p></td><td><p>CNSIM.CNSIM3</p></td><td><p>default</p></td></tr></tbody></table></td></tr><tr class="odd"><td style="text-align: left;"><p>Survival analysis</p><table><thead><tr class="header"><th><p>STUDY</p></th><th><p>TABLE</p></th><th><p>PROFILE</p></th></tr></thead><tbody><tr class="odd"><td><p>Study1a</p></td><td><p>SURVIVAL.EXPAND_WITH_MISSING1</p></td><td><p>survival</p></td></tr><tr class="even"><td><p>Study1b</p></td><td><p>SURVIVAL.EXPAND_WITH_MISSING2</p></td><td><p>survival</p></td></tr><tr class="odd"><td><p>Study1c</p></td><td><p>SURVIVAL.EXPAND_WITH_MISSING3</p></td><td><p>survival</p></td></tr></tbody></table></td></tr></tbody></table>
 
 Statistic models are available for tables as well as the following resource types:
 
@@ -314,7 +338,7 @@ The mixed model results are independent for each study server. There's a selecto
 
 ### Survival Analysis
 
-The tab to fit non-disclosive survival analysis is divided into four different subtabs. The first subtab, is used to create a survival object (See the information about `survival::Surv` function for more information https://www.rdocumentation.org/packages/survival/versions/2.11-4/topics/Surv). To create this object, three columns from the selected tables are needed and a parameter:
+The tab to fit non-disclosive survival analysis is divided into four different subtabs. The first subtab, is used to create a survival object (See the information about `survival::Surv` function for more information <https://www.rdocumentation.org/packages/survival/versions/2.11-4/topics/Surv>). To create this object, three columns from the selected tables are needed and a parameter:
 
 (Information about each column copied from the `survival::Surv` function documentation)
 
@@ -374,6 +398,8 @@ If a model is fitted, the left two tabs can be accessed, this two tabs correspon
 
 ## Genomics
 
+<table><colgroup><col style="width: 100%" /></colgroup><thead><tr class="header"><th style="text-align: left;"><p>`r emo::ji("warning")` TABLES USED TO DEMO THIS SECTION</p></th></tr></thead><tbody><tr class="odd"><td style="text-align: left;"><p>From <a href="https://opal-demo.obiba.org/">https://opal-demo.obiba.org/</a> :</p></td></tr><tr class="even"><td style="text-align: left;"><p>Analysis with BioConductor</p><table><thead><tr class="header"><th><p>STUDY</p></th><th><p>RESOURCE</p></th><th><p>PROFILE</p></th></tr></thead><tbody><tr class="odd"><td><p>Study1</p></td><td><p>RSRC.brge</p></td><td><p>omics</p></td></tr><tr class="even"><td><p>Study1</p></td><td><p>RSRC.brge_vcf</p></td><td><p>omics</p></td></tr></tbody></table></td></tr><tr class="odd"><td style="text-align: left;"><p>Analysis with PLINK</p><table><thead><tr class="header"><th><p>STUDY</p></th><th><p>RESOURCE</p></th><th><p>PROFILE</p></th></tr></thead><tbody><tr class="odd"><td><p>Study1</p></td><td><p>RSRC.brge_plink</p></td><td><p>omics</p></td></tr></tbody></table></td></tr></tbody></table>
+
 Inside the genomics tab of dsOmicshiny there are two subtabs, one to perform analysis using BioConductor methods and another to perform analysis using PLINK methods.
 
 ### Analysis with BioConductor
@@ -423,6 +449,8 @@ There's also a sub-tab to show a Manhattan plot with the results obtained. The d
 </center>
 
 ## Omics
+
+<table><colgroup><col style="width: 100%" /></colgroup><thead><tr class="header"><th style="text-align: left;"><p>`r emo::ji("warning")` TABLES USED TO DEMO THIS SECTION</p></th></tr></thead><tbody><tr class="odd"><td style="text-align: left;"><p>From <a href="https://opal-demo.obiba.org/">https://opal-demo.obiba.org/</a> :</p></td></tr><tr class="even"><td style="text-align: left;"><p>LIMMA</p><table><thead><tr class="header"><th><p>STUDY</p></th><th><p>RESOURCE</p></th><th><p>PROFILE</p></th></tr></thead><tbody><tr class="odd"><td><p>Study1</p></td><td><p>RSRC.GSE80970</p></td><td><p>omics</p></td></tr></tbody></table></td></tr><tr class="odd"><td style="text-align: left;"><p>DESeq and edge R: To be determined</p></td></tr></tbody></table>
 
 On the Omics tab there are three different subtabs for different methodologies to perform non-disclosive analysis: limma, DESeq and edgeR. The resources that can be used are ExpressionSets and RangegSummarizedExperiments. If the resources are pooled the user has to input each one in a different study on the data entry.
 

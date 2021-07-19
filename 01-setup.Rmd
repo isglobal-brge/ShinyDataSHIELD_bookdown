@@ -53,7 +53,7 @@ In order to install the packages, an R console is needed. The simplest way to ge
 
 To install the required packages input the following commands to the console:
 
-```{r}
+```{r eval=F}
 # Install devtools
 install.packages("devtools")
 
@@ -70,7 +70,7 @@ The previous commands will install a library called `devtools` that is needed to
 
 Once all the packages are installed, ShinyDataSHIELD can be executed inputing the following command on the R console, which will launch the application on a new window.
 
-```{r}
+```{r eval=F}
 # Run ShinyDataSHIELD
 ShinyDataSHIELD::app()
 ```
@@ -125,13 +125,13 @@ Another option to use ShinyDataSHIELD is to install it using Docker. Docker can 
 
 Once Docker is up and running, execute the following command on a bash terminal (make sure Docker is running, if not search for the `Docker Desktop` app and launch it) to download and launch ShinyDataSHIELD. Be aware that the Docker images weights ~ 1.5 GB, so if your internet connection is slow it may take a while.
 
-```{bash}
+```{bash eval=F}
 docker run --rm -p 80:80 brgelab/shiny-data-shield
 ```
 
 The container will be exposed on the local port 80 and it will render on that port the application itself, so to start using ShinyDataSHIELD open your web browser of choice and go to the site
 
-```{bash}
+```{bash eval=F}
 localhost:80
 ```
 
@@ -139,13 +139,13 @@ At the beginning it may take some time for the application to render, this is be
 
 Once the user has finished using ShinyDataSHIELD, the container needs to be stopped to avoid wasting CPU resources, to do so, input the following command on a bash terminal (the command needs to be inputed on a new bash window):
 
-```{bash}
+```{bash eval=F}
 docker container ls
 ```
 
 This will prompt all the running containers, find the one with the NAMES `brgelab/shiny-data-shield` and copy it's CONTAINER ID, then input the following bash command:
 
-```{bash}
+```{bash eval=F}
 docker stop xxxxxxxxxxxx
 ```
 
@@ -153,7 +153,7 @@ Where xxxxxxxxxxxx is the CONTAINER ID.
 
 To run the application again, just enter the first bash command (`docker run --rm -p 80:80 brgelab/shiny-data-shield`), since it has already been downloaded, the application is cached on the computer and it will launch straight away. If the user wants to remove the Docker image from the computer, input the following bash command:
 
-```{bash}
+```{bash eval=F}
 docker image rm brgelab/exposome-shiny
 ```
 
