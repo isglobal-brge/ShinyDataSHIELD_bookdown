@@ -266,7 +266,7 @@ The Boxplot functionality uses `ggplot2`; a novel in-app editor named `ggEditLit
 
 </center>
 
-## Statistic models
+## Statistical models
 
 <table><colgroup><col style="width: 100%" /></colgroup><thead><tr class="header"><th style="text-align: left;"><p>`r emo::ji("warning")` TABLES USED TO DEMO THIS SECTION</p></th></tr></thead><tbody><tr class="odd"><td style="text-align: left;"><p>From <a href="https://opal-demo.obiba.org/">https://opal-demo.obiba.org/</a> :</p></td></tr><tr class="even"><td style="text-align: left;"><p>GLM and mixed models</p><table><thead><tr class="header"><th><p>STUDY</p></th><th><p>TABLE</p></th><th><p>PROFILE</p></th></tr></thead><tbody><tr class="odd"><td><p>Study1a</p></td><td><p>CNSIM.CNSIM1</p></td><td><p>default</p></td></tr><tr class="even"><td><p>Study1b</p></td><td><p>CNSIM.CNSIM2</p></td><td><p>default</p></td></tr><tr class="odd"><td><p>Study1c</p></td><td><p>CNSIM.CNSIM3</p></td><td><p>default</p></td></tr></tbody></table></td></tr><tr class="odd"><td style="text-align: left;"><p>Survival analysis</p><table><thead><tr class="header"><th><p>STUDY</p></th><th><p>TABLE</p></th><th><p>PROFILE</p></th></tr></thead><tbody><tr class="odd"><td><p>Study1a</p></td><td><p>SURVIVAL.EXPAND_WITH_MISSING1</p></td><td><p>survival</p></td></tr><tr class="even"><td><p>Study1b</p></td><td><p>SURVIVAL.EXPAND_WITH_MISSING2</p></td><td><p>survival</p></td></tr><tr class="odd"><td><p>Study1c</p></td><td><p>SURVIVAL.EXPAND_WITH_MISSING3</p></td><td><p>survival</p></td></tr></tbody></table></td></tr></tbody></table>
 

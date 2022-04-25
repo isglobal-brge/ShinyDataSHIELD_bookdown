@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3 Functionalities | ShinyDataSHIELD User’s Guide</title>
   <meta name="description" content="3 Functionalities | ShinyDataSHIELD User’s Guide" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3 Functionalities | ShinyDataSHIELD User’s Guide" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Escribà Montagut, Xavier; González, Juan R." />
 
 
-<meta name="date" content="2021-07-19" />
+<meta name="date" content="2022-04-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +33,9 @@
   
 <link rel="prev" href="setup.html"/>
 <link rel="next" href="developers-guide.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,7 +51,8 @@
 
 
 
-
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -118,6 +120,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -137,12 +140,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Overview</a></li>
 <li class="chapter" data-level="2" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>2</b> Setup</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="setup.html"><a href="setup.html#r-packages"><i class="fa fa-check"></i><b>2.1</b> R packages</a></li>
-<li class="chapter" data-level="2.2" data-path="setup.html"><a href="setup.html#install"><i class="fa fa-check"></i><b>2.2</b> Install</a>
-<ul>
-<li class="chapter" data-level="2.2.1" data-path="setup.html"><a href="setup.html#install-required-packages-with-r"><i class="fa fa-check"></i><b>2.2.1</b> Install required packages with R</a></li>
-<li class="chapter" data-level="2.2.2" data-path="setup.html"><a href="setup.html#install-with-docker"><i class="fa fa-check"></i><b>2.2.2</b> Install with Docker</a></li>
-</ul></li>
+<li class="chapter" data-level="2.1" data-path="setup.html"><a href="setup.html#install-with-docker"><i class="fa fa-check"></i><b>2.1</b> Install with Docker</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="functionalities.html"><a href="functionalities.html"><i class="fa fa-check"></i><b>3</b> Functionalities</a>
 <ul>
@@ -163,7 +161,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.3.4" data-path="functionalities.html"><a href="functionalities.html#heatmap"><i class="fa fa-check"></i><b>3.3.4</b> Heatmap</a></li>
 <li class="chapter" data-level="3.3.5" data-path="functionalities.html"><a href="functionalities.html#boxplot"><i class="fa fa-check"></i><b>3.3.5</b> Boxplot</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="functionalities.html"><a href="functionalities.html#statistic-models"><i class="fa fa-check"></i><b>3.4</b> Statistic models</a>
+<li class="chapter" data-level="3.4" data-path="functionalities.html"><a href="functionalities.html#statistical-models"><i class="fa fa-check"></i><b>3.4</b> Statistical models</a>
 <ul>
 <li class="chapter" data-level="3.4.1" data-path="functionalities.html"><a href="functionalities.html#glm-models"><i class="fa fa-check"></i><b>3.4.1</b> GLM models</a></li>
 <li class="chapter" data-level="3.4.2" data-path="functionalities.html"><a href="functionalities.html#mixed-models"><i class="fa fa-check"></i><b>3.4.2</b> Mixed models</a></li>
@@ -236,14 +234,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>It is very important to understand the difference between a server (OPAL server) and a study server (R instances running inside an OPAL server), a study server can be visualized as an R session that has some tables and resources loaded. For that reason we can have multiple study servers on a single OPAL server, which is indeed needed when performing pooled studies.</p>
 <p>To properly explain how to load the desired study servers for multiple types of analysis, let’s do a guided tour of the interface.</p>
 <p>Since Opal 4.2 there is a new concept introduced called <code>profiles</code> which correspond to different R servers (<a href="https://rockdoc.obiba.org/en/latest/">rockr</a>). The user can choose which profile to use for each study server (more info <a href="functionalities.html#profiles">here</a>).</p>
-<div class="figure" style="text-align: center"><span id="fig:dataentry1"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:dataentry1"></span>
 <img src="images/data_entry1.png" alt="Connect to server, initial state" width="458" />
 <p class="caption">
 Figure 3.1: Connect to server, initial state
 </p>
 </div>
 <p>On Figure <a href="functionalities.html#fig:dataentry1">3.1</a> the initial state of the <em>Connect to server</em> tab is shown, here we can see some credentials are already inputted, which correspond to a demo server. There is the option of performing a login to the server via traditional user/pass or using personal access token [PAT].</p>
-<div class="figure" style="text-align: center"><span id="fig:dataentry2"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:dataentry2"></span>
 <img src="images/data_entry2.png" alt="Connect to server, selecting tables and resources" width="458" />
 <p class="caption">
 Figure 3.2: Connect to server, selecting tables and resources
@@ -251,14 +249,14 @@ Figure 3.2: Connect to server, selecting tables and resources
 </div>
 <p>Once connected to the server, the interface is actualized showing the available projects that contain tables inside. To show the projects that contain resources, just click on the <em>Table</em> toggle. An example is illustrated on Figure <a href="functionalities.html#fig:dataentry2">3.2</a>.</p>
 <p>If we want to get further information from a table(s) or resource(s), select them and click on the <em>Further information of selection</em>, this will open the OPAL UI on a browser and will display the associated page for the selected items. If more than one item is selected, a page for each one will be opened. An example of this functionality is shown on the Figure <a href="functionalities.html#fig:dataentry3">3.3</a> where a table was selected to retrieve further information.</p>
-<div class="figure" style="text-align: center"><span id="fig:dataentry3"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:dataentry3"></span>
 <img src="images/data_entry3.png" alt="OPAL UI with information from a table" width="630" />
 <p class="caption">
 Figure 3.3: OPAL UI with information from a table
 </p>
 </div>
 <p>Knowing which items are of our interest, we can add them to be loaded on the study servers, to do that select the items and click <em>Add selected item(s)</em>. A new table will appear underneath showing everything selected, illustrated on Figure <a href="functionalities.html#fig:dataentry4">3.4</a>. On this table all the elements from all the servers will be added to have the general picture of what will be available on the study servers.</p>
-<div class="figure" style="text-align: center"><span id="fig:dataentry4"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:dataentry4"></span>
 <img src="images/data_entry4.png" alt="Connect to server, selected items" width="456" />
 <p class="caption">
 Figure 3.4: Connect to server, selected items
@@ -268,7 +266,7 @@ Figure 3.4: Connect to server, selected items
 <div id="single-resource-table-approach" class="section level3" number="3.1.1">
 <h3><span class="header-section-number">3.1.1</span> Single resource / table approach</h3>
 <p>Not much to say about this, just select it and click the <em>Connect</em> button.</p>
-<div class="figure" style="text-align: center"><span id="fig:dataentry5"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:dataentry5"></span>
 <img src="images/data_entry5.png" alt="Connect to server. Single resource / table approach" width="456" />
 <p class="caption">
 Figure 3.5: Connect to server. Single resource / table approach
@@ -278,7 +276,7 @@ Figure 3.5: Connect to server. Single resource / table approach
 <div id="multiple-resource-study" class="section level3" number="3.1.2">
 <h3><span class="header-section-number">3.1.2</span> Multiple resource study</h3>
 <p>Some studies require to put more than one resource on a single study server, this is the case of using VCF files to perform a GWAS; they require two resources, the VCF resource and the covariates resource (which is a resource that holds a plain table). For this use case, the user has to select the multiple resources from the dropdown inputs, add them to a single study and connect to it. Two important things must be said for this use case, 1) By default the tables/resources from one server are added to the same study server; 2) to have tables/resources on the same study server, they have to be from the same server, this translates to: we can’t put a table from server X and a resource from server Y on the same study server.</p>
-<div class="figure" style="text-align: center"><span id="fig:dataentry6"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:dataentry6"></span>
 <img src="images/data_entry6.png" alt="Connect to server. Single resource / table approach" width="456" />
 <p class="caption">
 Figure 3.6: Connect to server. Single resource / table approach
@@ -288,13 +286,13 @@ Figure 3.6: Connect to server. Single resource / table approach
 <div id="pooled-data-from-the-same-server" class="section level3" number="3.1.3">
 <h3><span class="header-section-number">3.1.3</span> Pooled data from the same server</h3>
 <p>It is not uncommon that the same OPAL server has multiple tables that we wish to analyze using a pooled approach. To perform this kind of analysis we have to select all the tables (they have to consistent column-wise to be pooled). The important thing to take into account is that the tables need to be on different study servers in order to be analyzed using a pooled approach, in order to achieve that the user has to double click on the cells in order to edit them (Figure <a href="functionalities.html#fig:dataentry7">3.7</a>). There are a couple of rules regarding the naming of the study servers, 1) User inputted names can’t be of the format <code>StudyX</code> (where X is a number), and 2) Similarly to what has been stated before, items from different servers can’t be on the same study server.</p>
-<div class="figure" style="text-align: center"><span id="fig:dataentry7"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:dataentry7"></span>
 <img src="images/data_entry7.png" alt="Connect to server. Study server edit" width="456" />
 <p class="caption">
 Figure 3.7: Connect to server. Study server edit
 </p>
 </div>
-<div class="figure" style="text-align: center"><span id="fig:dataentry8"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:dataentry8"></span>
 <img src="images/data_entry8.png" alt="Connect to server. Pooled data from the same server approach" width="456" />
 <p class="caption">
 Figure 3.8: Connect to server. Pooled data from the same server approach
@@ -304,13 +302,13 @@ Figure 3.8: Connect to server. Pooled data from the same server approach
 <div id="pooled-data-from-different-servers" class="section level3" number="3.1.4">
 <h3><span class="header-section-number">3.1.4</span> Pooled data from different servers</h3>
 <p>When pooling data from different servers, we have to separately login to all of them. On the upper part of the interface there is a <em>+</em> symbol used to add a new server (Figure <a href="functionalities.html#fig:dataentry9">3.9</a>), when clicking the <em>-</em> symbol the last server added will be removed from the interface. The procedure is exactly the same as what we’ve already seen, the only difference is that on the table of selected items, we will now see items from different servers (Figure <a href="functionalities.html#fig:dataentry10">3.10</a>). Since by default items from different servers are added to different study servers, there is no need to manually configure that.</p>
-<div class="figure" style="text-align: center"><span id="fig:dataentry9"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:dataentry9"></span>
 <img src="images/data_entry9.png" alt="Connect to server. New server" width="456" />
 <p class="caption">
 Figure 3.9: Connect to server. New server
 </p>
 </div>
-<div class="figure" style="text-align: center"><span id="fig:dataentry10"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:dataentry10"></span>
 <img src="images/data_entry10.png" alt="Connect to server. Pooled data from different servers approach" width="456" />
 <p class="caption">
 Figure 3.10: Connect to server. Pooled data from different servers approach
@@ -320,26 +318,26 @@ Figure 3.10: Connect to server. Pooled data from different servers approach
 <div id="profiles" class="section level3" number="3.1.5">
 <h3><span class="header-section-number">3.1.5</span> Study server profiles</h3>
 <p>Extracted from the <a href="https://opaldoc.obiba.org/en/latest/admin/rserver.html">official documentation</a>: “A DataSHIELD profile is a R server profile combined with a DataSHIELD configuration (allowed functions, options and permissions). DataSHIELD users can then decide in which environment their analysis are to be performed, for a better reproducible science.” On the opal-demo site, there is a different array of profiles, illustrated on the Figure <a href="functionalities.html#fig:opal-profiles">3.11</a>.</p>
-<div class="figure" style="text-align: center"><span id="fig:opal-profiles"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:opal-profiles"></span>
 <img src="images/opal-datashield-profiles.png" alt="Opal demo profiles. Extracted from https://opaldoc.obiba.org/" width="1049" />
 <p class="caption">
 Figure 3.11: Opal demo profiles. Extracted from <a href="https://opaldoc.obiba.org/" class="uri">https://opaldoc.obiba.org/</a>
 </p>
 </div>
 <p>In ShinyDataSHIELD, there is the option of assigning the required profile to each study server, there is only one requirement to be taken into account: A study server can only have one distinct profile. So the configuration table of Figure <a href="functionalities.html#fig:opal-profiles1">3.12</a> is valid, and the configuration table of Figure <a href="functionalities.html#fig:opal-profiles2">3.13</a> will yield a connection error (Figure <a href="functionalities.html#fig:opal-profiles3">3.14</a>).</p>
-<div class="figure" style="text-align: center"><span id="fig:opal-profiles1"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:opal-profiles1"></span>
 <img src="images/opal-datashield-profiles1.PNG" alt="Correct profiles configuration" width="497" />
 <p class="caption">
 Figure 3.12: Correct profiles configuration
 </p>
 </div>
-<div class="figure" style="text-align: center"><span id="fig:opal-profiles2"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:opal-profiles2"></span>
 <img src="images/opal-datashield-profiles2.PNG" alt="Incorrect profiles configuration" width="497" />
 <p class="caption">
 Figure 3.13: Incorrect profiles configuration
 </p>
 </div>
-<div class="figure" style="text-align: center"><span id="fig:opal-profiles3"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:opal-profiles3"></span>
 <img src="images/opal-datashield-profiles3.PNG" alt="Incorrect profiles configuration error message" width="497" />
 <p class="caption">
 Figure 3.14: Incorrect profiles configuration error message
@@ -457,7 +455,7 @@ default
 </ul>
 <p>All of the above options will be shown on the table that shows the available tables to use on this module. As stated on the use cases, to perform a pooled analysis the tables have to be on different study servers. Column integrity is checked before allowing the user the access to the other tabs.</p>
 <p>The function of this module is to get information about the class of each column of a table.</p>
-<div class="figure" style="text-align: center"><span id="fig:tableclass1"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:tableclass1"></span>
 <img src="images/table_columns_1.PNG" alt="Classes of the CNSIM table" width="456" />
 <p class="caption">
 Figure 3.15: Classes of the CNSIM table
@@ -471,7 +469,7 @@ Figure 3.15: Classes of the CNSIM table
 <li>Factor</li>
 </ul>
 <p>To perform a class change, double click on the desired row and and a drop-down menu will appear, choose the new class and click ‘Confirm,’ after the checks, the table will be updated to display the new class.</p>
-<div class="figure" style="text-align: center"><span id="fig:tableclass2"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:tableclass2"></span>
 <img src="images/table_columns_2.PNG" alt="Class change" width="456" />
 <p class="caption">
 Figure 3.16: Class change
@@ -658,8 +656,8 @@ default
 </center>
 </div>
 </div>
-<div id="statistic-models" class="section level2" number="3.4">
-<h2><span class="header-section-number">3.4</span> Statistic models</h2>
+<div id="statistical-models" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> Statistical models</h2>
 <table>
 <colgroup>
 <col style="width: 100%" />
@@ -1208,7 +1206,6 @@ DESeq and edge R: To be determined
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -1238,6 +1235,10 @@ gitbook.start({
 "text": null
 },
 "download": ["ShinyDataSHIELD_bookdown.pdf", "ShinyDataSHIELD_bookdown.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4 Developers Guide | ShinyDataSHIELD User’s Guide</title>
   <meta name="description" content="4 Developers Guide | ShinyDataSHIELD User’s Guide" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4 Developers Guide | ShinyDataSHIELD User’s Guide" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Escribà Montagut, Xavier; González, Juan R." />
 
 
-<meta name="date" content="2021-07-19" />
+<meta name="date" content="2022-04-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +33,9 @@
   
 <link rel="prev" href="functionalities.html"/>
 <link rel="next" href="references.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,7 +51,8 @@
 
 
 
-
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -118,6 +120,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -137,12 +140,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Overview</a></li>
 <li class="chapter" data-level="2" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>2</b> Setup</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="setup.html"><a href="setup.html#r-packages"><i class="fa fa-check"></i><b>2.1</b> R packages</a></li>
-<li class="chapter" data-level="2.2" data-path="setup.html"><a href="setup.html#install"><i class="fa fa-check"></i><b>2.2</b> Install</a>
-<ul>
-<li class="chapter" data-level="2.2.1" data-path="setup.html"><a href="setup.html#install-required-packages-with-r"><i class="fa fa-check"></i><b>2.2.1</b> Install required packages with R</a></li>
-<li class="chapter" data-level="2.2.2" data-path="setup.html"><a href="setup.html#install-with-docker"><i class="fa fa-check"></i><b>2.2.2</b> Install with Docker</a></li>
-</ul></li>
+<li class="chapter" data-level="2.1" data-path="setup.html"><a href="setup.html#install-with-docker"><i class="fa fa-check"></i><b>2.1</b> Install with Docker</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="functionalities.html"><a href="functionalities.html"><i class="fa fa-check"></i><b>3</b> Functionalities</a>
 <ul>
@@ -163,7 +161,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.3.4" data-path="functionalities.html"><a href="functionalities.html#heatmap"><i class="fa fa-check"></i><b>3.3.4</b> Heatmap</a></li>
 <li class="chapter" data-level="3.3.5" data-path="functionalities.html"><a href="functionalities.html#boxplot"><i class="fa fa-check"></i><b>3.3.5</b> Boxplot</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="functionalities.html"><a href="functionalities.html#statistic-models"><i class="fa fa-check"></i><b>3.4</b> Statistic models</a>
+<li class="chapter" data-level="3.4" data-path="functionalities.html"><a href="functionalities.html#statistical-models"><i class="fa fa-check"></i><b>3.4</b> Statistical models</a>
 <ul>
 <li class="chapter" data-level="3.4.1" data-path="functionalities.html"><a href="functionalities.html#glm-models"><i class="fa fa-check"></i><b>3.4.1</b> GLM models</a></li>
 <li class="chapter" data-level="3.4.2" data-path="functionalities.html"><a href="functionalities.html#mixed-models"><i class="fa fa-check"></i><b>3.4.2</b> Mixed models</a></li>
@@ -256,48 +254,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Inside this file there are all the declarations of how the graphical user interface (GUI) will look like.</p>
 <p>First, it contains a declaration of all the libraries that have to be loaded for the application to run. The libraries are the following: <code>DSI, DSOpal, dsBaseClient, dsOmicsClient, shinydashboard, shiny, shinyalert, DT, data.table, shinyjs, shinyBS, shinycssloaders, shinyWidgets, stringr)</code>.</p>
 <p>The next piece of code found</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="developers-guide.html#cb8-1" aria-hidden="true" tabindex="-1"></a>jscode <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
-<span id="cb8-2"><a href="developers-guide.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="st">$(document).keyup(function(event) {</span></span>
-<span id="cb8-3"><a href="developers-guide.html#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="st">    if ($(&quot;#password1&quot;).is(&quot;:focus&quot;) &amp;&amp; (event.keyCode == 13)) {</span></span>
-<span id="cb8-4"><a href="developers-guide.html#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="st">        $(&quot;#connect_server1&quot;).click();</span></span>
-<span id="cb8-5"><a href="developers-guide.html#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="st">    };</span></span>
-<span id="cb8-6"><a href="developers-guide.html#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="st">    if ($(&quot;#pat1&quot;).is(&quot;:focus&quot;) &amp;&amp; (event.keyCode == 13)) {</span></span>
-<span id="cb8-7"><a href="developers-guide.html#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="st">        $(&quot;#connect_server1&quot;).click();</span></span>
-<span id="cb8-8"><a href="developers-guide.html#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="st">    }</span></span>
-<span id="cb8-9"><a href="developers-guide.html#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="st">});</span></span>
-<span id="cb8-10"><a href="developers-guide.html#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="developers-guide.html#cb6-1" aria-hidden="true" tabindex="-1"></a>jscode <span class="ot">&lt;-</span> <span class="st">&#39;</span></span>
+<span id="cb6-2"><a href="developers-guide.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="st">$(document).keyup(function(event) {</span></span>
+<span id="cb6-3"><a href="developers-guide.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="st">    if ($(&quot;#password1&quot;).is(&quot;:focus&quot;) &amp;&amp; (event.keyCode == 13)) {</span></span>
+<span id="cb6-4"><a href="developers-guide.html#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="st">        $(&quot;#connect_server1&quot;).click();</span></span>
+<span id="cb6-5"><a href="developers-guide.html#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="st">    };</span></span>
+<span id="cb6-6"><a href="developers-guide.html#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="st">    if ($(&quot;#pat1&quot;).is(&quot;:focus&quot;) &amp;&amp; (event.keyCode == 13)) {</span></span>
+<span id="cb6-7"><a href="developers-guide.html#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="st">        $(&quot;#connect_server1&quot;).click();</span></span>
+<span id="cb6-8"><a href="developers-guide.html#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="st">    }</span></span>
+<span id="cb6-9"><a href="developers-guide.html#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="st">});</span></span>
+<span id="cb6-10"><a href="developers-guide.html#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;</span></span></code></pre></div>
 <p>Is a JavaScript declaration that reads as: When the #password1 item (corresponds to the text input of the password on the data entry tab) is active (the user is writting in it) and the “Intro” key is pressed, trigger the #connect_server1 item (corresponds to the “Connect” button on the GUI). That provides the user the typical experience of inputting the login credentials and pressing “Intro” to log in.</p>
 <p>It’s important noting that this is only the declaration of a string with the code inside, to actually make use of it, there is the line 58 of this same file that actually implements it.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="developers-guide.html#cb9-1" aria-hidden="true" tabindex="-1"></a>tags<span class="sc">$</span><span class="fu">head</span>(tags<span class="sc">$</span><span class="fu">script</span>(<span class="fu">HTML</span>(jscode)))</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="developers-guide.html#cb7-1" aria-hidden="true" tabindex="-1"></a>tags<span class="sc">$</span><span class="fu">head</span>(tags<span class="sc">$</span><span class="fu">script</span>(<span class="fu">HTML</span>(jscode)))</span></code></pre></div>
 <p>Two more pieces of JavaScript and CSS are found</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="developers-guide.html#cb10-1" aria-hidden="true" tabindex="-1"></a>jscode_tab <span class="ot">&lt;-</span> <span class="st">&quot;</span></span>
-<span id="cb10-2"><a href="developers-guide.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="st">shinyjs.disableTab = function(name) {</span></span>
-<span id="cb10-3"><a href="developers-guide.html#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="st">  var tab = $(&#39;.nav li a[data-value=&#39; + name + &#39;]&#39;);</span></span>
-<span id="cb10-4"><a href="developers-guide.html#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="st">  tab.bind(&#39;click.tab&#39;, function(e) {</span></span>
-<span id="cb10-5"><a href="developers-guide.html#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="st">    e.preventDefault();</span></span>
-<span id="cb10-6"><a href="developers-guide.html#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="st">    return false;</span></span>
-<span id="cb10-7"><a href="developers-guide.html#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="st">  });</span></span>
-<span id="cb10-8"><a href="developers-guide.html#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="st">  tab.addClass(&#39;disabled&#39;);</span></span>
-<span id="cb10-9"><a href="developers-guide.html#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
-<span id="cb10-10"><a href="developers-guide.html#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-11"><a href="developers-guide.html#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="st">shinyjs.enableTab = function(name) {</span></span>
-<span id="cb10-12"><a href="developers-guide.html#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="st">  var tab = $(&#39;.nav li a[data-value=&#39; + name + &#39;]&#39;);</span></span>
-<span id="cb10-13"><a href="developers-guide.html#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="st">  tab.unbind(&#39;click.tab&#39;);</span></span>
-<span id="cb10-14"><a href="developers-guide.html#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="st">  tab.removeClass(&#39;disabled&#39;);</span></span>
-<span id="cb10-15"><a href="developers-guide.html#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
-<span id="cb10-16"><a href="developers-guide.html#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span></span>
-<span id="cb10-17"><a href="developers-guide.html#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-18"><a href="developers-guide.html#cb10-18" aria-hidden="true" tabindex="-1"></a>css_tab <span class="ot">&lt;-</span> <span class="st">&quot;</span></span>
-<span id="cb10-19"><a href="developers-guide.html#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="st">.nav li a.disabled {</span></span>
-<span id="cb10-20"><a href="developers-guide.html#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="st">  background-color: #aaa !important;</span></span>
-<span id="cb10-21"><a href="developers-guide.html#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="st">  color: #333 !important;</span></span>
-<span id="cb10-22"><a href="developers-guide.html#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="st">  cursor: not-allowed !important;</span></span>
-<span id="cb10-23"><a href="developers-guide.html#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="st">  border-color: #aaa !important;</span></span>
-<span id="cb10-24"><a href="developers-guide.html#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="st">}&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="developers-guide.html#cb8-1" aria-hidden="true" tabindex="-1"></a>jscode_tab <span class="ot">&lt;-</span> <span class="st">&quot;</span></span>
+<span id="cb8-2"><a href="developers-guide.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="st">shinyjs.disableTab = function(name) {</span></span>
+<span id="cb8-3"><a href="developers-guide.html#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="st">  var tab = $(&#39;.nav li a[data-value=&#39; + name + &#39;]&#39;);</span></span>
+<span id="cb8-4"><a href="developers-guide.html#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="st">  tab.bind(&#39;click.tab&#39;, function(e) {</span></span>
+<span id="cb8-5"><a href="developers-guide.html#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="st">    e.preventDefault();</span></span>
+<span id="cb8-6"><a href="developers-guide.html#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="st">    return false;</span></span>
+<span id="cb8-7"><a href="developers-guide.html#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="st">  });</span></span>
+<span id="cb8-8"><a href="developers-guide.html#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="st">  tab.addClass(&#39;disabled&#39;);</span></span>
+<span id="cb8-9"><a href="developers-guide.html#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb8-10"><a href="developers-guide.html#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="developers-guide.html#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="st">shinyjs.enableTab = function(name) {</span></span>
+<span id="cb8-12"><a href="developers-guide.html#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="st">  var tab = $(&#39;.nav li a[data-value=&#39; + name + &#39;]&#39;);</span></span>
+<span id="cb8-13"><a href="developers-guide.html#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="st">  tab.unbind(&#39;click.tab&#39;);</span></span>
+<span id="cb8-14"><a href="developers-guide.html#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="st">  tab.removeClass(&#39;disabled&#39;);</span></span>
+<span id="cb8-15"><a href="developers-guide.html#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb8-16"><a href="developers-guide.html#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span></span>
+<span id="cb8-17"><a href="developers-guide.html#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-18"><a href="developers-guide.html#cb8-18" aria-hidden="true" tabindex="-1"></a>css_tab <span class="ot">&lt;-</span> <span class="st">&quot;</span></span>
+<span id="cb8-19"><a href="developers-guide.html#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="st">.nav li a.disabled {</span></span>
+<span id="cb8-20"><a href="developers-guide.html#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="st">  background-color: #aaa !important;</span></span>
+<span id="cb8-21"><a href="developers-guide.html#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="st">  color: #333 !important;</span></span>
+<span id="cb8-22"><a href="developers-guide.html#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="st">  cursor: not-allowed !important;</span></span>
+<span id="cb8-23"><a href="developers-guide.html#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="st">  border-color: #aaa !important;</span></span>
+<span id="cb8-24"><a href="developers-guide.html#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="st">}&quot;</span></span></code></pre></div>
 <p>The CSS is just for aesthetics, the JS however is to introduce the funcionality of enabling and disabling panels of the web application, this is used as <code>js$disableTab()</code> and <code>js$enableTab()</code> along the application. Those two scripts are integrated to the application when building the <code>dashboardBody</code> by using this</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="developers-guide.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">useShinyjs</span>(),</span>
-<span id="cb11-2"><a href="developers-guide.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">extendShinyjs</span>(<span class="at">text =</span> jscode_tab, <span class="at">functions =</span> <span class="fu">c</span>(<span class="st">&quot;enableTab&quot;</span>, <span class="st">&quot;disableTab&quot;</span>)),</span>
-<span id="cb11-3"><a href="developers-guide.html#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">inlineCSS</span>(css_tab)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="developers-guide.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">useShinyjs</span>(),</span>
+<span id="cb9-2"><a href="developers-guide.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">extendShinyjs</span>(<span class="at">text =</span> jscode_tab, <span class="at">functions =</span> <span class="fu">c</span>(<span class="st">&quot;enableTab&quot;</span>, <span class="st">&quot;disableTab&quot;</span>)),</span>
+<span id="cb9-3"><a href="developers-guide.html#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">inlineCSS</span>(css_tab)</span></code></pre></div>
 <p>There are a some functions used in this file that are worth mentioning:</p>
 <ul>
 <li><code>hidden()</code>: From the <code>shinyjs</code> library. The elements wrapped inside of this function will not be rendered by default, they have to be toggled from the server side. Example: A GUI element that needs to be displayed only when a certain condition is met.</li>
@@ -425,31 +423,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Resources that just need to be loaded with no further action performed to them (same treatment as SSH connections). Add another <code>else if</code> statement after line 303. Example: New resource called <code>Simple_resource</code></li>
 </ul>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="developers-guide.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span> <span class="cf">if</span> (<span class="st">&quot;Simple_resource&quot;</span> <span class="sc">%in%</span> resource_type){</span>
-<span id="cb12-2"><a href="developers-guide.html#cb12-2" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Update available_tables list with the new resource type name</span></span>
-<span id="cb12-3"><a href="developers-guide.html#cb12-3" aria-hidden="true" tabindex="-1"></a>lists<span class="sc">$</span>available_tables <span class="ot">&lt;-</span> <span class="fu">rbind</span>(lists<span class="sc">$</span>available_tables, <span class="fu">c</span>(<span class="at">name =</span> name, <span class="at">server_index =</span> server_index,</span>
-<span id="cb12-4"><a href="developers-guide.html#cb12-4" aria-hidden="true" tabindex="-1"></a>                                                                      <span class="at">server =</span> resources<span class="sc">$</span>study_server[i], <span class="at">type_resource =</span> <span class="st">&quot;Simple_resource&quot;</span>))</span>
-<span id="cb12-5"><a href="developers-guide.html#cb12-5" aria-hidden="true" tabindex="-1"></a>          }</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="developers-guide.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span> <span class="cf">if</span> (<span class="st">&quot;Simple_resource&quot;</span> <span class="sc">%in%</span> resource_type){</span>
+<span id="cb10-2"><a href="developers-guide.html#cb10-2" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Update available_tables list with the new resource type name</span></span>
+<span id="cb10-3"><a href="developers-guide.html#cb10-3" aria-hidden="true" tabindex="-1"></a>lists<span class="sc">$</span>available_tables <span class="ot">&lt;-</span> <span class="fu">rbind</span>(lists<span class="sc">$</span>available_tables, <span class="fu">c</span>(<span class="at">name =</span> name, <span class="at">server_index =</span> server_index,</span>
+<span id="cb10-4"><a href="developers-guide.html#cb10-4" aria-hidden="true" tabindex="-1"></a>                                                                      <span class="at">server =</span> resources<span class="sc">$</span>study_server[i], <span class="at">type_resource =</span> <span class="st">&quot;Simple_resource&quot;</span>))</span>
+<span id="cb10-5"><a href="developers-guide.html#cb10-5" aria-hidden="true" tabindex="-1"></a>          }</span></code></pre></div>
 <ul>
 <li>Resources that need to be converted into R objects (<code>datashield.assign.expr(conns, symbol = "methy", expr = quote(as.resource.object(res)))</code>) and nothing else. Will work out of the box (the <code>type_resource</code> column of the <code>lists$available_tables</code> table will read <code>r_obj</code>).</li>
 <li>Resources that need to be converted into R objects (<code>datashield.assign.expr(conns, symbol = "methy", expr = quote(as.resource.object(res)))</code>) and be further processed. Add another <code>else if</code> statement after line 320. Example: A new type of resource called <code>special_resource</code> that contains some variable names that are desired to be saved on a variable to feed a list on the GUI.</li>
 </ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="developers-guide.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span> <span class="cf">if</span>(<span class="st">&quot;special_resource&quot;</span> <span class="sc">%in%</span> resource_type) {</span>
-<span id="cb13-2"><a href="developers-guide.html#cb13-2" aria-hidden="true" tabindex="-1"></a>              <span class="co"># Update available_tables list with the new resource type name</span></span>
-<span id="cb13-3"><a href="developers-guide.html#cb13-3" aria-hidden="true" tabindex="-1"></a>  lists<span class="sc">$</span>available_tables <span class="ot">&lt;-</span> <span class="fu">rbind</span>(lists<span class="sc">$</span>available_tables, <span class="fu">c</span>(<span class="at">name =</span> name, <span class="at">server_index =</span> server_index,</span>
-<span id="cb13-4"><a href="developers-guide.html#cb13-4" aria-hidden="true" tabindex="-1"></a>                                                                        <span class="at">server =</span> resources<span class="sc">$</span>study_server[i], <span class="at">type_resource =</span> <span class="st">&quot;special_resource&quot;</span>))</span>
-<span id="cb13-5"><a href="developers-guide.html#cb13-5" aria-hidden="true" tabindex="-1"></a>              <span class="co"># Perform the needed actions for this resource</span></span>
-<span id="cb13-6"><a href="developers-guide.html#cb13-6" aria-hidden="true" tabindex="-1"></a>              [...]</span>
-<span id="cb13-7"><a href="developers-guide.html#cb13-7" aria-hidden="true" tabindex="-1"></a>            }</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="developers-guide.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span> <span class="cf">if</span>(<span class="st">&quot;special_resource&quot;</span> <span class="sc">%in%</span> resource_type) {</span>
+<span id="cb11-2"><a href="developers-guide.html#cb11-2" aria-hidden="true" tabindex="-1"></a>              <span class="co"># Update available_tables list with the new resource type name</span></span>
+<span id="cb11-3"><a href="developers-guide.html#cb11-3" aria-hidden="true" tabindex="-1"></a>  lists<span class="sc">$</span>available_tables <span class="ot">&lt;-</span> <span class="fu">rbind</span>(lists<span class="sc">$</span>available_tables, <span class="fu">c</span>(<span class="at">name =</span> name, <span class="at">server_index =</span> server_index,</span>
+<span id="cb11-4"><a href="developers-guide.html#cb11-4" aria-hidden="true" tabindex="-1"></a>                                                                        <span class="at">server =</span> resources<span class="sc">$</span>study_server[i], <span class="at">type_resource =</span> <span class="st">&quot;special_resource&quot;</span>))</span>
+<span id="cb11-5"><a href="developers-guide.html#cb11-5" aria-hidden="true" tabindex="-1"></a>              <span class="co"># Perform the needed actions for this resource</span></span>
+<span id="cb11-6"><a href="developers-guide.html#cb11-6" aria-hidden="true" tabindex="-1"></a>              [...]</span>
+<span id="cb11-7"><a href="developers-guide.html#cb11-7" aria-hidden="true" tabindex="-1"></a>            }</span></code></pre></div>
 <p>Finally, once all the connections have been successful, and all the selected tables and resources are loaded, the tabs that make use of the loaded objects are enabled by using (table examples)</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="developers-guide.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">any</span>(<span class="fu">unique</span>(lists<span class="sc">$</span>available_tables<span class="sc">$</span>type_resource) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;table&quot;</span>))) {</span>
-<span id="cb14-2"><a href="developers-guide.html#cb14-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">show</span>(<span class="at">selector =</span> <span class="st">&quot;ul li:eq(2)&quot;</span>)</span>
-<span id="cb14-3"><a href="developers-guide.html#cb14-3" aria-hidden="true" tabindex="-1"></a>      }</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="developers-guide.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">any</span>(<span class="fu">unique</span>(lists<span class="sc">$</span>available_tables<span class="sc">$</span>type_resource) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;table&quot;</span>))) {</span>
+<span id="cb12-2"><a href="developers-guide.html#cb12-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">show</span>(<span class="at">selector =</span> <span class="st">&quot;ul li:eq(2)&quot;</span>)</span>
+<span id="cb12-3"><a href="developers-guide.html#cb12-3" aria-hidden="true" tabindex="-1"></a>      }</span></code></pre></div>
 <p>There are many <code>if</code> that checks for type of resources and enables tabs if present, on the previous example the second tab <code>ul li:eq(2)</code> (there is no way of refering them by ID as far as I know to perform this action) is enabled because it contains a module that works with tables.</p>
 <p>If a new type of resource is implemented, add after line 353 (tab 10 is just as example)</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="developers-guide.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">any</span>(<span class="fu">unique</span>(lists<span class="sc">$</span>available_tables<span class="sc">$</span>type_resource) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;new_resource&quot;</span>))) {</span>
-<span id="cb15-2"><a href="developers-guide.html#cb15-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">show</span>(<span class="at">selector =</span> <span class="st">&quot;ul li:eq(10)&quot;</span>)</span>
-<span id="cb15-3"><a href="developers-guide.html#cb15-3" aria-hidden="true" tabindex="-1"></a>      }</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="developers-guide.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">any</span>(<span class="fu">unique</span>(lists<span class="sc">$</span>available_tables<span class="sc">$</span>type_resource) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;new_resource&quot;</span>))) {</span>
+<span id="cb13-2"><a href="developers-guide.html#cb13-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">show</span>(<span class="at">selector =</span> <span class="st">&quot;ul li:eq(10)&quot;</span>)</span>
+<span id="cb13-3"><a href="developers-guide.html#cb13-3" aria-hidden="true" tabindex="-1"></a>      }</span></code></pre></div>
 <p>Also update this part if a new module is added, make sure to enable the tab only when the resources that the module use are present on the <code>lists$available_tables</code>.</p>
 </div>
 </div>
@@ -458,71 +456,71 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>A common structure is followed for all the different modules, this refers to the general structure of <code>descriptive_stats.R</code>, <code>statistics_models.R</code>, <code>genomics.R</code>, <code>omics.R</code> and <code>table_columns.R</code>.</p>
 <p>Before describing the internal structure of the modules, let’s briefly describe the GUI structure, which is also common between them. The tabs are filled with a tab box, the first element is always a table with the available tables / resources for that module. For example, the Omics module only displays the resources of type RSE or eSet. The other tabs are disabled by default and can only be accessed once the user has selected which resource to use. Now let’s talk about how to accomplish all of this.</p>
 <p>At the beginning of all the modules there is an <code>observeEvent</code> that is triggered when the user selects an item from the table. The structure of this is the following</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="developers-guide.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">observeEvent</span>(input<span class="sc">$</span>table, {</span>
-<span id="cb16-2"><a href="developers-guide.html#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">length</span>(input<span class="sc">$</span>table_rows_selected) <span class="sc">&gt;</span> <span class="dv">0</span>){ <span class="co"># Check if the user has selected any row</span></span>
-<span id="cb16-3"><a href="developers-guide.html#cb16-3" aria-hidden="true" tabindex="-1"></a>    different_study_server <span class="ot">&lt;-</span> <span class="cn">TRUE</span> <span class="co"># On this example we are checking that everything selected is on different study servers</span></span>
-<span id="cb16-4"><a href="developers-guide.html#cb16-4" aria-hidden="true" tabindex="-1"></a>    same_cols <span class="ot">&lt;-</span> <span class="cn">TRUE</span> <span class="co"># On this example we are checking tables to be pooled, so we are checking they have the same columns</span></span>
-<span id="cb16-5"><a href="developers-guide.html#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="fu">length</span>(input<span class="sc">$</span>table_rows_selected) <span class="sc">&gt;</span> <span class="dv">1</span>){ <span class="co"># If more than one table is selected the checks have to be performed, otherwise there is no need to check for same cols or different study servers</span></span>
-<span id="cb16-6"><a href="developers-guide.html#cb16-6" aria-hidden="true" tabindex="-1"></a>      same_cols <span class="ot">&lt;-</span> <span class="fu">all</span>(<span class="fu">lapply</span>(input<span class="sc">$</span>tqble_rows_selected, <span class="cf">function</span>(i){</span>
-<span id="cb16-7"><a href="developers-guide.html#cb16-7" aria-hidden="true" tabindex="-1"></a>        res<span class="ot">&lt;-</span><span class="fu">all</span>(<span class="fu">match</span>(lists<span class="sc">$</span>resource_variables[[<span class="fu">as.character</span>(lists<span class="sc">$</span>available_tables[type_resource <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;table&quot;</span>)][i,<span class="dv">1</span>])]], </span>
-<span id="cb16-8"><a href="developers-guide.html#cb16-8" aria-hidden="true" tabindex="-1"></a>                       lists<span class="sc">$</span>resource_variables[[<span class="fu">as.character</span>(lists<span class="sc">$</span>available_tables[type_resource <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;table&quot;</span>)][<span class="dv">1</span>,<span class="dv">1</span>])]]))</span>
-<span id="cb16-9"><a href="developers-guide.html#cb16-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span>(<span class="fu">is.na</span>(res)){<span class="cn">FALSE</span>} <span class="cf">else</span>{res}</span>
-<span id="cb16-10"><a href="developers-guide.html#cb16-10" aria-hidden="true" tabindex="-1"></a>      }))</span>
-<span id="cb16-11"><a href="developers-guide.html#cb16-11" aria-hidden="true" tabindex="-1"></a>      different_study_server <span class="ot">&lt;-</span> <span class="fu">nrow</span>(<span class="fu">unique</span>(lists<span class="sc">$</span>available_tables[input<span class="sc">$</span>table_rows_selected,<span class="dv">3</span>])) <span class="sc">==</span></span>
-<span id="cb16-12"><a href="developers-guide.html#cb16-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">length</span>(input<span class="sc">$</span>table_rows_selected) </span>
-<span id="cb16-13"><a href="developers-guide.html#cb16-13" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb16-14"><a href="developers-guide.html#cb16-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(same_cols <span class="sc">&amp;</span> different_study_server){ <span class="co"># If both tests are OK, remove the &quot;resource_lim&quot; object from the study servers</span></span>
-<span id="cb16-15"><a href="developers-guide.html#cb16-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">datashield.rm</span>(connection<span class="sc">$</span>conns, <span class="st">&quot;resource_lim&quot;</span>)</span>
-<span id="cb16-16"><a href="developers-guide.html#cb16-16" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span>(i <span class="cf">in</span> input<span class="sc">$</span>table_rows_selected){</span>
-<span id="cb16-17"><a href="developers-guide.html#cb16-17" aria-hidden="true" tabindex="-1"></a>        lists<span class="sc">$</span>available_tables[type_resource <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;table&quot;</span>)][i,<span class="dv">2</span>]</span>
-<span id="cb16-18"><a href="developers-guide.html#cb16-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Then assign the selected tables to a new variable on the study servers called &quot;resource_lim&quot;, this is the variable that all the other funcionalities of the module will refer to when performing analysis</span></span>
-<span id="cb16-19"><a href="developers-guide.html#cb16-19" aria-hidden="true" tabindex="-1"></a>        <span class="fu">datashield.assign.expr</span>(connection<span class="sc">$</span>conns[<span class="fu">as.numeric</span>(lists<span class="sc">$</span>available_tables[type_resource <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;table&quot;</span>)][i,<span class="dv">2</span>])], <span class="st">&quot;resource_lim&quot;</span>, <span class="fu">as.symbol</span>(<span class="fu">as.character</span>(lists<span class="sc">$</span>available_tables[type_resource <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;table&quot;</span>)][i,<span class="dv">1</span>])))</span>
-<span id="cb16-20"><a href="developers-guide.html#cb16-20" aria-hidden="true" tabindex="-1"></a>      }</span>
-<span id="cb16-21"><a href="developers-guide.html#cb16-21" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Enable the analysis tab and update the GUI to display it</span></span>
-<span id="cb16-22"><a href="developers-guide.html#cb16-22" aria-hidden="true" tabindex="-1"></a>      js<span class="sc">$</span><span class="fu">enableTab</span>(<span class="st">&quot;tab_of_analysis&quot;</span>)</span>
-<span id="cb16-23"><a href="developers-guide.html#cb16-23" aria-hidden="true" tabindex="-1"></a>      <span class="fu">updateTabsetPanel</span>(session, <span class="st">&quot;id&quot;</span>,</span>
-<span id="cb16-24"><a href="developers-guide.html#cb16-24" aria-hidden="true" tabindex="-1"></a>                        <span class="at">selected =</span> <span class="st">&quot;tab_of_analysis&quot;</span>)</span>
-<span id="cb16-25"><a href="developers-guide.html#cb16-25" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb16-26"><a href="developers-guide.html#cb16-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>{ <span class="co"># If the tests fail, display an error message</span></span>
-<span id="cb16-27"><a href="developers-guide.html#cb16-27" aria-hidden="true" tabindex="-1"></a>      <span class="fu">shinyalert</span>(<span class="st">&quot;Oops!&quot;</span>, </span>
-<span id="cb16-28"><a href="developers-guide.html#cb16-28" aria-hidden="true" tabindex="-1"></a>                 <span class="cf">if</span>(<span class="sc">!</span>same_cols){</span>
-<span id="cb16-29"><a href="developers-guide.html#cb16-29" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;Selected resources do not share the same columns, can&#39;t pool unequal resources&quot;</span></span>
-<span id="cb16-30"><a href="developers-guide.html#cb16-30" aria-hidden="true" tabindex="-1"></a>                 }<span class="cf">else</span>{</span>
-<span id="cb16-31"><a href="developers-guide.html#cb16-31" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;Selected resources are not on different study servers, can&#39;t pool resources on the same study server.&quot;</span></span>
-<span id="cb16-32"><a href="developers-guide.html#cb16-32" aria-hidden="true" tabindex="-1"></a>                 }</span>
-<span id="cb16-33"><a href="developers-guide.html#cb16-33" aria-hidden="true" tabindex="-1"></a>                 , <span class="at">type =</span> <span class="st">&quot;error&quot;</span>)</span>
-<span id="cb16-34"><a href="developers-guide.html#cb16-34" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Make sure analysis tabs are disabled and the GUI shows the selection tab, this is important to do because if the user first selects a valid table and then an invalid combination, we want to make sure that the user has no longer access to the analysis tab</span></span>
-<span id="cb16-35"><a href="developers-guide.html#cb16-35" aria-hidden="true" tabindex="-1"></a>      js<span class="sc">$</span><span class="fu">disableTab</span>(<span class="st">&quot;tab_of_analysis&quot;</span>)</span>
-<span id="cb16-36"><a href="developers-guide.html#cb16-36" aria-hidden="true" tabindex="-1"></a>      <span class="fu">updateTabsetPanel</span>(session, <span class="st">&quot;id&quot;</span>,</span>
-<span id="cb16-37"><a href="developers-guide.html#cb16-37" aria-hidden="true" tabindex="-1"></a>                        <span class="at">selected =</span> <span class="st">&quot;table_selection&quot;</span>)</span>
-<span id="cb16-38"><a href="developers-guide.html#cb16-38" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb16-39"><a href="developers-guide.html#cb16-39" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb16-40"><a href="developers-guide.html#cb16-40" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="developers-guide.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">observeEvent</span>(input<span class="sc">$</span>table, {</span>
+<span id="cb14-2"><a href="developers-guide.html#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">length</span>(input<span class="sc">$</span>table_rows_selected) <span class="sc">&gt;</span> <span class="dv">0</span>){ <span class="co"># Check if the user has selected any row</span></span>
+<span id="cb14-3"><a href="developers-guide.html#cb14-3" aria-hidden="true" tabindex="-1"></a>    different_study_server <span class="ot">&lt;-</span> <span class="cn">TRUE</span> <span class="co"># On this example we are checking that everything selected is on different study servers</span></span>
+<span id="cb14-4"><a href="developers-guide.html#cb14-4" aria-hidden="true" tabindex="-1"></a>    same_cols <span class="ot">&lt;-</span> <span class="cn">TRUE</span> <span class="co"># On this example we are checking tables to be pooled, so we are checking they have the same columns</span></span>
+<span id="cb14-5"><a href="developers-guide.html#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="fu">length</span>(input<span class="sc">$</span>table_rows_selected) <span class="sc">&gt;</span> <span class="dv">1</span>){ <span class="co"># If more than one table is selected the checks have to be performed, otherwise there is no need to check for same cols or different study servers</span></span>
+<span id="cb14-6"><a href="developers-guide.html#cb14-6" aria-hidden="true" tabindex="-1"></a>      same_cols <span class="ot">&lt;-</span> <span class="fu">all</span>(<span class="fu">lapply</span>(input<span class="sc">$</span>tqble_rows_selected, <span class="cf">function</span>(i){</span>
+<span id="cb14-7"><a href="developers-guide.html#cb14-7" aria-hidden="true" tabindex="-1"></a>        res<span class="ot">&lt;-</span><span class="fu">all</span>(<span class="fu">match</span>(lists<span class="sc">$</span>resource_variables[[<span class="fu">as.character</span>(lists<span class="sc">$</span>available_tables[type_resource <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;table&quot;</span>)][i,<span class="dv">1</span>])]], </span>
+<span id="cb14-8"><a href="developers-guide.html#cb14-8" aria-hidden="true" tabindex="-1"></a>                       lists<span class="sc">$</span>resource_variables[[<span class="fu">as.character</span>(lists<span class="sc">$</span>available_tables[type_resource <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;table&quot;</span>)][<span class="dv">1</span>,<span class="dv">1</span>])]]))</span>
+<span id="cb14-9"><a href="developers-guide.html#cb14-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span>(<span class="fu">is.na</span>(res)){<span class="cn">FALSE</span>} <span class="cf">else</span>{res}</span>
+<span id="cb14-10"><a href="developers-guide.html#cb14-10" aria-hidden="true" tabindex="-1"></a>      }))</span>
+<span id="cb14-11"><a href="developers-guide.html#cb14-11" aria-hidden="true" tabindex="-1"></a>      different_study_server <span class="ot">&lt;-</span> <span class="fu">nrow</span>(<span class="fu">unique</span>(lists<span class="sc">$</span>available_tables[input<span class="sc">$</span>table_rows_selected,<span class="dv">3</span>])) <span class="sc">==</span></span>
+<span id="cb14-12"><a href="developers-guide.html#cb14-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">length</span>(input<span class="sc">$</span>table_rows_selected) </span>
+<span id="cb14-13"><a href="developers-guide.html#cb14-13" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb14-14"><a href="developers-guide.html#cb14-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(same_cols <span class="sc">&amp;</span> different_study_server){ <span class="co"># If both tests are OK, remove the &quot;resource_lim&quot; object from the study servers</span></span>
+<span id="cb14-15"><a href="developers-guide.html#cb14-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">datashield.rm</span>(connection<span class="sc">$</span>conns, <span class="st">&quot;resource_lim&quot;</span>)</span>
+<span id="cb14-16"><a href="developers-guide.html#cb14-16" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span>(i <span class="cf">in</span> input<span class="sc">$</span>table_rows_selected){</span>
+<span id="cb14-17"><a href="developers-guide.html#cb14-17" aria-hidden="true" tabindex="-1"></a>        lists<span class="sc">$</span>available_tables[type_resource <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;table&quot;</span>)][i,<span class="dv">2</span>]</span>
+<span id="cb14-18"><a href="developers-guide.html#cb14-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Then assign the selected tables to a new variable on the study servers called &quot;resource_lim&quot;, this is the variable that all the other funcionalities of the module will refer to when performing analysis</span></span>
+<span id="cb14-19"><a href="developers-guide.html#cb14-19" aria-hidden="true" tabindex="-1"></a>        <span class="fu">datashield.assign.expr</span>(connection<span class="sc">$</span>conns[<span class="fu">as.numeric</span>(lists<span class="sc">$</span>available_tables[type_resource <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;table&quot;</span>)][i,<span class="dv">2</span>])], <span class="st">&quot;resource_lim&quot;</span>, <span class="fu">as.symbol</span>(<span class="fu">as.character</span>(lists<span class="sc">$</span>available_tables[type_resource <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;table&quot;</span>)][i,<span class="dv">1</span>])))</span>
+<span id="cb14-20"><a href="developers-guide.html#cb14-20" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb14-21"><a href="developers-guide.html#cb14-21" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Enable the analysis tab and update the GUI to display it</span></span>
+<span id="cb14-22"><a href="developers-guide.html#cb14-22" aria-hidden="true" tabindex="-1"></a>      js<span class="sc">$</span><span class="fu">enableTab</span>(<span class="st">&quot;tab_of_analysis&quot;</span>)</span>
+<span id="cb14-23"><a href="developers-guide.html#cb14-23" aria-hidden="true" tabindex="-1"></a>      <span class="fu">updateTabsetPanel</span>(session, <span class="st">&quot;id&quot;</span>,</span>
+<span id="cb14-24"><a href="developers-guide.html#cb14-24" aria-hidden="true" tabindex="-1"></a>                        <span class="at">selected =</span> <span class="st">&quot;tab_of_analysis&quot;</span>)</span>
+<span id="cb14-25"><a href="developers-guide.html#cb14-25" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb14-26"><a href="developers-guide.html#cb14-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>{ <span class="co"># If the tests fail, display an error message</span></span>
+<span id="cb14-27"><a href="developers-guide.html#cb14-27" aria-hidden="true" tabindex="-1"></a>      <span class="fu">shinyalert</span>(<span class="st">&quot;Oops!&quot;</span>, </span>
+<span id="cb14-28"><a href="developers-guide.html#cb14-28" aria-hidden="true" tabindex="-1"></a>                 <span class="cf">if</span>(<span class="sc">!</span>same_cols){</span>
+<span id="cb14-29"><a href="developers-guide.html#cb14-29" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;Selected resources do not share the same columns, can&#39;t pool unequal resources&quot;</span></span>
+<span id="cb14-30"><a href="developers-guide.html#cb14-30" aria-hidden="true" tabindex="-1"></a>                 }<span class="cf">else</span>{</span>
+<span id="cb14-31"><a href="developers-guide.html#cb14-31" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;Selected resources are not on different study servers, can&#39;t pool resources on the same study server.&quot;</span></span>
+<span id="cb14-32"><a href="developers-guide.html#cb14-32" aria-hidden="true" tabindex="-1"></a>                 }</span>
+<span id="cb14-33"><a href="developers-guide.html#cb14-33" aria-hidden="true" tabindex="-1"></a>                 , <span class="at">type =</span> <span class="st">&quot;error&quot;</span>)</span>
+<span id="cb14-34"><a href="developers-guide.html#cb14-34" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Make sure analysis tabs are disabled and the GUI shows the selection tab, this is important to do because if the user first selects a valid table and then an invalid combination, we want to make sure that the user has no longer access to the analysis tab</span></span>
+<span id="cb14-35"><a href="developers-guide.html#cb14-35" aria-hidden="true" tabindex="-1"></a>      js<span class="sc">$</span><span class="fu">disableTab</span>(<span class="st">&quot;tab_of_analysis&quot;</span>)</span>
+<span id="cb14-36"><a href="developers-guide.html#cb14-36" aria-hidden="true" tabindex="-1"></a>      <span class="fu">updateTabsetPanel</span>(session, <span class="st">&quot;id&quot;</span>,</span>
+<span id="cb14-37"><a href="developers-guide.html#cb14-37" aria-hidden="true" tabindex="-1"></a>                        <span class="at">selected =</span> <span class="st">&quot;table_selection&quot;</span>)</span>
+<span id="cb14-38"><a href="developers-guide.html#cb14-38" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb14-39"><a href="developers-guide.html#cb14-39" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb14-40"><a href="developers-guide.html#cb14-40" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <p>This example can be extended to the developers needs, but as a structure example is more than enough. Please read the source code for the available modules if extra examples are needed.</p>
 <p>The body of the modules correspond to whatever is needed on that module, let that be some <code>observeEvent</code> for buttons of the analysis tab, some <code>renderUI</code> for dynamic selectors or anything other that the module needs.</p>
 <p>The bottom of the modules is also shared, they contain an <code>observe</code> clause that is triggered when the tab is selected, it has the following structure</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="developers-guide.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">observe</span>({</span>
-<span id="cb17-2"><a href="developers-guide.html#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(input<span class="sc">$</span>tabs <span class="sc">==</span> <span class="st">&quot;id&quot;</span>) { <span class="co"># The ID here corresponds to the tabname declare on the ui.R ; tabItem(tabName = &quot;ID&quot;, ....... </span></span>
-<span id="cb17-3"><a href="developers-guide.html#cb17-3" aria-hidden="true" tabindex="-1"></a>    tables_available <span class="ot">&lt;-</span> lists<span class="sc">$</span>available_tables[type_resource <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;table&quot;</span>)] <span class="co"># Input here the type_resource that this module uses, so only those are displayed</span></span>
-<span id="cb17-4"><a href="developers-guide.html#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="fu">length</span>(lists<span class="sc">$</span>resource_variables) <span class="sc">==</span> <span class="dv">0</span>){</span>
-<span id="cb17-5"><a href="developers-guide.html#cb17-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">withProgress</span>(<span class="at">message =</span> <span class="st">&quot;Reading column names from available tables&quot;</span>, <span class="at">value =</span> <span class="dv">0</span>, {</span>
-<span id="cb17-6"><a href="developers-guide.html#cb17-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(tables_available)){ <span class="co"># In this example we are reading table columns so that when the user selects from this table, we can automatically check if the columns are shared when trying to pool tables, this is done on the header of the module, that we have just seen</span></span>
-<span id="cb17-7"><a href="developers-guide.html#cb17-7" aria-hidden="true" tabindex="-1"></a>          lists<span class="sc">$</span>table_columns[[<span class="fu">as.character</span>(tables_available[i,<span class="dv">1</span>])]] <span class="ot">&lt;-</span> <span class="fu">ds.colnames</span>(<span class="fu">as.character</span>(tables_available[i,<span class="dv">1</span>]), <span class="at">datasources =</span> connection<span class="sc">$</span>conns[<span class="fu">as.numeric</span>(tables_available[i,<span class="dv">2</span>])])[[<span class="dv">1</span>]]</span>
-<span id="cb17-8"><a href="developers-guide.html#cb17-8" aria-hidden="true" tabindex="-1"></a>          <span class="fu">incProgress</span>(i<span class="sc">/</span><span class="fu">nrow</span>(tables_available))</span>
-<span id="cb17-9"><a href="developers-guide.html#cb17-9" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb17-10"><a href="developers-guide.html#cb17-10" aria-hidden="true" tabindex="-1"></a>      })</span>
-<span id="cb17-11"><a href="developers-guide.html#cb17-11" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb17-12"><a href="developers-guide.html#cb17-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Finally we render the table with the available tables for this module so the user can select which ones to use, of course this needs to be completed on the table_renders.R (following chunk has an example)</span></span>
-<span id="cb17-13"><a href="developers-guide.html#cb17-13" aria-hidden="true" tabindex="-1"></a>    output<span class="sc">$</span>available_tables_sm <span class="ot">&lt;-</span> <span class="fu">renderUI</span>({</span>
-<span id="cb17-14"><a href="developers-guide.html#cb17-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">dataTableOutput</span>(<span class="st">&quot;available_tables&quot;</span>)</span>
-<span id="cb17-15"><a href="developers-guide.html#cb17-15" aria-hidden="true" tabindex="-1"></a>    })</span>
-<span id="cb17-16"><a href="developers-guide.html#cb17-16" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb17-17"><a href="developers-guide.html#cb17-17" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="developers-guide.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">observe</span>({</span>
+<span id="cb15-2"><a href="developers-guide.html#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(input<span class="sc">$</span>tabs <span class="sc">==</span> <span class="st">&quot;id&quot;</span>) { <span class="co"># The ID here corresponds to the tabname declare on the ui.R ; tabItem(tabName = &quot;ID&quot;, ....... </span></span>
+<span id="cb15-3"><a href="developers-guide.html#cb15-3" aria-hidden="true" tabindex="-1"></a>    tables_available <span class="ot">&lt;-</span> lists<span class="sc">$</span>available_tables[type_resource <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;table&quot;</span>)] <span class="co"># Input here the type_resource that this module uses, so only those are displayed</span></span>
+<span id="cb15-4"><a href="developers-guide.html#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="fu">length</span>(lists<span class="sc">$</span>resource_variables) <span class="sc">==</span> <span class="dv">0</span>){</span>
+<span id="cb15-5"><a href="developers-guide.html#cb15-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">withProgress</span>(<span class="at">message =</span> <span class="st">&quot;Reading column names from available tables&quot;</span>, <span class="at">value =</span> <span class="dv">0</span>, {</span>
+<span id="cb15-6"><a href="developers-guide.html#cb15-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(tables_available)){ <span class="co"># In this example we are reading table columns so that when the user selects from this table, we can automatically check if the columns are shared when trying to pool tables, this is done on the header of the module, that we have just seen</span></span>
+<span id="cb15-7"><a href="developers-guide.html#cb15-7" aria-hidden="true" tabindex="-1"></a>          lists<span class="sc">$</span>table_columns[[<span class="fu">as.character</span>(tables_available[i,<span class="dv">1</span>])]] <span class="ot">&lt;-</span> <span class="fu">ds.colnames</span>(<span class="fu">as.character</span>(tables_available[i,<span class="dv">1</span>]), <span class="at">datasources =</span> connection<span class="sc">$</span>conns[<span class="fu">as.numeric</span>(tables_available[i,<span class="dv">2</span>])])[[<span class="dv">1</span>]]</span>
+<span id="cb15-8"><a href="developers-guide.html#cb15-8" aria-hidden="true" tabindex="-1"></a>          <span class="fu">incProgress</span>(i<span class="sc">/</span><span class="fu">nrow</span>(tables_available))</span>
+<span id="cb15-9"><a href="developers-guide.html#cb15-9" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb15-10"><a href="developers-guide.html#cb15-10" aria-hidden="true" tabindex="-1"></a>      })</span>
+<span id="cb15-11"><a href="developers-guide.html#cb15-11" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb15-12"><a href="developers-guide.html#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Finally we render the table with the available tables for this module so the user can select which ones to use, of course this needs to be completed on the table_renders.R (following chunk has an example)</span></span>
+<span id="cb15-13"><a href="developers-guide.html#cb15-13" aria-hidden="true" tabindex="-1"></a>    output<span class="sc">$</span>available_tables_sm <span class="ot">&lt;-</span> <span class="fu">renderUI</span>({</span>
+<span id="cb15-14"><a href="developers-guide.html#cb15-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">dataTableOutput</span>(<span class="st">&quot;available_tables&quot;</span>)</span>
+<span id="cb15-15"><a href="developers-guide.html#cb15-15" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb15-16"><a href="developers-guide.html#cb15-16" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb15-17"><a href="developers-guide.html#cb15-17" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <p>Example of the code for the table_render.R regarding the selection table</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="developers-guide.html#cb18-1" aria-hidden="true" tabindex="-1"></a>output<span class="sc">$</span>available_tables <span class="ot">&lt;-</span> <span class="fu">renderDT</span>(</span>
-<span id="cb18-2"><a href="developers-guide.html#cb18-2" aria-hidden="true" tabindex="-1"></a>  lists<span class="sc">$</span>available_tables[type_resource <span class="sc">==</span> <span class="st">&quot;table&quot;</span>], <span class="at">options=</span><span class="fu">list</span>(<span class="at">columnDefs =</span> <span class="fu">list</span>(<span class="fu">list</span>(<span class="at">visible=</span><span class="cn">FALSE</span>, <span class="at">targets=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">4</span>))),</span>
-<span id="cb18-3"><a href="developers-guide.html#cb18-3" aria-hidden="true" tabindex="-1"></a>                                                                 <span class="at">paging =</span> <span class="cn">FALSE</span>, <span class="at">searching =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb18-4"><a href="developers-guide.html#cb18-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="developers-guide.html#cb16-1" aria-hidden="true" tabindex="-1"></a>output<span class="sc">$</span>available_tables <span class="ot">&lt;-</span> <span class="fu">renderDT</span>(</span>
+<span id="cb16-2"><a href="developers-guide.html#cb16-2" aria-hidden="true" tabindex="-1"></a>  lists<span class="sc">$</span>available_tables[type_resource <span class="sc">==</span> <span class="st">&quot;table&quot;</span>], <span class="at">options=</span><span class="fu">list</span>(<span class="at">columnDefs =</span> <span class="fu">list</span>(<span class="fu">list</span>(<span class="at">visible=</span><span class="cn">FALSE</span>, <span class="at">targets=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">4</span>))),</span>
+<span id="cb16-3"><a href="developers-guide.html#cb16-3" aria-hidden="true" tabindex="-1"></a>                                                                 <span class="at">paging =</span> <span class="cn">FALSE</span>, <span class="at">searching =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb16-4"><a href="developers-guide.html#cb16-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p>Now let’s take a look at the scripts that are used by all the modules, their use is to render tables, figures and handle the downloads (figures + table downloads)</p>
 <div id="table_renders.r" class="section level4" number="4.1.3.1">
 <h4><span class="header-section-number">4.1.3.1</span> <code>table_renders.R</code></h4>
@@ -532,63 +530,63 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>As can be seen in <code>descriptive_summary</code> table, you can actually perform operations inside of a <code>renderDT</code> function and display the result of them.</li>
 <li>The most used options for the tables aesthetics are the following</li>
 </ul>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="developers-guide.html#cb19-1" aria-hidden="true" tabindex="-1"></a>options<span class="ot">=</span><span class="fu">list</span>(<span class="at">columnDefs =</span> <span class="fu">list</span>(<span class="fu">list</span>(<span class="at">visible=</span><span class="cn">FALSE</span>, <span class="at">targets=</span><span class="fu">c</span>(<span class="dv">0</span>))),</span>
-<span id="cb19-2"><a href="developers-guide.html#cb19-2" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">paging =</span> <span class="cn">FALSE</span>, <span class="at">searching =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="developers-guide.html#cb17-1" aria-hidden="true" tabindex="-1"></a>options<span class="ot">=</span><span class="fu">list</span>(<span class="at">columnDefs =</span> <span class="fu">list</span>(<span class="fu">list</span>(<span class="at">visible=</span><span class="cn">FALSE</span>, <span class="at">targets=</span><span class="fu">c</span>(<span class="dv">0</span>))),</span>
+<span id="cb17-2"><a href="developers-guide.html#cb17-2" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">paging =</span> <span class="cn">FALSE</span>, <span class="at">searching =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>This prevents the <code>rownames</code> column to be displayed (usually it just contains the numeration of rows 1…N, be aware sometimes it’s of interest to see this column) and eliminates the paging and searching functionalities of the table. For small tables it makes sense to not show that but on big tables those options are set to <code>TRUE</code>, as it’s very useful to have a search box on them.</p>
 <ul>
 <li>The tables that display numerical columns (mixed or not with non-numerical columns) are actually passed through the <code>format_num</code> function (defined on <code>server.R</code>) so the displayed table has only four decimals but the actual table (the one that can be saved) has all the decimals. This is done using the following code</li>
 </ul>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="developers-guide.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.table</span>(<span class="fu">lapply</span>(<span class="fu">as.data.table</span>(vcf_results<span class="sc">$</span>result_table_gwas<span class="sc">$</span>server1), format_num))</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="developers-guide.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.table</span>(<span class="fu">lapply</span>(<span class="fu">as.data.table</span>(vcf_results<span class="sc">$</span>result_table_gwas<span class="sc">$</span>server1), format_num))</span></code></pre></div>
 <p>This will pass each column to the function and if it’s numerical the decimals will be cut to 4.</p>
 <ul>
 <li>The table output structure of the LIMMA results look different than the others, this is because when performing a LIMMA with pooled resources it returns one table for each study, what is being done is just binding them to display to the user all the obtained results.</li>
 </ul>
 <p>There is a concrete render that needs a special mention on this documentation, that is the <code>column_types_table</code>, which uses the CellEdit JavaScript plugin to enable drop down menus when editing a table. Let’s see what is being done</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="developers-guide.html#cb21-1" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> <span class="fu">datatable</span>(</span>
-<span id="cb21-2"><a href="developers-guide.html#cb21-2" aria-hidden="true" tabindex="-1"></a>      table_to_be_modified, <span class="at">editable =</span> <span class="st">&quot;cell&quot;</span>, <span class="at">callback =</span>  <span class="co"># The callback needs to be updated to include the JS custom code</span></span>
-<span id="cb21-3"><a href="developers-guide.html#cb21-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">JS</span>(</span>
-<span id="cb21-4"><a href="developers-guide.html#cb21-4" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;function onUpdate(updatedCell, updatedRow, oldValue){&quot;</span>,</span>
-<span id="cb21-5"><a href="developers-guide.html#cb21-5" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;Shiny.onInputChange(&#39;jsValue&#39;, [updatedCell.index(), updatedCell.data()]);&quot;</span>, <span class="co"># The results to actually update the table_to_be_modified on the module script will be retrieved by a observeEvent(input$jsValue, { ; change jsValue each time this approach is used to avoid collisions</span></span>
-<span id="cb21-6"><a href="developers-guide.html#cb21-6" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;}&quot;</span>,</span>
-<span id="cb21-7"><a href="developers-guide.html#cb21-7" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;table.MakeCellsEditable({&quot;</span>,</span>
-<span id="cb21-8"><a href="developers-guide.html#cb21-8" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;  onUpdate: onUpdate,&quot;</span>,</span>
-<span id="cb21-9"><a href="developers-guide.html#cb21-9" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;  inputCss: &#39;my-input-class&#39;,&quot;</span>,</span>
-<span id="cb21-10"><a href="developers-guide.html#cb21-10" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;  columns: [2],&quot;</span>,</span>
-<span id="cb21-11"><a href="developers-guide.html#cb21-11" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;  confirmationButton: {&quot;</span>,</span>
-<span id="cb21-12"><a href="developers-guide.html#cb21-12" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;    confirmCss: &#39;my-confirm-class&#39;,&quot;</span>,</span>
-<span id="cb21-13"><a href="developers-guide.html#cb21-13" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;    cancelCss: &#39;my-cancel-class&#39;&quot;</span>,</span>
-<span id="cb21-14"><a href="developers-guide.html#cb21-14" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;  },&quot;</span>,</span>
-<span id="cb21-15"><a href="developers-guide.html#cb21-15" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;  inputTypes: [&quot;</span>,</span>
-<span id="cb21-16"><a href="developers-guide.html#cb21-16" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;    {&quot;</span>,</span>
-<span id="cb21-17"><a href="developers-guide.html#cb21-17" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;      column: 2,&quot;</span>,</span>
-<span id="cb21-18"><a href="developers-guide.html#cb21-18" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;      type: &#39;list&#39;,&quot;</span>,</span>
-<span id="cb21-19"><a href="developers-guide.html#cb21-19" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;      options: [&quot;</span>,</span>
-<span id="cb21-20"><a href="developers-guide.html#cb21-20" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;        {value: &#39;numeric&#39;, display: &#39;numeric&#39;},&quot;</span>, <span class="co"># Update this lines to declare the options of the dropdown</span></span>
-<span id="cb21-21"><a href="developers-guide.html#cb21-21" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;        {value: &#39;factor&#39;,      display: &#39;factor&#39;},&quot;</span>,</span>
-<span id="cb21-22"><a href="developers-guide.html#cb21-22" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;        {value: &#39;character&#39;,    display: &#39;character&#39;}&quot;</span>,</span>
-<span id="cb21-23"><a href="developers-guide.html#cb21-23" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;      ]&quot;</span>,</span>
-<span id="cb21-24"><a href="developers-guide.html#cb21-24" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;    }&quot;</span>,</span>
-<span id="cb21-25"><a href="developers-guide.html#cb21-25" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;  ]&quot;</span>,</span>
-<span id="cb21-26"><a href="developers-guide.html#cb21-26" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;});&quot;</span>),</span>
-<span id="cb21-27"><a href="developers-guide.html#cb21-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">options =</span> <span class="fu">list</span>(<span class="at">pageLength =</span> <span class="fu">nrow</span>(table_to_be_modified))</span>
-<span id="cb21-28"><a href="developers-guide.html#cb21-28" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb21-29"><a href="developers-guide.html#cb21-29" aria-hidden="true" tabindex="-1"></a>    path <span class="ot">&lt;-</span> <span class="st">&quot;../../www/&quot;</span> <span class="co"># folder containing the files dataTables.cellEdit.js</span></span>
-<span id="cb21-30"><a href="developers-guide.html#cb21-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># and dataTables.cellEdit.css, they are already included on ShinyDataSHIELD, so there is no need to worry about that</span></span>
-<span id="cb21-31"><a href="developers-guide.html#cb21-31" aria-hidden="true" tabindex="-1"></a>    dep <span class="ot">&lt;-</span> htmltools<span class="sc">::</span><span class="fu">htmlDependency</span>(</span>
-<span id="cb21-32"><a href="developers-guide.html#cb21-32" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;CellEdit&quot;</span>, <span class="st">&quot;1.0.19&quot;</span>, path,</span>
-<span id="cb21-33"><a href="developers-guide.html#cb21-33" aria-hidden="true" tabindex="-1"></a>      <span class="at">script =</span> <span class="st">&quot;dataTables.cellEdit.js&quot;</span>, <span class="at">stylesheet =</span> <span class="st">&quot;dataTables.cellEdit.css&quot;</span>)</span>
-<span id="cb21-34"><a href="developers-guide.html#cb21-34" aria-hidden="true" tabindex="-1"></a>    tab<span class="sc">$</span>dependencies <span class="ot">&lt;-</span> <span class="fu">c</span>(tab<span class="sc">$</span>dependencies, <span class="fu">list</span>(dep))</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="developers-guide.html#cb19-1" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> <span class="fu">datatable</span>(</span>
+<span id="cb19-2"><a href="developers-guide.html#cb19-2" aria-hidden="true" tabindex="-1"></a>      table_to_be_modified, <span class="at">editable =</span> <span class="st">&quot;cell&quot;</span>, <span class="at">callback =</span>  <span class="co"># The callback needs to be updated to include the JS custom code</span></span>
+<span id="cb19-3"><a href="developers-guide.html#cb19-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">JS</span>(</span>
+<span id="cb19-4"><a href="developers-guide.html#cb19-4" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;function onUpdate(updatedCell, updatedRow, oldValue){&quot;</span>,</span>
+<span id="cb19-5"><a href="developers-guide.html#cb19-5" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;Shiny.onInputChange(&#39;jsValue&#39;, [updatedCell.index(), updatedCell.data()]);&quot;</span>, <span class="co"># The results to actually update the table_to_be_modified on the module script will be retrieved by a observeEvent(input$jsValue, { ; change jsValue each time this approach is used to avoid collisions</span></span>
+<span id="cb19-6"><a href="developers-guide.html#cb19-6" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;}&quot;</span>,</span>
+<span id="cb19-7"><a href="developers-guide.html#cb19-7" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;table.MakeCellsEditable({&quot;</span>,</span>
+<span id="cb19-8"><a href="developers-guide.html#cb19-8" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;  onUpdate: onUpdate,&quot;</span>,</span>
+<span id="cb19-9"><a href="developers-guide.html#cb19-9" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;  inputCss: &#39;my-input-class&#39;,&quot;</span>,</span>
+<span id="cb19-10"><a href="developers-guide.html#cb19-10" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;  columns: [2],&quot;</span>,</span>
+<span id="cb19-11"><a href="developers-guide.html#cb19-11" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;  confirmationButton: {&quot;</span>,</span>
+<span id="cb19-12"><a href="developers-guide.html#cb19-12" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;    confirmCss: &#39;my-confirm-class&#39;,&quot;</span>,</span>
+<span id="cb19-13"><a href="developers-guide.html#cb19-13" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;    cancelCss: &#39;my-cancel-class&#39;&quot;</span>,</span>
+<span id="cb19-14"><a href="developers-guide.html#cb19-14" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;  },&quot;</span>,</span>
+<span id="cb19-15"><a href="developers-guide.html#cb19-15" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;  inputTypes: [&quot;</span>,</span>
+<span id="cb19-16"><a href="developers-guide.html#cb19-16" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;    {&quot;</span>,</span>
+<span id="cb19-17"><a href="developers-guide.html#cb19-17" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;      column: 2,&quot;</span>,</span>
+<span id="cb19-18"><a href="developers-guide.html#cb19-18" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;      type: &#39;list&#39;,&quot;</span>,</span>
+<span id="cb19-19"><a href="developers-guide.html#cb19-19" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;      options: [&quot;</span>,</span>
+<span id="cb19-20"><a href="developers-guide.html#cb19-20" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;        {value: &#39;numeric&#39;, display: &#39;numeric&#39;},&quot;</span>, <span class="co"># Update this lines to declare the options of the dropdown</span></span>
+<span id="cb19-21"><a href="developers-guide.html#cb19-21" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;        {value: &#39;factor&#39;,      display: &#39;factor&#39;},&quot;</span>,</span>
+<span id="cb19-22"><a href="developers-guide.html#cb19-22" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;        {value: &#39;character&#39;,    display: &#39;character&#39;}&quot;</span>,</span>
+<span id="cb19-23"><a href="developers-guide.html#cb19-23" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;      ]&quot;</span>,</span>
+<span id="cb19-24"><a href="developers-guide.html#cb19-24" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;    }&quot;</span>,</span>
+<span id="cb19-25"><a href="developers-guide.html#cb19-25" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;  ]&quot;</span>,</span>
+<span id="cb19-26"><a href="developers-guide.html#cb19-26" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;});&quot;</span>),</span>
+<span id="cb19-27"><a href="developers-guide.html#cb19-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">options =</span> <span class="fu">list</span>(<span class="at">pageLength =</span> <span class="fu">nrow</span>(table_to_be_modified))</span>
+<span id="cb19-28"><a href="developers-guide.html#cb19-28" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb19-29"><a href="developers-guide.html#cb19-29" aria-hidden="true" tabindex="-1"></a>    path <span class="ot">&lt;-</span> <span class="st">&quot;../../www/&quot;</span> <span class="co"># folder containing the files dataTables.cellEdit.js</span></span>
+<span id="cb19-30"><a href="developers-guide.html#cb19-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># and dataTables.cellEdit.css, they are already included on ShinyDataSHIELD, so there is no need to worry about that</span></span>
+<span id="cb19-31"><a href="developers-guide.html#cb19-31" aria-hidden="true" tabindex="-1"></a>    dep <span class="ot">&lt;-</span> htmltools<span class="sc">::</span><span class="fu">htmlDependency</span>(</span>
+<span id="cb19-32"><a href="developers-guide.html#cb19-32" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;CellEdit&quot;</span>, <span class="st">&quot;1.0.19&quot;</span>, path,</span>
+<span id="cb19-33"><a href="developers-guide.html#cb19-33" aria-hidden="true" tabindex="-1"></a>      <span class="at">script =</span> <span class="st">&quot;dataTables.cellEdit.js&quot;</span>, <span class="at">stylesheet =</span> <span class="st">&quot;dataTables.cellEdit.css&quot;</span>)</span>
+<span id="cb19-34"><a href="developers-guide.html#cb19-34" aria-hidden="true" tabindex="-1"></a>    tab<span class="sc">$</span>dependencies <span class="ot">&lt;-</span> <span class="fu">c</span>(tab<span class="sc">$</span>dependencies, <span class="fu">list</span>(dep))</span></code></pre></div>
 <p>Example of what to include on the module script to update the table</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="developers-guide.html#cb22-1" aria-hidden="true" tabindex="-1"></a>proxy <span class="ot">=</span> <span class="fu">dataTableProxy</span>(<span class="st">&#39;a&#39;</span>) <span class="co"># No need to change this</span></span>
-<span id="cb22-2"><a href="developers-guide.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">observeEvent</span>(input<span class="sc">$</span>jsValue, { <span class="co"># As stated above, the trigger is actually the value defined on the callback, we can retrieve the row, column and value from that object</span></span>
-<span id="cb22-3"><a href="developers-guide.html#cb22-3" aria-hidden="true" tabindex="-1"></a>  change <span class="ot">&lt;-</span> <span class="fu">data.table</span>(input<span class="sc">$</span>jsValue)</span>
-<span id="cb22-4"><a href="developers-guide.html#cb22-4" aria-hidden="true" tabindex="-1"></a>  row <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(change[<span class="dv">1</span>,<span class="dv">1</span>]) <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb22-5"><a href="developers-guide.html#cb22-5" aria-hidden="true" tabindex="-1"></a>  column <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(change[<span class="dv">2</span>,<span class="dv">1</span>])</span>
-<span id="cb22-6"><a href="developers-guide.html#cb22-6" aria-hidden="true" tabindex="-1"></a>  value <span class="ot">&lt;-</span> <span class="fu">as.character</span>(change[<span class="dv">4</span>,<span class="dv">1</span>])</span>
-<span id="cb22-7"><a href="developers-guide.html#cb22-7" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb22-8"><a href="developers-guide.html#cb22-8" aria-hidden="true" tabindex="-1"></a>  table_to_be_modified[row, column] <span class="ot">&lt;&lt;-</span> value</span>
-<span id="cb22-9"><a href="developers-guide.html#cb22-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">replaceData</span>(proxy, table_to_be_modified, <span class="at">resetPaging =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb22-10"><a href="developers-guide.html#cb22-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="developers-guide.html#cb20-1" aria-hidden="true" tabindex="-1"></a>proxy <span class="ot">=</span> <span class="fu">dataTableProxy</span>(<span class="st">&#39;a&#39;</span>) <span class="co"># No need to change this</span></span>
+<span id="cb20-2"><a href="developers-guide.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">observeEvent</span>(input<span class="sc">$</span>jsValue, { <span class="co"># As stated above, the trigger is actually the value defined on the callback, we can retrieve the row, column and value from that object</span></span>
+<span id="cb20-3"><a href="developers-guide.html#cb20-3" aria-hidden="true" tabindex="-1"></a>  change <span class="ot">&lt;-</span> <span class="fu">data.table</span>(input<span class="sc">$</span>jsValue)</span>
+<span id="cb20-4"><a href="developers-guide.html#cb20-4" aria-hidden="true" tabindex="-1"></a>  row <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(change[<span class="dv">1</span>,<span class="dv">1</span>]) <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb20-5"><a href="developers-guide.html#cb20-5" aria-hidden="true" tabindex="-1"></a>  column <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(change[<span class="dv">2</span>,<span class="dv">1</span>])</span>
+<span id="cb20-6"><a href="developers-guide.html#cb20-6" aria-hidden="true" tabindex="-1"></a>  value <span class="ot">&lt;-</span> <span class="fu">as.character</span>(change[<span class="dv">4</span>,<span class="dv">1</span>])</span>
+<span id="cb20-7"><a href="developers-guide.html#cb20-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb20-8"><a href="developers-guide.html#cb20-8" aria-hidden="true" tabindex="-1"></a>  table_to_be_modified[row, column] <span class="ot">&lt;&lt;-</span> value</span>
+<span id="cb20-9"><a href="developers-guide.html#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">replaceData</span>(proxy, table_to_be_modified, <span class="at">resetPaging =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb20-10"><a href="developers-guide.html#cb20-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div id="plot_renders.r" class="section level4" number="4.1.3.2">
 <h4><span class="header-section-number">4.1.3.2</span> <code>plot_renders.R</code></h4>
@@ -596,20 +594,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Base plot structure:</li>
 </ul>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="developers-guide.html#cb23-1" aria-hidden="true" tabindex="-1"></a>output<span class="sc">$</span>random_plot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
-<span id="cb23-2"><a href="developers-guide.html#cb23-2" aria-hidden="true" tabindex="-1"></a>  plots<span class="sc">$</span>random_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
-<span id="cb23-3"><a href="developers-guide.html#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">function_that_generates_the_plot_using_base_package</span>(arguments)</span>
-<span id="cb23-4"><a href="developers-guide.html#cb23-4" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb23-5"><a href="developers-guide.html#cb23-5" aria-hidden="true" tabindex="-1"></a>  plots<span class="sc">$</span><span class="fu">random_plot</span>()</span>
-<span id="cb23-6"><a href="developers-guide.html#cb23-6" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="developers-guide.html#cb21-1" aria-hidden="true" tabindex="-1"></a>output<span class="sc">$</span>random_plot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb21-2"><a href="developers-guide.html#cb21-2" aria-hidden="true" tabindex="-1"></a>  plots<span class="sc">$</span>random_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
+<span id="cb21-3"><a href="developers-guide.html#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">function_that_generates_the_plot_using_base_package</span>(arguments)</span>
+<span id="cb21-4"><a href="developers-guide.html#cb21-4" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb21-5"><a href="developers-guide.html#cb21-5" aria-hidden="true" tabindex="-1"></a>  plots<span class="sc">$</span><span class="fu">random_plot</span>()</span>
+<span id="cb21-6"><a href="developers-guide.html#cb21-6" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <p>For the base plots, a function is declared that returns the plot and is called to generate the plot to the GUI.</p>
 <ul>
 <li>Ggplot structure:</li>
 </ul>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="developers-guide.html#cb24-1" aria-hidden="true" tabindex="-1"></a>output<span class="sc">$</span>manhattan <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
-<span id="cb24-2"><a href="developers-guide.html#cb24-2" aria-hidden="true" tabindex="-1"></a>  plots<span class="sc">$</span>ggplot <span class="ot">&lt;-</span> <span class="fu">function_that_generates_the_plot_using_ggplot2_package</span>(arguments)</span>
-<span id="cb24-3"><a href="developers-guide.html#cb24-3" aria-hidden="true" tabindex="-1"></a>  plots<span class="sc">$</span>ggplot</span>
-<span id="cb24-4"><a href="developers-guide.html#cb24-4" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="developers-guide.html#cb22-1" aria-hidden="true" tabindex="-1"></a>output<span class="sc">$</span>manhattan <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb22-2"><a href="developers-guide.html#cb22-2" aria-hidden="true" tabindex="-1"></a>  plots<span class="sc">$</span>ggplot <span class="ot">&lt;-</span> <span class="fu">function_that_generates_the_plot_using_ggplot2_package</span>(arguments)</span>
+<span id="cb22-3"><a href="developers-guide.html#cb22-3" aria-hidden="true" tabindex="-1"></a>  plots<span class="sc">$</span>ggplot</span>
+<span id="cb22-4"><a href="developers-guide.html#cb22-4" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <p>In this case the plot is saved, ggplot will generate a plot variable that can be called to render the plot.</p>
 <p>On this script there are two plots that are inside a <code>renderCachedPlot</code> function instead of a <code>renderPlot</code> because they take really long to calculate and it’s better to cache them.</p>
 <p>Inside of the <code>renderPlot</code> function some other code can be put, such as toggles to GUI elements or <code>tryCatch()</code> functions.</p>
@@ -620,36 +618,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Table downloader: To download a <code>*csv</code>. Structure:</li>
 </ul>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="developers-guide.html#cb25-1" aria-hidden="true" tabindex="-1"></a>output<span class="sc">$</span>table_download <span class="ot">&lt;-</span> <span class="fu">downloadHandler</span>(</span>
-<span id="cb25-2"><a href="developers-guide.html#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="st">&quot;table.csv&quot;</span>,</span>
-<span id="cb25-3"><a href="developers-guide.html#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">content =</span> <span class="cf">function</span>(file) {</span>
-<span id="cb25-4"><a href="developers-guide.html#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">write.csv</span>(</span>
-<span id="cb25-5"><a href="developers-guide.html#cb25-5" aria-hidden="true" tabindex="-1"></a>      variable_that_contains_table</span>
-<span id="cb25-6"><a href="developers-guide.html#cb25-6" aria-hidden="true" tabindex="-1"></a>      , file, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb25-7"><a href="developers-guide.html#cb25-7" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb25-8"><a href="developers-guide.html#cb25-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="developers-guide.html#cb23-1" aria-hidden="true" tabindex="-1"></a>output<span class="sc">$</span>table_download <span class="ot">&lt;-</span> <span class="fu">downloadHandler</span>(</span>
+<span id="cb23-2"><a href="developers-guide.html#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="st">&quot;table.csv&quot;</span>,</span>
+<span id="cb23-3"><a href="developers-guide.html#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">content =</span> <span class="cf">function</span>(file) {</span>
+<span id="cb23-4"><a href="developers-guide.html#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">write.csv</span>(</span>
+<span id="cb23-5"><a href="developers-guide.html#cb23-5" aria-hidden="true" tabindex="-1"></a>      variable_that_contains_table</span>
+<span id="cb23-6"><a href="developers-guide.html#cb23-6" aria-hidden="true" tabindex="-1"></a>      , file, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb23-7"><a href="developers-guide.html#cb23-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb23-8"><a href="developers-guide.html#cb23-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p>The <code>row.names = FALSE</code> argument may not be needed in tables where the row names are important.</p>
 <ul>
 <li>Base plot downloader: To download a <code>*.png</code>. Structure:</li>
 </ul>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="developers-guide.html#cb26-1" aria-hidden="true" tabindex="-1"></a>output<span class="sc">$</span>base_plot_download <span class="ot">&lt;-</span> <span class="fu">downloadHandler</span>(</span>
-<span id="cb26-2"><a href="developers-guide.html#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="st">&quot;base_plot.png&quot;</span>,</span>
-<span id="cb26-3"><a href="developers-guide.html#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">content =</span> <span class="cf">function</span>(file) {</span>
-<span id="cb26-4"><a href="developers-guide.html#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">png</span>(<span class="at">file =</span> file)</span>
-<span id="cb26-5"><a href="developers-guide.html#cb26-5" aria-hidden="true" tabindex="-1"></a>    plots<span class="sc">$</span><span class="fu">base_plot</span>()</span>
-<span id="cb26-6"><a href="developers-guide.html#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">dev.off</span>()</span>
-<span id="cb26-7"><a href="developers-guide.html#cb26-7" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb26-8"><a href="developers-guide.html#cb26-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="developers-guide.html#cb24-1" aria-hidden="true" tabindex="-1"></a>output<span class="sc">$</span>base_plot_download <span class="ot">&lt;-</span> <span class="fu">downloadHandler</span>(</span>
+<span id="cb24-2"><a href="developers-guide.html#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="st">&quot;base_plot.png&quot;</span>,</span>
+<span id="cb24-3"><a href="developers-guide.html#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">content =</span> <span class="cf">function</span>(file) {</span>
+<span id="cb24-4"><a href="developers-guide.html#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">png</span>(<span class="at">file =</span> file)</span>
+<span id="cb24-5"><a href="developers-guide.html#cb24-5" aria-hidden="true" tabindex="-1"></a>    plots<span class="sc">$</span><span class="fu">base_plot</span>()</span>
+<span id="cb24-6"><a href="developers-guide.html#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">dev.off</span>()</span>
+<span id="cb24-7"><a href="developers-guide.html#cb24-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb24-8"><a href="developers-guide.html#cb24-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p>Basically this calls the previously declared function and captures the plot into a <code>*.png</code>.</p>
 <ul>
 <li>GGplot downloader: To download a <code>*.png</code>. Structure:</li>
 </ul>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="developers-guide.html#cb27-1" aria-hidden="true" tabindex="-1"></a>output<span class="sc">$</span>ggplot_download <span class="ot">&lt;-</span> <span class="fu">downloadHandler</span>(</span>
-<span id="cb27-2"><a href="developers-guide.html#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="st">&quot;ggplot.png&quot;</span>,</span>
-<span id="cb27-3"><a href="developers-guide.html#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">content =</span> <span class="cf">function</span>(file) {</span>
-<span id="cb27-4"><a href="developers-guide.html#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggsave</span>(file, <span class="at">plot =</span> <span class="fu">last_plot</span>())</span>
-<span id="cb27-5"><a href="developers-guide.html#cb27-5" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb27-6"><a href="developers-guide.html#cb27-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="developers-guide.html#cb25-1" aria-hidden="true" tabindex="-1"></a>output<span class="sc">$</span>ggplot_download <span class="ot">&lt;-</span> <span class="fu">downloadHandler</span>(</span>
+<span id="cb25-2"><a href="developers-guide.html#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="st">&quot;ggplot.png&quot;</span>,</span>
+<span id="cb25-3"><a href="developers-guide.html#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">content =</span> <span class="cf">function</span>(file) {</span>
+<span id="cb25-4"><a href="developers-guide.html#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggsave</span>(file, <span class="at">plot =</span> <span class="fu">last_plot</span>())</span>
+<span id="cb25-5"><a href="developers-guide.html#cb25-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb25-6"><a href="developers-guide.html#cb25-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p>When using ggplot, the function <code>last_plot()</code> renders the last plot rendered by ggplot. This only has one inconvenient, that is when you are downloading a plot that takes a while to render, the application doesn’t show the save window dialog until it has rendered again. This should be addressed in the future as it really halters the user experience.</p>
 </div>
 </div>
@@ -657,7 +655,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">4.1.4</span> How to add a new block</h3>
 <p>To add a new block to ShinyDataSHIELD, the developer has to create a new <code>*.R</code> script inside the <code>inst/shinyApp/</code> folder of the project and give it a descriprive name of the function that it will perform.</p>
 <p>So the Shiny application actually sees it, the <code>server.R</code> needs to be updated and source the new file. Example: New block called <code>new_analysis.R</code>, the update to the <code>server.R</code> will be</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="developers-guide.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;new_analysis.R&quot;</span>, <span class="at">local =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="developers-guide.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;new_analysis.R&quot;</span>, <span class="at">local =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>Afterwards, the <code>ui.R</code> can be updated by defining how the new block will be presented to the user. The <code>sidebarMenu</code> function needs to be updated so that the new tab appears on the sidebar of the application, follow the structure of the other tabs. Afterwards update the <code>dashboardBody</code> function by defining all the different elements of the new tab, follow the structure of the other available tabs to follow the general design lines, all the functions that need to be used here are standard Shiny functions mostly and there’s plenty of documentation and examples available online, when in doubt just try to copy an already implemented structure.</p>
 <p>Now the user can focus on the types of files that will feed this new block, if it’s a table there’s no need to worry, if it’s a resource that is not implemented the <code>connection.R</code> needs to be updated. Read the above documentation for guidance on the changes that need to be done for new resources types.</p>
 <p>Once the GUI is setup and the table / resource that this block will use is setup, the backend for this block can be built on the <code>new_analysis.R</code> file. Include on that file all the required <code>renderUI()</code> functions and steps to process the file and analyze it. Probably a new variable will be required to hold the results, update the <code>server.R</code> header and include a new <code>reactiveValues()</code> declaration for the new block.</p>
@@ -680,7 +678,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -710,6 +707,10 @@ gitbook.start({
 "text": null
 },
 "download": ["ShinyDataSHIELD_bookdown.pdf", "ShinyDataSHIELD_bookdown.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

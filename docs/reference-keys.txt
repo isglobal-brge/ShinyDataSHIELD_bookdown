@@ -16,10 +16,6 @@ fig:tableclass1
 fig:tableclass2
 overview
 setup
-r-packages
-install
-install-required-packages-with-r
-run-the-shiny-app
 install-with-docker
 functionalities
 data-entry
@@ -35,7 +31,7 @@ scatter-plot
 histogram
 heatmap
 boxplot
-statistic-models
+statistical-models
 glm-models
 mixed-models
 survival-analysis
